@@ -493,12 +493,12 @@ a.pagination-item:hover {
 .theme-base-0c .sidebar,
 .theme-base-0c .sidebar-toggle:active,
 .theme-base-0c #sidebar-checkbox:checked ~ .sidebar-toggle {
-  background-color: #75b5aa;
+  background-color: #2ecc71;
 }
 .theme-base-0c .container a,
 .theme-base-0c .sidebar-toggle,
 .theme-base-0c .related-posts li a:hover {
-  color: #75b5aa;
+  color: #2ecc71;
 }
 
 /* Blue */
