@@ -12,5 +12,6 @@ I've worked on a whole bunch of projects over the years, mainly as part of the F
 
 ## Contact Me
 
-Shoot me an email if you want to get in contact at
-[hamishivi@gmail.com](mailto:hamishivi@gmail.com)
+* Email: [hamishivi@gmail.com](mailto:hamishivi@gmail.com)
+* [linkedin](https://au.linkedin.com/in/hamish-ivison-6a17a1118)
+* [github]((http://github.com/hamishivi))
