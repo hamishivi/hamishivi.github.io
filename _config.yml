@@ -7,8 +7,8 @@ permalink:           pretty
 title:               Hamish Ivison
 tagline:             'Developer, Student, Classics Nerd'
 description:         ''
-url:                 http://lanyon.getpoole.com
-baseurl:             '/about'
+url:                 https://hamishivi.github.io
+baseurl:             ''
 paginate:            5
 
 # About/contact
