@@ -216,7 +216,7 @@ a.sidebar-nav-item:focus {
   left: 1rem;
   display: block;
   padding: .25rem .75rem;
-  color: #505050;
+  color: #2c7;
   background-color: #fff;
   border-radius: .25rem;
   cursor: pointer;
@@ -237,7 +237,7 @@ a.sidebar-nav-item:focus {
 #sidebar-checkbox:focus ~ .sidebar-toggle,
 #sidebar-checkbox:checked ~ .sidebar-toggle {
   color: #fff;
-  background-color: #555;
+  background-color: #2c7;
 }
 
 .sidebar-toggle:active:before,
