@@ -4,11 +4,11 @@ permalink:           pretty
 #relative_permalinks: true
 
 # Setup
-title:               Hamish's Little Site
+title:               Hamish Ivison
 tagline:             'Developer, Student, Classics Nerd'
 description:         ''
 url:                 http://lanyon.getpoole.com
-baseurl:             ''
+baseurl:             '/about'
 paginate:            5
 
 # About/contact
