@@ -85,3 +85,5 @@ $ pip3 install --upgrade Tensorflow-gpu # for Python 3.3 and GPU
  ~~~
 
  Okay, done, I promise. Now free to mess with this and have fun!! I'm still working on my first Tensorflow project as of the time of writing, and I hope whoever reads this has great success with their own projects :) . Mostly just because I love seeing cool tech things.
+
+ Massive kudos to [this](http://expressionflow.com/2016/10/09/installing-tensorflow-on-an-aws-ec2-p2-gpu-instance/) guide and the official Tensorflow docs [here](https://tensorflow.org), from which I basically copied this guide.
