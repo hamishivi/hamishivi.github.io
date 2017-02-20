@@ -3,8 +3,6 @@ layout: post
 title: Setting Up Tensorflow 1.0 on AWS
 ---
 
-## Setting Up Tensorflow 1.0 on AWS
-
 This is more a post for me than anyone else, keeping the steps I used for future reference. I'm leaving it online in case anyone finds it useful, though I imagine there are far better walkthroughs and tutorials available.
 
 Firstly, set up an AWS instance with a **p2.xlarge** machine with Ubuntu 16.04, with around 100gigs on the SSD storage. I'd also recommend requesting a spot instance to keep a cap on how much you're paying (to avoid nasty surprises). Just follow the steps on the amazon site and you should be fine! Connect to the machine via ssh or however you wish. I just ssh'ed in from terminal, but whatever works.
