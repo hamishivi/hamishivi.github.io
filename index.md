@@ -14,4 +14,4 @@ I've worked on a whole bunch of projects over the years, mainly as part of the F
 
 * Email: [hamishivi@gmail.com](mailto:hamishivi@gmail.com)
 * [linkedin](https://au.linkedin.com/in/hamish-ivison-6a17a1118)
-* [github]((https://github.com/hamishivi))
+* [github](https://github.com/hamishivi))
