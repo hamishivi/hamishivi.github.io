@@ -1,9 +1,7 @@
 ---
 layout: post
-title: first-internprise
+title: My First 'Internprise' Experience
 ---
-
-## My First 'Internprise' Experience
 
 So, I spent the past six weeks working at a certain very large Australian bank. It was my first time doing a LOT of things, including seeing how professional software engineers work. So this post will be a bit of a reflection and a few notes about my experience, especially considering my previous software experience is about one year of university.
 
