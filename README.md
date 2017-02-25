@@ -1,3 +1,3 @@
-## My blog maybe??
+## My blog
 
-I guess this will be my personal page and/or blog at some point. We'll see.
+Just my personal blog, nothing to see or read here.
