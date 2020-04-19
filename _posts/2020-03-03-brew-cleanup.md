@@ -3,7 +3,7 @@ layout: post
 title: A Quick Tip for brew cleanup
 ---
 
-This is just a quick tip for anyone with errors happening whenever they run ```brew cleanup``` - based off [this thread on Github](https://github.com/Homebrew/legacy-homebrew/issues/44945). As a disclaimer, this isn't a global fix for all errors with ```brew cleanup``` - I wrote this on March 3rd 2020, so it may become outdated at some point too. However, I hope it is of use to someone!
+This is just a quick tip for anyone with errors happening whenever they run ```brew cleanup``` - based off [this thread on Github](https://github.com/Homebrew/legacy-homebrew/issues/44945). As a disclaimer, this isn't a global fix for all errors with ```brew cleanup```. I wrote this on March 3rd 2020, so if you're reading far in the future, this might not be all that useful either (sorry!). However, I hope it is of use to someone!
 
 If your error looks like this:
 ```
