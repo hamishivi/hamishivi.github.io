@@ -4,7 +4,7 @@ title: About
 ---
 ## Welcome to my site!
 
-I'm an undergraduate student at the University of Sydney, studying **Computer Science**, **Ancient Greek** and **linguistics**.
+I'm an undergraduate student at the University of Sydney, studying **computer science**, **Ancient Greek** and **linguistics**.
 
 ## Projects
 
