@@ -2,7 +2,9 @@
 layout: default
 title: Blog
 ---
-
+<style>
+  <link rel="stylesheet" href="/public/css/post.css"/>
+</style>
 <div class="posts">
   {% for post in site.posts %}
   <div class="post">
@@ -14,7 +16,7 @@ title: Blog
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.content }}
+    {{ post.excerpt }}
   </div>
   {% endfor %}
 </div>
