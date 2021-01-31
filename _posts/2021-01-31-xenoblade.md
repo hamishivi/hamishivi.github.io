@@ -54,7 +54,7 @@ After travelling up from Colony 9 (the starting area, on the Bionis' right calf)
 </figure>
 
 <figure>
-<img src="https://drive.google.com/uc?id=1P33pZ-_ZCWDx6AZNy6IEUnJRY_fAfvZj" style="margin: 0 auto; width: 100%"/>
+<img src="/public/post_images/xenoblade/test.gif" style="margin: 0 auto; width: 100%"/>
 
 <figcaption>Walking onto Gaur plan.</figcaption>
 </figure>
