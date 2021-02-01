@@ -48,12 +48,6 @@ These distinctions are not absolute (you can probably think of anything in a gam
 After travelling up from Colony 9 (the starting area, on the Bionis' right calf), players come up to Bionis' leg. The thin and narrow entrance immediately leads into a massive sprawling plain: Gaur plain. Coming from the walled-off Colony 9 and closed-in Tephra Caves, you're immediately struck by the expansiveness of Gaur plain as it stretches beyond the horizon. The game is telling you that, from now on, you're out of the introduction and free to go your own way (to a degree).
 
 <figure>
-<img src="/public/post_images/xenoblade/Screen_Shot_2021-01-12_at_18.30.11.png" style="margin: 0 auto; width: 100%"/>
-
-<figcaption>The Mechonis on the left, and the Bionis on the right, as represented in-game.</figcaption>
-</figure>
-
-<figure>
 <img src="/public/post_images/xenoblade/test.gif" style="margin: 0 auto; width: 100%"/>
 
 <figcaption>Walking onto Gaur plan.</figcaption>
@@ -68,7 +62,7 @@ After travelling up from Colony 9 (the starting area, on the Bionis' right calf)
 As we progress through the main quest, we are initially guided to a buggy in the middle of the plain, then a small oasis on its other side, then teleported back to the buggy, before then going to a refugee camp at the end of the plain (this route is mapped below). This continuous ping-ponging explicitly encourages the player to take different routes and explore the map a bit as they wander to the next checkpoint: through the use of various explicit mechanics (which we will get to soon), you're encouraged to take detours on this already very winding path, and if you want to take the most direct route, you'll still end up taking different paths throughout the plain, marked in blue below. Along the way, we meet Juju and Sharla, two siblings from Colony 6 (another colony of humans, or 'homs', further up the leg of the Bionis). After reaching the refugee camp, Sharla joins our party and Juju runs off to colony 6 to prove himself - leaving us to chase after him.
 
 <figure>
-<img src="/public/post_images/xenoblade/map_one.png" style="margin: 0 auto; width: 100%"/>
+<img src="/public/post_images/xenoblade/map_one.png" style="margin: 0 auto; width: 100%; background-color: black;"/>
 
 <figcaption>1: Start of Gaur Plain; 2: Where you find the broken buggy; 3: The oasis; 4: The refugee camp. Dotted line indicates teleporting from the oasis back to the buggy.</figcaption>
 </figure>
@@ -82,7 +76,7 @@ As we progress through the main quest, we are initially guided to a buggy in the
 Once we reach the refugee camp, we get the chance to stock up on items and accept some sidequests before progressing with the main quest. From the refugee camp, it's a fairly straightforward path to Raguel bridge, taking us past some of the larger landmarks in the map, and over Raguel lake. All these landmarks are explorable, with various sidequests taking place in them. As such, some players will likely detour and explore the areas to complete sidequests (or just to check it out) before pressing forward with the game's plot.
 
 <figure>
-<img src="/public/post_images/xenoblade/map_two.png" style="margin: 0 auto; width: 100%"/>
+<img src="/public/post_images/xenoblade/map_two.png" style="margin: 0 auto; width: 100%; background-color: black;"/>
 
 <figcaption>4: refugee camp; 5: the start of Raguel bridge.</figcaption>
 </figure>
@@ -90,7 +84,7 @@ Once we reach the refugee camp, we get the chance to stock up on items and accep
 Once across the bridge, we go up to the upper segment of the map and fight the boss(es) of this area almost immediately! This upper segment is left almost completely unexplored and adds a little verticality to what is overall a fairly flat map. After beating the final boss and rescuing Juju, we're teleported back to the refugee camp and told to go back to the upper segment to progress to the next area. After reaching and rescuing Juju from the bosses, the tension in main plotline is also at a low, giving us the perfect chance to dawdle, finish some sidequests, and explore before progressing to the next area (In fact, the initial sidequests in Bionis' leg expire and cannot be completed once we complete the next chunk of the game).
 
 <figure>
-<img src="/public/post_images/xenoblade/map_three.png" style="margin: 0 auto; width: 100%"/>
+<img src="/public/post_images/xenoblade/map_three.png" style="margin: 0 auto; width: 100%; background-color: black;"/>
 
 <figcaption>5: start of Raguel bridge; 6: other side of Raguel bridge; 7: spiral mountain; 8: end of the map. Dotted line joins lower (left) and upper (right) halves of the map.</figcaption>
 </figure>
@@ -106,7 +100,7 @@ So, having stepped through the story of this area, we can clearly see that the m
 3. Upper level and the caves below (where the holes in the upper level drop down into the caves)
 
 <figure>
-<img src="/public/post_images/xenoblade/map_split.png" style="margin: 0 auto; width: 100%"/>
+<img src="/public/post_images/xenoblade/map_split.png" style="margin: 0 auto; width: 100%; background-color: black;"/>
 
 <figcaption>The three areas, separated by red lines. Areas are organised left to right, following the above list. Upper area is the disjointed section on the right.</figcaption>
 </figure>
