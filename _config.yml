@@ -6,7 +6,7 @@ permalink:           pretty
 # Setup
 title:               Hamish Ivison
 tagline:             ''
-description:         'My site for posting... stuff.'
+description:         "Hamish Ivison's site"
 url:                 https://hamishivi.github.io
 baseurl:             ''
 paginate:            5
@@ -21,3 +21,5 @@ author:
 # Custom vars
 version:             1.0.0
 markdown:            kramdown
+
+plugins: [jekyll-paginate]
