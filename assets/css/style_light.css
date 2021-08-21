@@ -322,3 +322,24 @@ table td { border: 1px solid #e8e8e8; }
 @media screen and (min-width: 800px) { .one-half { width: calc(50% - (30px / 2)); } }
 
 /*# sourceMappingURL=style.css.map */
+
+/** Hamish's custom attributes **/
+.site-nav {
+    z-index: 4;
+}
+
+img {
+    display: block
+}
+
+figcaption {
+    text-align: center;
+}
+
+.svg-icon {
+    color: grey;
+}
+
+.social-media-list li a:hover > .svg-icon {
+    color: #218048;
+}

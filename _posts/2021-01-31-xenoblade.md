@@ -279,7 +279,7 @@ This all adds to the immersion: enemies are not magically at levels that perfect
 So, we've seen that getting players to explore your world relies a lot of things, most of which you'd expect: you want interesting maps and views, you want quests that take you around the map, and you want to make lots of extra interesting small areas that reward curious players. Additionally, with systems like secret areas and exploration experience, you can actually teach players to enjoy exploration, even if they weren't necessarily inclined to do so before! This isn't to say *Xenoblade* is a perfect game, or even a perfect world: there are many boring quests and boring, tedious areas in the game. However, I think it's still worth sitting back and appreciating the amount of work and thought that's gone into the world, and into helping the player enjoy it as much as possible. The Bionis and the Mechonis have come a long way since they were just [a diorama dreamt up during an idle train ride](http://iwataasks.nintendo.com/interviews/#/wii/xenoblade/1/0)!
 
  <figure>
-<img src="https://i.imgur.com/9lup2Ik.png" style="margin: 0 auto;"/>
+<img src="https://i.imgur.com/nODMqHg.png" style="margin: 0 auto;"/>
 
 <figcaption>The dioramas made by MonolithSoft when first coming up with <i>Xenoblade Chronicles</i>.</figcaption>
 </figure>

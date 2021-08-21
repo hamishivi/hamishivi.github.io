@@ -1,6 +1,6 @@
 title: Hamish Ivison
 description: >-
-  A place for my random thoughts and projects.
+  The random thoughts and projects of a software developer.
 baseurl: ""
 url: "https://hamishivi.github.io"
 
@@ -13,7 +13,6 @@ plugins:
 remote_theme: jekyll/minima
 markdown: kramdown
 tags:
-google_analytics: G-B07QV7GZ7E
 minima:
   skin: dark
   social_links:
