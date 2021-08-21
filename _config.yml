@@ -1,0 +1,21 @@
+title: Hamish Ivison
+description: >-
+  A place for my random thoughts and projects.
+baseurl: ""
+url: "https://hamishivi.github.io"
+
+
+# Build settings
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+
+remote_theme: jekyll/minima
+markdown: kramdown
+tags:
+minima:
+  skin: dark
+  social_links:
+    twitter: hamishivi
+    github: hamishivi
+    linkedin: hamish-ivison-6a17a1118
