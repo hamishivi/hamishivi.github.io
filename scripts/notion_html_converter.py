@@ -25,21 +25,12 @@ path = Path(args.filename)
 fulltitle = lines[0][2:]
 lines.pop(0)
 
-# make dir for stuff
-try:
-    os.mkdir(f'public/post_images/{args.title}')
-except FileExistsError: # okay for folder to exist, just wipe it.
-    print('err')
-    files = glob.glob(f'public/post_images/{args.title}/*')
-    for f in files:
-        os.remove(f)
-
 # add title
 title = f'''---
 layout: post
 title: {fulltitle}
-excerpt_separator: <!--more-->
 usemathjax: true
+description:
 ---'''.split('\n')
 title = [t for t in title if t] # filter out empty string
 lines = title + lines

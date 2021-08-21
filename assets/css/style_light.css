@@ -343,3 +343,7 @@ figcaption {
 .social-media-list li a:hover > .svg-icon {
     color: #218048;
 }
+
+.feed-subscribe:hover > .svg-icon {
+    color: #f26522
+}
