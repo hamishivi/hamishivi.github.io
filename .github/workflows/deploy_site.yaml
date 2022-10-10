@@ -1,4 +1,4 @@
-name: Deploy site to pages
+name: Deploy site to pages via branch
 on:
   push
 
