@@ -237,9 +237,9 @@ table td { border: 1px solid #404040; }
 @media screen and (min-width: 600px) { .site-nav { position: static; float: right; border: none; background-color: inherit; } .site-nav label[for="nav-trigger"] { display: none; } .site-nav .menu-icon { display: none; } .site-nav input ~ .trigger { display: block; } .site-nav .page-link { display: inline; padding: 0; margin-left: auto; } .site-nav .page-link:not(:last-child) { margin-right: 20px; } }
 
 /** Site footer */
-.site-footer { border-top: 1px solid #404040; padding: 30px 0; }
+.site-footer { border-top: 1px solid #404040; padding: 5px 0; }
 
-.footer-heading { font-size: 1.125rem; margin-bottom: 15px; }
+.footer-heading { font-size: 1.125rem; margin-bottom: 1px; }
 
 .feed-subscribe .svg-icon { padding: 5px 5px 2px 0; }
 
@@ -247,7 +247,7 @@ table td { border: 1px solid #404040; }
 
 .footer-col-wrapper, .social-links { font-size: 0.9375rem; color: #999999; }
 
-.footer-col { margin-bottom: 15px; }
+.footer-col { margin-bottom: 5px; }
 
 .footer-col-1, .footer-col-2 { width: calc(50% - (30px / 2)); }
 
@@ -347,3 +347,56 @@ figcaption {
 .feed-subscribe a:hover > .svg-icon {
     color: #f26522
 }
+
+/* CSS */
+.button-4 {
+    appearance: none;
+    background-color: #212121;
+    border: 1px solid #FAFBFC;
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #2ecc71;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    list-style: none;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+  }
+  
+  .button-4:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    color: #212121;
+    transition-duration: 0.1s;
+  }
+  
+  .dropped {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    color: #212121;
+    transition-duration: 0.1s;
+  }
+  
+  .button-4:before {
+    display: none;
+  }
+  
+  .button-4:-webkit-details-marker {
+    display: none;
+  }
+
+
+.dropDownAbstract {
+    background-color: #2b2b2b;
+    padding: 5px;
+    border-radius: 6px;
+  }

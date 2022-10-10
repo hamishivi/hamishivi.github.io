@@ -4,3 +4,16 @@
 </script>
 {% endif %}
 <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+      $(".btnId").click(function(){
+          var str = $(this).attr('id');
+          var ret = str.split("_");
+          var id = ret[1];
+          $('#' + id).toggle();
+          $(this).toggleClass("dropped");
+      });
+  });
+
+</script>

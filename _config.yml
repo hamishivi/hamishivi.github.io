@@ -1,6 +1,6 @@
 title: Hamish Ivison
 description: >-
-  The random thoughts and projects of a software developer.
+  Hamish's site.
 baseurl: ""
 url: "https://hamishivi.github.io"
 
@@ -9,6 +9,7 @@ url: "https://hamishivi.github.io"
 plugins:
   - jekyll-remote-theme
   - jekyll-feed
+  - jekyll/scholar
 
 remote_theme: jekyll/minima
 markdown: kramdown
@@ -19,3 +20,9 @@ minima:
     twitter: hamishivi
     github: hamishivi
     linkedin: hamish-ivison-6a17a1118
+
+scholar:
+  style: _bibliography/association-for-computational-linguistics.csl.txt
+  bibliography_template: bibtemplate
+  bibliography_list_tag: div
+  bibliography_item_tag: ul

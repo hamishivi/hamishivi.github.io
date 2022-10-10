@@ -1,0 +1,25 @@
+---
+---
+{{reference}}
+<br>
+    {% if entry.abstract %}
+    <button class="btn btnId btnPub--abstract button-4" id="b_{{key}}-abstract" style="outline:none;">Abstract</button>
+    {% endif %}
+
+    <button class="btn btnId btnPub--BibTex button-4" id="b_{{key}}-bibtex" style="outline:none;">BibTeX</button>
+    
+    {% if entry.url %}
+    <a href="{{entry.url}}"><button class="btn button-4 btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">PDF</button></a>
+    {% endif %}
+    
+    {% if entry.code %}
+    <a href="{{entry.code}}"><button class="btn button-4 btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">Code</button></a>
+    {% endif %}
+
+    <div class="dropDownBibtex" id="{{key}}-bibtex" style="display:none;">
+    <pre>{{entry.bibtex}}</pre>
+    </div>
+    
+    <div class="dropDownAbstract" id="{{key}}-abstract" style="display:none;">
+    {{entry.abstract}}
+    </div>
