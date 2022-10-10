@@ -1,5 +1,4 @@
-name: Testing the GitHub Pages publication
-
+name: Deploy site to pages
 on:
   push
 
