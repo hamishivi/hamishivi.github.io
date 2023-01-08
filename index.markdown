@@ -2,7 +2,7 @@
 layout: home
 ---
 
-Hi, I'm <a href="#" data-tooltip="/ˈheɪmɪʃ/">Hamish</a>! I'm (currently) a predoctoral researcher at [AI2](https://allenai.org/) on the [AllenNLP team](https://allenai.org/allennlp). I'm generally interested in NLP research, with current interests in how to adapt and compose language models to improve their performance in multi-task setups.
+Hi, I'm <a href="#" data-tooltip="[ˈheɪmɪʃ]">Hamish</a>! I'm (currently) a predoctoral researcher at [AI2](https://allenai.org/) on the [AllenNLP team](https://allenai.org/allennlp). I'm generally interested in NLP research, with current interests in how to adapt and compose language models to improve their performance in multi-task setups.
 
 I graduated at the end of 2020 from the University of Sydney with a Bachelor of Arts and IT, triple majoring in Linguistics, Classical Greek, and Computer Science. I was lucky enough to get the university medal and first-class honours for my undergraduate honours year thesis, for which I examined multi-hop question answering with the [UsydNLP group](https://usydnlp.info/). During (and just after) my degree, I've spent some time at the [Commonwealth Bank of Australia](https://www.commbank.com.au/), start-up-y stuff, and [Optiver](https://www.optiver.com/).
 
