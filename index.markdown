@@ -11,6 +11,6 @@ If you have questions about my work, general academia/software/research-related 
 <hr>
 <h2>Papers</h2>
 
-See below for papers I've worked on. You can also check out my [Semantic Scholar](https://www.semanticscholar.org/author/Hamish-Ivison/2056776606) and [Google Scholar](https://scholar.google.com/) profiles.
+See below for papers I've worked on. You can also check out my [Semantic Scholar](https://www.semanticscholar.org/author/Hamish-Ivison/2056776606) and [Google Scholar](https://scholar.google.com/citations?user=JxCXMlkAAAAJ) profiles.
 
 {% bibliography %}
