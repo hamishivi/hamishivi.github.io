@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Building a basic chatbot | Hamish Ivison</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Building a basic chatbot" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to build and host a very simple chatbot." />
+<meta property="og:description" content="How to build and host a very simple chatbot." />
+<link rel="canonical" href="https://hamishivi.github.io/2019/07/26/chatbot.html" />
+<meta property="og:url" content="https://hamishivi.github.io/2019/07/26/chatbot.html" />
+<meta property="og:site_name" content="Hamish Ivison" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Building a basic chatbot" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://hamishivi.github.io/2019/07/26/chatbot.html"},"description":"How to build and host a very simple chatbot.","url":"https://hamishivi.github.io/2019/07/26/chatbot.html","@type":"BlogPosting","headline":"Building a basic chatbot","dateModified":"2019-07-26T00:00:00+00:00","datePublished":"2019-07-26T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+      
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/assets/css/style_dark.css" >
+    <link rel="stylesheet" href="/assets/css/style_dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="/assets/css/style_light.css" media="(prefers-color-scheme: light)"><link type="application/atom+xml" rel="alternate" href="https://hamishivi.github.io/feed.xml" title="Hamish Ivison" />
+
+<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+      $(".btnId").click(function(){
+          var str = $(this).attr('id');
+          var ret = str.split("_");
+          var id = ret[1];
+          $('#' + id).toggle();
+          $(this).toggleClass("dropped");
+      });
+  });
+
+</script>
+
+    
+  </head><body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/"><span style="color: #2ecc71">H</span>amish <span style="color: #2ecc71">I</span>vison</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger"><a class="page-link" href="/">About</a><a class="page-link" href="/non-technical.html">Random</a><a class="page-link" href="/technical.html">Side Projects</a></div>
+        </nav></div>
+    <dark-mode-toggle
+    id="theme-toggle"
+    appearance="toggle"
+    style="position: absolute; right: 25px; top: 60%;"></dark-mode-toggle>
+  </header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Building a basic chatbot</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2019-07-26T00:00:00+00:00" itemprop="datePublished">
+        Jul 26, 2019
+      </time><hspace></hspace>
+      &nbsp;
+      
+      
+      <a href="/tag/blog"><code class="highligher-rouge"><nobr>blog</nobr></code></a>&nbsp;
+    
+      
+      <a href="/tag/technical"><code class="highligher-rouge"><nobr>technical</nobr></code></a>&nbsp;
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Over the course of my previous semester of University, I had the fun experience of building a small deep learning-based chatbot for a university assignment. It was really fun to see it working and get it running, so I figured it would also be great to clean it up and deploy it on the internet.</p>
+
+<p>You can check out the chatbot for yourself <a href="https://microbotchat.heroku.com">here</a>! After initially visiting the site, wait a minute or two and try visiting it again - the chatbot takes about one or two minutes to start up (the tradeoff for having free hosting). Here’s an example of how it should work:</p>
+
+<p><img src="https://i.imgur.com/fTGashO.gif" style="margin: 0 auto;" /></p>
+
+<p>The repository containing the code for the site can be found <a href="https://github.com/hamishivi/microbot">here</a>.</p>
+
+<h2 id="basic-overview">Basic Overview</h2>
+
+<p>The chatbot is quite simple, using a very simple encoder-decoder architecture (see below if you don’t know what that is). First, it takes in the user’s input, passing the words (as <a href="https://en.wikipedia.org/wiki/Word_embedding">word embeddings</a>) into a layer of GRU units, which means it can take input of (more or less) arbitrary length. An attention mechanism is then applied to the output, determining which words in the input are most important for generating a response, and weighting the output values associated with each input word accordingly. Finally, this output and a ‘begin’ token are passed into another set of GRU units, which output a single number: the index of the best response in the list of possible responses. This is then used to look up and provide that chosen response. The image below summarises this:</p>
+
+<p><img src="https://i.imgur.com/W9bg3R7.png" style="margin: 0 auto;" /></p>
+
+<p>Since the model is simple, each input is treated individually - it has no memory of previous questions. This made deploying the model easy (as it requires no memory, it is essentially stateless) but means it can’t hold a very human-like conversation. In addition, as the model is choosing the best answer from a list of prewritten ones, the second you start asking questions that are unlike its training data, it will give very odd responses. Sometimes this can be fun, though! 😄</p>
+
+<h2 id="training-data">Training Data</h2>
+
+<p>The dataset used for training and looking up answers was the <a href="https://github.com/microsoft/BotBuilder-PersonalityChat/tree/master/CSharp/Datasets">Microsoft Personality Chat dataset</a>, which is a fairly small dataset that comprises of common conversational patterns, mostly focussing on ‘chit-chat’. As part of the assignment, we used the ‘professional’, ‘friendly’, and ‘witty’ personality datasets (since the assignment more personalities have been added).</p>
+
+<h2 id="encoder-decoder-architecture">Encoder-Decoder Architecture</h2>
+
+<p>The encoder-decoder architecture is a common architecture used for neural network models in NLP (although, at time of writing, transformer architectures are quickly taking over the field). It consists of two basic units: the encoder and the decoder. The encoder’s job is to ‘encode’ the input - that is, to take in input and transform (or ‘encode’) it into a form useful for the task, while doing some analysis of the input. So it takes in two inputs: the previous state of the encoder (which allows it to retain the memory of previously happened in the input), and the current input (usually a word embedding). If it is the first word in the input, we just pass in all zeroes as the previous state. We thus feed in each word one by one, and at the final word get the output from the encoder and save it.</p>
+
+<p>The decoder then, well, ‘decodes’ this output. It takes two inputs: the previous state of the decoder (so the model can remember what it has already said) and the previous output from the decoder (e.g. the previous response output). However, rather than setting the previous state to all 0s for the first step, we set it to the output state from the encoder after the encoder had processed the input. This allows the decoder to then ‘decode’ this and generate an appropriate response.</p>
+
+<p><img src="https://miro.medium.com/fit/c/1400/420/1*Ismhi-muID5ooWf3ZIQFFg.png" style="margin: 0 auto;" /></p>
+<div style="text-align:center;"><i>Credits to <a href="https://towardsdatascience.com/sequence-to-sequence-model-introduction-and-concepts-44d9b41cd42d">Towards Data Science</a> for the above image.</i></div>
+<p><br /></p>
+
+<p>There are more additions we can make on top of this basic structure: we can ‘stack’ encoders and decoders, essentially just adding more layers to them. We can also, say, use bidirectional encoders: two encoders which get fed the input in opposite directions, allowing them to track different aspects of the input. The output states are then combined in some way (e.g. just adding them together). More recently, there are also <em>attention mechanisms</em> that can be applied. These mechanisms essentially take the output of the encoder at each step and weight it according to a given step’s importance to the decoder, modelling the idea of ‘attentiveness’. For example, the model (should) weight the encoder output for ‘name’ much more than any other word in the sentence ‘What’s your name?’, since it is the most crucial word for answering the question. If you’re interested, I recommend going out and reading up on the area, since NLP deep neural net architectures are currently a fast-moving and exciting space, in which a lot of new work is being done.</p>
+
+<p>For my model, I used bidirectional encoders with a basic attention mechanism, using 256 gated recurrent units (GRU) for the encoder and decoder. Hence, my encoder looked something like this:</p>
+
+<p><img src="https://i.imgur.com/DtZcJw4.png" style="margin: 0 auto;" /></p>
+
+<h2 id="hosting">Hosting</h2>
+
+<p>Hosting this model was somewhat tricky. A simple ‘drag and drop’ of my assignment code, unfortunately, did not work due to the RAM requirements of word embeddings - using Gensim, a set of trained word vectors would take up gigabytes of RAM - far more than the modest 512 MB a free Heroku dyno gives you, nevermind that the saved weights file itself was at least a gigabyte, if not more. So I needed to find a way to load word embeddings without having to load them all at once, and in the best case not even have to upload the saved weights with it - and I found exactly what I needed in <a href="https://github.com/plasticityai/magnitude">Magnitude</a>. This library allows for remote streaming of pre-trained word embeddings, meaning that the word embeddings can be served from a file hosted by the library maintainers. It also supports partial loading of your own files, if you don’t want to use their pre-trained embeddings. While streaming the vectors slows the chatbot down on slow web connections (such as my own), when hosted (with a far better connection) it makes little difference, well worth the tradeoff and saving many, many gigabytes of RAM.</p>
+
+<p>The website is hosted on Heroku, running within a dockerised container - see <a href="https://github.com/hamishivi/microbot">the code itself</a> for the Dockerfile.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>If you made it to the end of the post, thanks for reading - hopefully this post helps you with your own projects in some small way! 😄</p>
+
+  </div><a class="u-url" href="/2019/07/26/chatbot.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+      </div>
+      <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/hamish-ivison-6a17a1118" title="hamish-ivison-6a17a1118"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li><li>
+    <a href="/feed.xml">
+      <svg class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+      </svg>
+    </a>
+  </li>
+</ul></div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>

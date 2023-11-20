@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Reinforcement Learning with Pokemon | Hamish Ivison</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Reinforcement Learning with Pokemon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Looking into using reinforcement learning to train Pokemon battle bots." />
+<meta property="og:description" content="Looking into using reinforcement learning to train Pokemon battle bots." />
+<link rel="canonical" href="https://hamishivi.github.io/2021/08/02/pokerl.html" />
+<meta property="og:url" content="https://hamishivi.github.io/2021/08/02/pokerl.html" />
+<meta property="og:site_name" content="Hamish Ivison" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-02T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Reinforcement Learning with Pokemon" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://hamishivi.github.io/2021/08/02/pokerl.html"},"description":"Looking into using reinforcement learning to train Pokemon battle bots.","url":"https://hamishivi.github.io/2021/08/02/pokerl.html","@type":"BlogPosting","headline":"Reinforcement Learning with Pokemon","dateModified":"2021-08-02T00:00:00+00:00","datePublished":"2021-08-02T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+      
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/assets/css/style_dark.css" >
+    <link rel="stylesheet" href="/assets/css/style_dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="/assets/css/style_light.css" media="(prefers-color-scheme: light)"><link type="application/atom+xml" rel="alternate" href="https://hamishivi.github.io/feed.xml" title="Hamish Ivison" />
+
+<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+      $(".btnId").click(function(){
+          var str = $(this).attr('id');
+          var ret = str.split("_");
+          var id = ret[1];
+          $('#' + id).toggle();
+          $(this).toggleClass("dropped");
+      });
+  });
+
+</script>
+
+    
+  </head><body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/"><span style="color: #2ecc71">H</span>amish <span style="color: #2ecc71">I</span>vison</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger"><a class="page-link" href="/">About</a><a class="page-link" href="/non-technical.html">Random</a><a class="page-link" href="/technical.html">Side Projects</a></div>
+        </nav></div>
+    <dark-mode-toggle
+    id="theme-toggle"
+    appearance="toggle"
+    style="position: absolute; right: 25px; top: 60%;"></dark-mode-toggle>
+  </header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Reinforcement Learning with Pokemon</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-08-02T00:00:00+00:00" itemprop="datePublished">
+        Aug 2, 2021
+      </time><hspace></hspace>
+      &nbsp;
+      
+      
+      <a href="/tag/blog"><code class="highligher-rouge"><nobr>blog</nobr></code></a>&nbsp;
+    
+      
+      <a href="/tag/technical"><code class="highligher-rouge"><nobr>technical</nobr></code></a>&nbsp;
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>As a big Pokemon fan (which I have been ever since my parents gave me pokemon ruby as a young child), I’ve always enjoyed going on <a href="https://play.pokemonshowdown.com/">Pokemon Showdown</a> for some quick random games when I need a Pokemon fix. For those of you who don’t know about showdown, it’s an online pokemon battle simulator - you can create pokemon teams, or generate a random team, and play against others on the internet. It’s fairly easy to use and straightforward, and is open source! So this got me wondering: <strong>can we make a bot play pokemon?</strong></p>
+
+<p>Now, this isn’t a new idea: there are a fair few blog posts and papers looking at pokemon battle AI. In fact, as it turns out, there are a few good pokemon AI libraries that interface with showdown. For this project, I used the <a href="https://github.com/hsahovic/poke-env">poke-env library</a>, since it works with the <a href="https://gym.openai.com/">OpenAI gym API</a>. This allowed me to hook it into <a href="https://stable-baselines3.readthedocs.io/">the stable baselines 3 library</a> for easy reinforcement learning. All you need to do is specify how to turn a battle into a vector, what algorithm to use, and set some hyperparameters! I’ll give an outline on how to do this and get started in this post, and provide some results from my initial attempts.</p>
+
+<blockquote>
+  <p>🧑‍💻 You can find my code <a href="https://github.com/hamishivi/stunfisk-rl">here</a>!</p>
+</blockquote>
+
+<h2 id="reinforcement-learning">Reinforcement Learning?</h2>
+
+<p>Before we get into the pokemon side of things, let’s briefly go over reinforcement learning (RL), a paradigm for making game-playing AIs. There are many comprehensive and fantastic RL overviews out there I recommend checking out, such as <a href="https://lilianweng.github.io/lil-log/2018/02/19/a-long-peek-into-reinforcement-learning.html">this one</a>, so I’m going to give a very basic explanation.</p>
+
+<p>At its most basic, reinforcement learning is a method for learning strategies to maximise some cumulative reward. There are four key parts to this:</p>
+
+<ol>
+  <li>
+    <p><strong>Environment</strong> - We must have some environment that algorithms/programs can operate in. In our case, the ‘environment’ would be a pokemon battle! This is a snapshot of the game state at some point in time (in our case, at the start of our turn).</p>
+  </li>
+  <li>
+    <p><strong>Actions</strong> - These are the things that we can do to influence the environment. This might be moving a character around, or in our case, choosing a move.</p>
+  </li>
+  <li>
+    <p><strong>Rewards</strong> - We will have some desired outcomes (e.g. winning a game, collecting gold, or dealing damage to an opponent) that the environment is designed to give rewards for. These are the outcomes we want to maximise over time. In our case, this is simply our win rate, but we can also incentivise our AI to deal more damage, or knock out as many opponent pokemon as it can.</p>
+  </li>
+  <li>
+    <p><strong>Agent</strong> - A system or algorithm that takes in an environment state, chooses an action, and then receives some (or no) reward based on that. You can think of the agent as a ‘player’ of whatever game we are looking at.</p>
+  </li>
+</ol>
+
+<p>Given these four things, we can see how our agent ‘plays’ a game: Our agent receives an environment state, picks an action based on it, then (potentially) receives some reward, and repeats this until the game is over or we terminate the program. How our agent picks an action is up to us - in our case, we’ll be using neural networks that receive information on the battle in numerical form and provide scores for each action.</p>
+
+<figure>
+<img src="https://i.imgur.com/CZ4QQVU.png" style="margin: 0 auto; width: 100%" />
+
+<figcaption>RL process, from https://lilianweng.github.io/lil-log/2018/02/19/a-long-peek-into-reinforcement-learning.html</figcaption>
+</figure>
+
+<p>Why use RL and neural networks here, and not use a more classical game-playing algorithm (e.g. minimax, which just calculates some number of moves ahead)? Well, in Pokemon we have <strong>imperfect information</strong> and <strong>a massive number of game states</strong>. We have imperfect information because we don’t know the opponent’s pokemon until they send them out, and even then don’t know certain details (stats, items, moves) until they explicitly come into play. We have a massive number of game states because the number of possible pokemon, move, item, etc. choices and outcomes in any battle is massive - the damage from a move is slightly probabilistic, moves can miss, and so on. Due to this, simulating ahead any number of moves is difficult (due to the missing information) and quickly becomes complex (due to the large number of possible outcomes for any given action). As such, reinforcement learning is a good choice for learning how to play Pokemon battles - it can learn how to make good guesses at the best move given imperfect information, and does not require us to simulate all possible future moves. Rather, it will learn by playing itself.</p>
+
+<h2 id="how-to-make-a-machine-see-pokemon">How to make a machine ‘see’ Pokemon?</h2>
+
+<p>Before we start running RL algorithms, we need to convert our Pokemon battles to a format they can understand. Famously, <a href="https://arxiv.org/pdf/1312.5602v1.pdf">Deepmind trained an RL agent to play Atari games directly using screenshots from the games themselves</a>, but since we have direct access to the stats and other values used by the battle engine, we can just use that - it’s a lot easier for the network to learn directly from these values rather than have to learn how to work out these values from the screen and then learn how to interpret them. So, we’re going to represent every pokemon via numeric values only (since a neural network can only process, well, numbers). This means, at every turn in the game, we need to convert the game state into a set of numbers representing the current state of the game, and then feed this into our RL agent, which will then pick a move as output. These numbers are how our agent will ‘see’ the game, so we need to make sure:</p>
+
+<p>(a) the values contain the information needed to play pokemon effectively, and</p>
+
+<p>(b) the agent is able to correctly parse the values and learn how to make use of them to play pokemon.</p>
+
+<p>This is just <strong>feature selection</strong>, which is a very classic task in ‘real-world’ machine learning: what values do we pick, and how do we represent them, such that our pokemon agent can do its job well? Neural networks and training will help us here since they can learn <em>how to construct</em> effective representations from raw data, but we still need to convert our non-numeric data (types, abilities, items, etc.) to a useful numeric form, and determine the best overall way to layout both the data and the network so it can effectively learn the best representations. We want to give our network all the help we can give it!</p>
+
+<p>To highlight this, for example, we could try to get our agent to (a) <em>learn the pokemon type system on its own</em>, or (b) <em>give it a feature that indicates if a move will be supereffective.</em> We might want to help the agent here since types are incredibly important to Pokemon’s battle system, and learning the type system on its own might prove difficult. In fact, I tested this out below and generally found that providing this feature sometimes gave a small boost. This intuitively makes sense: a strategy that just chooses the most super effective move at each point will probably get you through most of any given pokemon game. As such, for a complex game like pokemon, even with neural nets (which theoretically can learn all this on their own), being smart about the information we provide can give our agent a leg up.</p>
+
+<h2 id="coding-this-up">Coding this Up</h2>
+
+<p>So, how do we code this all up? Well, it’s actually really easy! I made use of two libraries mentioned above: <a href="https://github.com/hsahovic/poke-env">poke-env</a> and <a href="https://stable-baselines3.readthedocs.io/en/master/">stable-baselines3</a>. The first gives us an OpenAI gym wrapper around pokemon showdown for easy use, and the second provides implementations of popular RL algorithms that we can just plug and play with. The only part we need to write is the code that converts a pokemon battle object (as defined in poke-env) into an ‘observation’ - a set of numbers representing a game state at a particular move.</p>
+
+<p>How I did this was to first define a basic RL poke-env player <a href="https://poke-env.readthedocs.io/en/latest/rl_with_open_ai_gym_wrapper.html">similar to the one shown in the poke-env tutorial:</a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">SimpleRLPlayer</span><span class="p">(</span><span class="n">Gen8EnvSinglePlayer</span><span class="p">):</span>
+    <span class="s">"""
+    Class to handle the interaction between game and algo
+    Main 'embedding' handled by BattleConverter class
+    """</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">cfg</span> <span class="o">=</span> <span class="n">cfg</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">bc</span> <span class="o">=</span> <span class="n">BattleConverter</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">bc</span><span class="p">.</span><span class="n">get_observation_space</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">action_box</span> <span class="o">=</span> <span class="n">spaces</span><span class="p">.</span><span class="n">Discrete</span><span class="p">(</span><span class="nb">super</span><span class="p">().</span><span class="n">action_space</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">cur_bat</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="o">@</span><span class="nb">property</span>
+    <span class="k">def</span> <span class="nf">action_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">action_box</span>
+
+    <span class="k">def</span> <span class="nf">embed_battle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">battle</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">bc</span><span class="p">.</span><span class="n">battle_to_tensor</span><span class="p">(</span><span class="n">battle</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">battle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">reward_computing_helper</span><span class="p">(</span>
+            <span class="n">battle</span><span class="p">,</span>
+            <span class="n">fainted_value</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">cfg</span><span class="p">.</span><span class="n">REWARD</span><span class="p">.</span><span class="n">FAINTED</span><span class="p">,</span>
+            <span class="n">hp_value</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">cfg</span><span class="p">.</span><span class="n">REWARD</span><span class="p">.</span><span class="n">HP</span><span class="p">,</span>
+            <span class="n">victory_value</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">cfg</span><span class="p">.</span><span class="n">REWARD</span><span class="p">.</span><span class="n">VICTORY</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></div>
+
+<p>‘cfg’ is my config object, which defines hyperparameters and what features we want to use. The ‘BattleConverter’ object here is simply an object that handles all conversion from battle object to OpenAI Observation object. In our case, the observation is actually a dict that looks a bit like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pokemon</span><span class="p">.</span><span class="mf">0.</span><span class="n">hp</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">pokemon</span><span class="p">.</span><span class="mf">0.</span><span class="n">atk</span><span class="p">:</span> <span class="mi">100</span>
+<span class="p">...</span>
+<span class="n">pokemon</span><span class="p">.</span><span class="mf">0.</span><span class="n">move</span><span class="p">.</span><span class="mf">0.</span><span class="n">bsp</span><span class="p">:</span> <span class="mi">100</span>
+<span class="n">pokemon</span><span class="p">.</span><span class="mf">0.</span><span class="n">move</span><span class="p">.</span><span class="mf">0.</span><span class="nb">type</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>That is, every key represents a detail of the battle that our network will use. The ‘battle_to_tensor’ function actually does the conversion. You can also just throw everything in a ‘box’ observation object, but I think this is a bit messier. The code for this file is <a href="https://github.com/hamishivi/stunfisk-rl/blob/main/battle_converter.py">here</a>.</p>
+
+<p>Given the above SimpleRLPlayer class, we can create a openAI environment just with:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">env_player</span> <span class="o">=</span> <span class="n">SimpleRLPlayer</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">battle_format</span><span class="o">=</span><span class="s">"gen8randombattle"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>To train, we need to create a stable-baselines algorithm instance (in my case, using the DQN algorithm), and then use it to train an agent, like so:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">DQN</span><span class="p">(</span>
+        <span class="n">DqnMlpPolicy</span><span class="p">,</span>
+        <span class="n">env_player</span><span class="p">,</span>
+        <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">policy_kwargs</span><span class="p">,</span>
+        <span class="n">learning_rate</span><span class="o">=</span><span class="n">cfg</span><span class="p">.</span><span class="n">DQN</span><span class="p">.</span><span class="n">LEARNING_RATE</span><span class="p">,</span>
+        <span class="n">buffer_size</span><span class="o">=</span><span class="n">cfg</span><span class="p">.</span><span class="n">DQN</span><span class="p">.</span><span class="n">BUFFER_SIZE</span><span class="p">,</span>
+        <span class="n">learning_starts</span><span class="o">=</span><span class="n">cfg</span><span class="p">.</span><span class="n">DQN</span><span class="p">.</span><span class="n">LEARNING_STARTS</span><span class="p">,</span>
+        <span class="n">gamma</span><span class="o">=</span><span class="n">cfg</span><span class="p">.</span><span class="n">DQN</span><span class="p">.</span><span class="n">GAMMA</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="n">tensorboard_log</span><span class="o">=</span><span class="s">"./dqn_pokemon_tensorboard/"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="n">model</span><span class="p">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="n">timesteps</span><span class="p">)</span>
+
+<span class="n">env_player</span><span class="p">.</span><span class="n">play_against</span><span class="p">(</span>
+    <span class="n">env_algorithm</span><span class="o">=</span><span class="n">learn</span><span class="p">,</span>
+    <span class="n">opponent</span><span class="o">=</span><span class="n">RandomPlayer</span><span class="p">(</span><span class="n">battle_format</span><span class="o">=</span><span class="s">"gen8randombattle"</span><span class="p">),</span>
+    <span class="n">env_algorithm_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"model"</span><span class="p">:</span> <span class="n">model</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>The ‘play_against’ function here basically handles the actual training steps and the battle starts/stops for us. You can train against various bots (e.g. a bot that chooses random moves, as seen above) too, although I haven’t worked out how to do self-play (i.e. agents against each other) yet! ‘timesteps’ here is the number of turns we want to train for.</p>
+
+<p>We can evaluate our agent once we’re done training as such:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="n">player</span><span class="p">.</span><span class="n">reset_battles</span><span class="p">()</span>
+        <span class="n">evaluate_policy</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">player</span><span class="p">,</span> <span class="n">n_eval_episodes</span><span class="o">=</span><span class="n">eval_eps</span><span class="p">)</span>
+
+<span class="n">env_player</span><span class="p">.</span><span class="n">play_against</span><span class="p">(</span>
+    <span class="n">env_algorithm</span><span class="o">=</span><span class="n">evaluate</span><span class="p">,</span>
+    <span class="n">opponent</span><span class="o">=</span><span class="n">RandomPlayer</span><span class="p">(</span><span class="n">battle_format</span><span class="o">=</span><span class="s">"gen8randombattle"</span><span class="p">),</span>
+    <span class="n">env_algorithm_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"model"</span><span class="p">:</span> <span class="n">model</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">env_player</span><span class="p">.</span><span class="n">n_won_battles</span><span class="p">)</span> <span class="c1"># number of battles won
+</span></code></pre></div></div>
+
+<p>Pretty simple! Again, we can test against non-random agents too if we want. See my full codebase here (I’ve left out some extra steps I do, like specifying network architecture).</p>
+
+<p>To run this, we simply start a pokemon showdown server locally (<a href="https://github.com/smogon/pokemon-showdown">clone the showdown repo</a> if you haven’t) and run it with <code class="language-plaintext highlighter-rouge">node pokemon-showdown start --no-security</code>. Then run your script and it should work! 🙂 As a fun bonus, you can go to the pokemon showdown server (localhost:8000 usually) and see your agent playing games as it trains.</p>
+
+<figure>
+<img src="https://i.imgur.com/Bi4qjqj.png" style="margin: 0 auto; width: 100%" />
+
+<figcaption>Watching my pokemon agent train!</figcaption>
+</figure>
+
+<h2 id="my-basic-bot">My Basic Bot</h2>
+
+<p>As a quick initial bot, I built up a bot that uses all the main stats of a pokemon, as well as move stats, as input. Each categorical feature (so types, gender, and move category) are encoded with embedding layers. Each move feature is concatenated and passed through a move encoder, and each pokemon feature is concatenated with the encoded moves and passed through a pokemon encoder. My intuition here was to see if shared encoders would help with the model learning what stats and features are important to general pokemon battling, before using them to work out the best move.</p>
+
+<p>I test my model using three basic setups:</p>
+
+<ul>
+  <li>
+    <p>A low-level Grookey (agent) against a low-level Skwovet (bot).</p>
+  </li>
+  <li>
+    <p>Red’s Gold/Silver teams (lightly modified) for both agent and bot.</p>
+  </li>
+  <li>
+    <p>Fully randomised teams for both agent and bot.</p>
+  </li>
+</ul>
+
+<p>I stuck with using the vanilla DQN algorithm for now (more discussion on this later). In each setup, the agent would be trained by playing against a pokemon-playing bot and then evaluated by playing 100 games against a similar bot. The two bots I used to train my agent against and evaluate were:</p>
+
+<ul>
+  <li>
+    <p><strong>Random:</strong> a bot choosing random moves at each turn. This is a bare minimum baseline - even a basic agent should be able to beat a random bot most of the time.</p>
+  </li>
+  <li>
+    <p><strong>Max:</strong> a bot that chooses the maximum damage move at every turn. This is a much harder baseline, which I imagine some players may even struggle a bit with. However, such a player would be predictable and should be beatable in many scenarios.</p>
+  </li>
+</ul>
+
+<p>Here’s the number of wins out of 100 games after training for 100,000 moves. The columns are in the format ‘bot agent was trained against - bot agent was evaluated against’.</p>
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Experiment</th>
+    <th class="tg-0lax">Random - Random</th>
+    <th class="tg-0lax"><span style="font-weight:400;font-style:normal">Random - Max</span></th>
+    <th class="tg-0lax"><span style="font-weight:400;font-style:normal">Max - Random</span></th>
+    <th class="tg-0lax"><span style="font-weight:400;font-style:normal">Max - Max</span></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Grookey vs Skwovet</td>
+    <td class="tg-buh4">97</td>
+    <td class="tg-0lax">100</td>
+    <td class="tg-buh4">82</td>
+    <td class="tg-0lax">100</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Grookey vs Skwovet (w/ type effectiveness)</td>
+    <td class="tg-buh4">56</td>
+    <td class="tg-0lax">84</td>
+    <td class="tg-buh4">90</td>
+    <td class="tg-0lax">100</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Red vs Red</td>
+    <td class="tg-buh4">100</td>
+    <td class="tg-0lax">27</td>
+    <td class="tg-buh4">100</td>
+    <td class="tg-0lax">26</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Red vs Red (w/ type effectiveness)</td>
+    <td class="tg-buh4">100</td>
+    <td class="tg-0lax">44</td>
+    <td class="tg-buh4">100</td>
+    <td class="tg-0lax">30</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Full Randoms</td>
+    <td class="tg-buh4">85</td>
+    <td class="tg-0lax">47</td>
+    <td class="tg-buh4">74</td>
+    <td class="tg-0lax">28</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Full Randoms (w/ type effectiveness)</td>
+    <td class="tg-buh4">82</td>
+    <td class="tg-0lax">49</td>
+    <td class="tg-buh4">80</td>
+    <td class="tg-0lax">40</td>
+  </tr>
+</tbody>
+</table>
+
+<p>I suspected this was not enough training for the agent, so I also tried the same experiments with 1,000,000 turns, and with the type effectiveness feature (since it appeared not to hurt):</p>
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Experiment</th>
+    <th class="tg-0lax">Random - Random</th>
+    <th class="tg-0lax"><span style="font-weight:400;font-style:normal">Random - Max</span></th>
+    <th class="tg-0lax"><span style="font-weight:400;font-style:normal">Max - Random</span></th>
+    <th class="tg-0lax"><span style="font-weight:400;font-style:normal">Max - Max</span></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Grookey vs Skwovet</td>
+    <td class="tg-buh4">88</td>
+    <td class="tg-0lax">100</td>
+    <td class="tg-buh4">61</td>
+    <td class="tg-0lax">83</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Red vs Red</td>
+    <td class="tg-buh4">100</td>
+    <td class="tg-0lax">45</td>
+    <td class="tg-buh4">99</td>
+    <td class="tg-0lax">32</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Full Randoms</td>
+    <td class="tg-buh4">91</td>
+    <td class="tg-0lax">57</td>
+    <td class="tg-buh4">89</td>
+    <td class="tg-0lax">47</td>
+  </tr>
+</tbody>
+</table>
+
+<p>Here we can see that training on the random agent for a long time often results in better results against both random and max damage bots! I imagine this is likely due to the model overfitting to the behaviour of the max bot, which is very predictable, while the more chaotic choices of the random agent may require the agent to become more flexible. This potentially suggests that a model should be trained on a random agent for a while before being trained against a more difficult bot. It’s also worth noting that the Grookey vs Skwovet battle is fairly easy to get higher win rates on, indicating how easy it is - both pokemon only have a few moves and are very low level, so as long as the agent does damage each turn they’ll usually win. As for the two harder settings, with more pokemon, we can see that beating a random agent can be done when training on either bot type, but beating the max damage bot is much, much harder. This makes sense, considering beating a max damage bot may be tough even for some players - ‘just always do as much damage as possible’ is a common strategy that’ll get you quite far in most pokemon games. That being said, I still think overall the results here are a bit disappointing - I would expect better results against the max player, given its predictability. Reruns also showed these results could be quite variable. However, there are many paths for improvements here:</p>
+
+<ul>
+  <li>
+    <p>I just used a vanilla DQN algorithm, which is several years old and has many superior variants now. This is partly due to more sophisticated variants not being natively available in stable-baselines3, but given some time and work they should be possible to add. Alternatively, trying other algorithms may work well (I chose DQN as it is generally considered more sample efficient).</p>
+  </li>
+  <li>
+    <p>Training for longer helped a fair bit, and training speed could be improved by using multiprocessing. This is available in stable-baselines3 at the time of writing but requires more work in poke-env to get it to work.</p>
+  </li>
+  <li>
+    <p>As opposed to training off multiprocessing, a more ambitious project could also look at training off existing Pokemon battles, which are available in vast quantities on pokemon showdown.</p>
+  </li>
+  <li>
+    <p>There is much more tuning that could be done on both hyperparameters and feature selection. You can get good results with a much smaller feature set, and using simpler battle formats (e.g. fixed teams over randoms, or earlier generations with fewer battle mechanics) would also work well.</p>
+  </li>
+</ul>
+
+<p>As you can see, there’s enough work here to occupy someone for months, if not much longer. I’ll certainly be revisiting this project in the future as things improve or when I have the time to dig into solving these issues! 🙂</p>
+
+<h3 id="visualisation">Visualisation</h3>
+
+<p>I like to provide demos of some sort with my projects, but hosting these pokemon bots would be a bit too much for me (I’d need a computer always connected to showdown servers), and as said I don’t think these bots are nearly good enough for human play yet.</p>
+
+<p>However, I did make a little <a href="https://gradio.app/">Gradio</a> interface that allows you to explore the predictions of a bot trained on generation 5 random battles, with a limited set of input features. I used a bot with a smaller feature set to keep things more manageable in the interface (it’s clunky as is) and using generation 5 battles so the predictions would also be straightforward to understand (picking a move or switching to another pokemon, with no mega-evolutions, z-moves, or dynamaxing). You can see the model generally using the most powerful and effective moves in real-time as you alter the move stats. If you run <code class="language-plaintext highlighter-rouge">move_predict_api.py</code> in my codebase it will download the model and you can play with the predictions myself, like below!</p>
+
+<figure>
+<img src="https://i.imgur.com/2Hcxs1i.gif" style="margin: 0 auto; width: 100%" />
+</figure>
+
+<p>Just note the outputs given say ‘%’ but are actually predicted scores. This is because the network provides <em>q-values</em>, not predictions on the ‘right’ move. These q-values are closer to the predicted value of doing a move (based on our reward scheme). This is why all the scores tend to increase if a move’s power increases - no matter what move you choose, having that one more powerful move will make it more likely for you to win. I normalise the scores (divide by their sum) to highlight which input is being chosen (highest value) and as Gradio expects values in a [0,1] range.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Thanks for reading! I hope this was interesting, and now you know how to make your own pokemon players! As you can see, all of the hard work has actually already been done by various libraries - all you need to do is write the glue and then do the fun part of testing out different neural networks! Hope to see you around for the next post. 🙂</p>
+
+  </div><a class="u-url" href="/2021/08/02/pokerl.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+      </div>
+      <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/hamish-ivison-6a17a1118" title="hamish-ivison-6a17a1118"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li><li>
+    <a href="/feed.xml">
+      <svg class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+      </svg>
+    </a>
+  </li>
+</ul></div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Does GPT-3 know Ancient Greek? | Hamish Ivison</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Does GPT-3 know Ancient Greek?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Poking around with gpt-3 and ancient languages" />
+<meta property="og:description" content="Poking around with gpt-3 and ancient languages" />
+<link rel="canonical" href="https://hamishivi.github.io/2022/09/07/gpt3-greek.html" />
+<meta property="og:url" content="https://hamishivi.github.io/2022/09/07/gpt3-greek.html" />
+<meta property="og:site_name" content="Hamish Ivison" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Does GPT-3 know Ancient Greek?" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://hamishivi.github.io/2022/09/07/gpt3-greek.html"},"description":"Poking around with gpt-3 and ancient languages","url":"https://hamishivi.github.io/2022/09/07/gpt3-greek.html","@type":"BlogPosting","headline":"Does GPT-3 know Ancient Greek?","dateModified":"2022-09-07T00:00:00+00:00","datePublished":"2022-09-07T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+      
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/assets/css/style_dark.css" >
+    <link rel="stylesheet" href="/assets/css/style_dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="/assets/css/style_light.css" media="(prefers-color-scheme: light)"><link type="application/atom+xml" rel="alternate" href="https://hamishivi.github.io/feed.xml" title="Hamish Ivison" />
+
+<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+      $(".btnId").click(function(){
+          var str = $(this).attr('id');
+          var ret = str.split("_");
+          var id = ret[1];
+          $('#' + id).toggle();
+          $(this).toggleClass("dropped");
+      });
+  });
+
+</script>
+
+    
+  </head><body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/"><span style="color: #2ecc71">H</span>amish <span style="color: #2ecc71">I</span>vison</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger"><a class="page-link" href="/">About</a><a class="page-link" href="/non-technical.html">Random</a><a class="page-link" href="/technical.html">Side Projects</a></div>
+        </nav></div>
+    <dark-mode-toggle
+    id="theme-toggle"
+    appearance="toggle"
+    style="position: absolute; right: 25px; top: 60%;"></dark-mode-toggle>
+  </header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Does GPT-3 know Ancient Greek?</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-09-07T00:00:00+00:00" itemprop="datePublished">
+        Sep 7, 2022
+      </time><hspace></hspace>
+      &nbsp;
+      
+      
+      <a href="/tag/blog"><code class="highligher-rouge"><nobr>blog</nobr></code></a>&nbsp;
+    
+      
+      <a href="/tag/non-technical"><code class="highligher-rouge"><nobr>non-technical</nobr></code></a>&nbsp;
+    
+      
+      <a href="/tag/technical"><code class="highligher-rouge"><nobr>technical</nobr></code></a>&nbsp;
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I don’t know quite why, but recently I’ve been thinking about zero-shot multilingual translation, and so I decided to try to see how well GPT-3 can handle low-resource ancient languages. I have some training in Latin and Ancient Greek (technically, I have a degree in Ancient Greek), so I figured I would see how well it went with them. This is going to just be a <em>qualitative</em> analysis, rather than me trying to build some Latin/Ancient Greek translation benchmark, to keep things light and easy. By no means is this thorough or definitive!</p>
+
+<p><em><strong>14/02/23 Update</strong>: I have updated the model responses in light of the recently-released ChatGPT and <code class="language-plaintext highlighter-rouge">text-davinci-003</code> models, scroll to the bottom of this page to check them out!</em></p>
+
+<h2 id="latin">Latin</h2>
+
+<p>Latin has more text extant than Ancient Greek (I think - at least, it would be more common than Ancient Greek in some random web/book crawl). So this should mean GPT-3 is better at it. Furthermore, Google Translate Latin exists, which provides a fun comparison.</p>
+
+<p>Let’s take a few lines from Book 12 of the Aeneid, and see how it goes. For those who haven’t used GPT-3 before, it works by <em>prompting</em> it with some text in natural language, and then letting it autocomplete your text (a bit like pressing autocomplete on a keyboard, but for a full paragraph). People often try out multiple prompts to work out what is best - I messed around a little and settled on a basic format of <code class="language-plaintext highlighter-rouge">Translate the following to English: &lt;text&gt; English:</code>, which seemed to do okay. In the following chunks, <strong>bolded</strong> indicates model-generated text, with the rest of the text being input by me:</p>
+
+<blockquote>
+  <p>Translate the following to English:</p>
+
+  <p>Turnus ut infractos adverso Marte Latinos defecisse videt, sua nunc promissa reposci, se signari oculis, ultro implacabilis ardet attollitque animos. Poenorum qualis in arvis saucius ille gravi venantum vulnere pectus tum demum movet arma leo gaudetque comantis excutiens cervice toros fixumque latronis inpavidus frangit telum et fremit ore cruento: haud secus adcenso gliscit violentia Turno.</p>
+
+  <p>English:</p>
+
+  <p><strong>Turnus sees the Latins defeated by Mars and is furious, demanding that his promises be fulfilled. He is determined to take revenge and rallies his troops. Just as a wounded lion in the fields finally moves to attack the hunters who wounded him, after shaking off the blood from his mane, and breaks the spear of the bold robber with his powerful neck, so too does Turnus’ fury grow as he climbs up to fight.</strong></p>
+</blockquote>
+
+<p>For those of you who didn’t spend your final year of high school memorising book 12 of the Aeneid, here’s a professional translation (<a href="https://www.poetryintranslation.com/PITBR/Latin/VirgilAeneidXII.php#anchor_Toc6669703">from poetry in translation</a>):</p>
+<blockquote>
+  <p>When Turnus saw the Latins exhausted, and weakened by their military reverse, himself the subject of every gaze, his own promise to them yet unfulfilled, he burned implacably, and unprompted, and raised his courage. As a lion, in the African bush, severely hurt by huntsmen with a wound to the chest, only then rouses himself to battle, tosses his shaggy mane over his neck, in joy, and, unafraid, snaps off the spear some poacher has planted in him, roaring from blood-stained jaws: so the violence grew in Turnus’s inflamed heart.</p>
+</blockquote>
+
+<p>This does pretty well! It sort of muddles bits, but the lion simile remains intact in a nice way. By the way, Google Translate does awful here:</p>
+<blockquote>
+  <p>Turnus sees that the Latins, broken in opposition to Mars, have failed, now that their promises have been restored, and that they have been sealed with their eyes; He inflicts punishments such as those in the fields on the chest of the hunted with a severe wound, then at last he moves his arms like a lion and rejoices, shaking the neck of the commander, fixed on his neck, and fearlessly breaks his weapon and roars with a bloody mouth: just as the burning violence of Turnus glides.</p>
+</blockquote>
+
+<p>So it appears (to me) that GPT-3 has a better idea of Latin than whatever Google uses! The Aeneid is too easy, though - an all-time classic, which has probably appeared all over in GPT-3’s training. Let’s try something a bit different, Ovid’s <em>Ars Amatoria</em> (still famous, but not as mega-famous as <em>the</em> Roman Epic). I’ll use an easier sentence:</p>
+
+<blockquote>
+  <p>Translate the following to English:
+Atque aliqua ex illis cum regum nomina quaeret, Quae loca, qui montes, quaeve ferantur aquae, Omnia responde, nec tantum siqua rogabit; Et quae nescieris, ut bene nota refer.</p>
+
+  <p>English:</p>
+
+  <p><strong>And when she asks about the names of the kings, the places, the mountains, and the waters that are mentioned, answer everything, and even if she doesn’t ask, explain what you know clearly. And if you don’t know something, say so.</strong></p>
+</blockquote>
+
+<p>Here’s Google’s version:</p>
+<blockquote>
+  <p>And when some of them ask for the names of kings, what places, what mountains, what waters are carried, answer everything, and he will not ask so much; And what you do not know, report as well known.</p>
+</blockquote>
+
+<p>And a more professional, actual translation:</p>
+<blockquote>
+  <p>And if she, among them, asks the name of a king, what place, what mountains, and what stream’s displayed, you can reply to all, and more if she asks: and what you don’t know, reply as memory prompts.</p>
+</blockquote>
+
+<p>So GPT-3 did pretty well here! Although the final sentence is wrong (Ovid says to say what you can recall, rather than to say if you don’t know).</p>
+
+<p>For good measure, let’s try something legal (albeit still fairly straightforward): Cicero’s <em>Pro Roscio Amerino</em>, a famous legal defence.</p>
+
+<blockquote>
+  <p>Translate the following to English:
+fide sapientiaque vestra fretus plus oneris sustuli quam ferre me posse intellego. hoc onus si vos aliqua ex parte adlevabitis, feram ut potero studio et industria, iudices; sin a vobis, id quod non spero, deserar, tamen animo non deficiam et id quod suscepi quoad potero perferam. quod si perferre non potero1, opprimi me onere offici malo quam id quod mihi cum fide semel impositum est aut propter perfidiam abicere aut propter infirmitatem animi deponere.</p>
+
+  <p>English:</p>
+
+  <p><strong>I realize that I have taken on more than I can handle, but I am relying on your wisdom and support. If you can help me in any way, I will do my best to carry on, judges. If I am abandoned by you, which I do not hope for, I will not give up and will do my best to carry out what I have started. If I cannot do so, I would rather be crushed by the weight of my responsibilities than abandon or give up on what has been entrusted to me.</strong></p>
+</blockquote>
+
+<p>A professional translation would be:</p>
+<blockquote>
+  <p>Relying on your integrity and wisdom, I have undertaken a greater burden than, I am well aware, I am able to bear. If you, in some degree, lighten this burden, O judges, I will bear it as well as I can with zeal and industry. But if, as I do not expect, I am abandoned by you, still I will not fail in courage, and I will bear what I have undertaken as well as I can. But if I cannot support it, I had rather be overwhelmed by the weight of my duty, than either through treachery betray, or through weakness of mind desert, that which has been once honestly entrusted to me.</p>
+</blockquote>
+
+<p>As a final fun test, let’s see if GPT-3 knows the basic forms of the verb to be:</p>
+<blockquote>
+  <p>What is the 1st person singular form of the verb ‘to be’ in Latin?
+<strong>Sum</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 2nd person singular form of the verb ‘to be’ in Latin?
+<strong>The 2nd person singular form of the verb ‘to be’ in Latin is ‘est’.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 3rd person singular form of the verb ‘to be’ in Latin?
+<strong>The third person singular form of the verb “to be” in Latin is “est.”</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 1st person plural form of the verb ‘to be’ in Latin?
+<strong>sumus</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 2nd person plural form of the verb ‘to be’ in Latin?
+<strong>You are (plural)</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 3rd person plural form of the verb ‘to be’ in Latin?
+<strong>Sunt.</strong></p>
+</blockquote>
+
+<p>Well, it gets a bit confused, although I think this is quite hard considering the prompt doesn’t give any examples. I find it interesting it gets the 2nd person forms wrong, considering those are forms I have found to be far far less common than the others.</p>
+
+<p>This did a really good job! Overall, I’m really impressed by GPT-3’s Latin abilities. I wouldn’t put it past it having memorised these texts (these all exist on the internet with translations usually somewhere in the same document), but it’s still quite impressive to see. It also handily beats Google, which is fun.</p>
+
+<h2 id="ancient-greek">Ancient Greek</h2>
+
+<p>Let’s start with something really easy: the first four lines of the <em>Iliad</em>.</p>
+
+<blockquote>
+  <p>Translate the following to English:</p>
+
+  <p>μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος οὐλομένην, ἣ μυρί᾽ Ἀχαιοῖς ἄλγε᾽ ἔθηκε, πολλὰς δ᾽ ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν οἰωνοῖσί τε πᾶσι, Διὸς δ᾽ ἐτελείετο βουλή, ἐξ οὗ δὴ τὰ πρῶτα διαστήτην ἐρίσαντε  Ἀτρεΐδης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.</p>
+
+  <p>English:
+<strong>Achilles, the son of Peleus, killed Hector, who had caused great harm to the Achaeans. He also killed many other brave men, and he terrified those who were still alive. This was the will of Zeus, who had first stirred up the conflict between King Atreus’ son Agamemnon and noble Achilles.</strong></p>
+</blockquote>
+
+<p>This is already worse - Hector doesn’t even appear in the Greek text! However, overall it’s okay, seemingly getting a sense of the text, although being definitely incorrect at times (unlike the Latin translations, which tended to be correct). For those of you who don’t know the Iliad by heart, these lines would be translated something like (from <a href="https://www.poetryintranslation.com/PITBR/Greek/Iliad1.php">poetry in translation</a>):</p>
+
+<blockquote>
+  <p>Goddess, sing me the anger, of Achilles, Peleus’ son,
+that fatal anger that brought countless sorrows on the Greeks,
+and sent many valiant souls of warriors down to Hades,
+leaving their bodies as spoil for dogs and
+carrion birds: for thus was the will of Zeus brought to fulfilment.
+Sing of it from the moment when Agamemnon, Atreus’ son, that king of men, 
+parted in wrath from noble Achilles.</p>
+</blockquote>
+
+<p>If you prompt it with the first clause(s), it gets a much better translation, likely due to it having encountered the beginning of the Iliad countless times in training:</p>
+
+<blockquote>
+  <p>Sing, Muse, of the wrath of Achilles, son of Peleus, <strong>that brought countless ills upon the Achaeans. Many a brave soul did it send hurrying down to Hades, and many a hero did it yield a prey to dogs and vultures, for so was the will of Zeus fulfilled from the time when first they quarreled,Atreus’ son, king of men, and brilliant Achilles.</strong></p>
+</blockquote>
+
+<p>There are many reasons GPT-3 could doing worse for Greek, but one large change from Latin is the use of a different script. Let’s try normalising the text into beta code (a standard conversion for Ancient Greek into ASCII) and see how it goes:</p>
+
+<blockquote>
+  <p>Translate the following to English:</p>
+
+  <p>mh=nin a)/eide qea\ *phlhi+a/dew *)axilh=os ou)lome/nhn, h(\ muri/’ *)axaioi=s a)/lge’ e)/qhke, polla\s d’ i)fqi/mous yuxa\s *)/ai+di proi/+ayen h(rw/wn, au)tou\s de\ e(lw/ria teu=xe ku/nessin oi)wnoi=si/ te pa=si, *dio\s d’ e)telei/eto boulh/, e)c ou(= dh\ ta\ prw=ta diasth/thn e)ri/sante  *)atrei/+dhs te a)/nac a)ndrw=n kai\ di=os *)axilleu/s.</p>
+
+  <p>English:</p>
+
+  <p><strong>After he had seen the many wrongs that had been done to Axylus, a just man, Hercules went to the land of the Achaeans and killed many of the evil men there. But he spared the life of Axylus, because he was a good man. So Zeus gave him a city and made him a god, and the first temple to Hercules was built by the men of Troy after they had been saved from disaster by Hercules and by Zeus himself.</strong></p>
+</blockquote>
+
+<p>This is even worse! Removing the accent symbols (leaving only the letters) also doesn’t help. Evidently, GPT-3 doesn’t really know Ancient Greek at all (although it has definitely seen the Iliad).</p>
+
+<p>Since the Iliad is so famous, let’s try something more obscure. Here’s a paragraph from Heron’s <em>On Automata</em>:</p>
+
+<blockquote>
+  <p>Translate the following to English:</p>
+
+  <p>καθὰ δὲ προεθέμην, ἐρῶ περὶ ἑνὸς πίνακος τοῦ δοκοῦντός μοι κρείττονος. μῦθος μὲν ἦν τεταγμένος ἐν αὐτῷ ὁ κατὰ τὸν Ναύπλιον. τὰ δὲ κατὰ μέρος εἶχεν οὕτως· ἀνοιχθέντος ἐν ἀρχῇ τοῦ πίνακος ἐφαίνετο ζῴδια γεγραμμένα δώδεκα· ταῦτα δὲ ἦν εἰς τρεῖς στίχους διῃρημένα· ἦσαν δὲ οὗτοι πεποιημένοι τῶν Δαναῶν τινες ἐπισκευάζοντες τὰς ναῦς καὶ γινόμενοι περὶ καθολκήν.</p>
+
+  <p>English:
+<strong>I was once thinking about a picture that seemed better to me than it actually was. The subject of the picture was the story of the Odyssey. Part of the picture showed the twelve Labors of Hercules, which were divided into three groups. These were done by some of the Danaids who were repairing their ships and were becoming burdened.</strong></p>
+</blockquote>
+
+<p>And if I prompt the model with the first few words:</p>
+
+<blockquote>
+  <p>…English:
+As I laid out before, <strong>I was speaking about a painting that seemed better to me. The painting was hung in such a way that in the beginning, when you opened it, you saw twelve animals painted on it, divided into three verses. These were some of the Danaans, who, when they were repairing their ships, became encircled.</strong></p>
+</blockquote>
+
+<p>Here’s the correct translation:</p>
+
+<blockquote>
+  <p>As I laid out before, I will talk about one box that seems superior to me. The story set in it was the one about Naupilius. And its parts went like this. In the beginning, when the box opened, 12 painted figurines appeared. These were divided into 3 rows; and these were made to represent some of the Danaans (Greeks) preparing their ships and launching them.</p>
+</blockquote>
+
+<p>So, the model has clearly learnt some vocab - it gets the number 12, it works out Danaans, ships, and a few other things. These translations seem vaguely familiar but ultimately are definitely incorrect. It’s cool that it works this well, but future classics scholars are definitely not going to be able to use it to cheat on their university homework 😜</p>
+
+<h2 id="wrapping-this-up">Wrapping this up</h2>
+
+<p>Unsurprisingly, GPT-3 is pretty good! Its Latin translation abilities seem pretty good, and it definitely feels like it has seen ancient texts written in English enough to regurgitate them when prompted. Its success at Latin makes its harsher failures in translating Ancient Greek a little surprising, but I suspect the big switch into a different script makes things much harder, and that there is simply far less Ancient Greek text in its pretraining corpus. I’ve focussed on languages I’m personally familiar with here, but it would also be interesting to see if one could somehow get a large language model like GPT-3 to give its best guess on how to translate Linear A or similar!</p>
+
+<p>As a technical note, I used <code class="language-plaintext highlighter-rouge">text-davinci-002</code> for this post.</p>
+
+<h2 id="gpt35-and-chatgpt-update">GPT3.5 and ChatGPT Update!</h2>
+
+<p>Very shortly after writing this blog post, OpenAI came out with ChatGPT and <code class="language-plaintext highlighter-rouge">text-davinci-003</code>. Here’s a quick try of all the above prompts with these two models.</p>
+
+<h3 id="text-davinci-003">Text-Davinci-003</h3>
+
+<p>First, let’s try out <code class="language-plaintext highlighter-rouge">text-davinci-003</code>, the successor to text-davinci-002 (based on name and <a href="https://platform.openai.com/docs/model-index-for-researchers">OpenAI’s model documentation</a>). I also tweaked the input prompts to indicate the original language of the text - I found this slightly improved model’s responses, especially for Greek.</p>
+
+<h3 id="text-davinvi-003-latin"><code class="language-plaintext highlighter-rouge">text-davinvi-003</code> Latin</h3>
+
+<blockquote>
+  <p>Translate the following to English from Latin:</p>
+
+  <p>Turnus ut infractos adverso Marte Latinos defecisse videt, sua nunc promissa reposci, se signari oculis, ultro implacabilis ardet attollitque animos. Poenorum qualis in arvis saucius ille gravi venantum vulnere pectus tum demum movet arma leo gaudetque comantis excutiens cervice toros fixumque latronis inpavidus frangit telum et fremit ore cruento: haud secus adcenso gliscit violentia Turno.</p>
+
+  <p>English:</p>
+
+  <p><strong>Turnus sees that the Latins have been defeated by the adverse forces of Mars, and he now demands his promised reward; his eyes blaze with implacable rage and his spirit is raised. Just as a wounded lion in the fields, wounded by the heavy weapons of the hunters, finally stirs and rises up, shaking his maned neck and with fearless strength breaking the spear of the robber and roaring with bloody mouth, so too does Turnus surge with violence.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Translate the following to English from Latin:</p>
+
+  <p>Atque aliqua ex illis cum regum nomina quaeret, Quae loca, qui montes, quaeve ferantur aquae, Omnia responde, nec tantum siqua rogabit; Et quae nescieris, ut bene nota refer.</p>
+
+  <p>English:</p>
+
+  <p><strong>And when someone asks you for the names of the kings, the places they lived, the mountains, and the rivers they are said to have, answer them all, even if you are not asked; and if you don’t know something, make sure to report it back as if you did.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Translate the following to English from Latin:</p>
+
+  <p>fide sapientiaque vestra fretus plus oneris sustuli quam ferre me posse intellego. hoc onus si vos aliqua ex parte adlevabitis, feram ut potero studio et industria, iudices; sin a vobis, id quod non spero, deserar, tamen animo non deficiam et id quod suscepi quoad potero perferam. quod si perferre non potero1, opprimi me onere offici malo quam id quod mihi cum fide semel impositum est aut propter perfidiam abicere aut propter infirmitatem animi deponere.</p>
+
+  <p>English:</p>
+
+  <p><strong>Trusting in your fidelity and wisdom, I have taken on more of a burden than I understand I can bear. If you lighten this burden in any way, I shall bear it as best I can with diligence and hard work, judges; if I am abandoned by you, which I do not hope, nevertheless I shall not fail in spirit and I shall carry out as best I can what I have taken on. But if I cannot carry it out, I would rather be overwhelmed by the burden of this duty than abandon or lay down what has been entrusted to me with faithfulness because of my lack of courage.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 1st person singular form of the verb ‘to be’ in Latin?
+<strong>Esse.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 2nd person singular form of the verb ‘to be’ in Latin?
+<strong>Esse.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 3rd person singular form of the verb ‘to be’ in Latin?
+<strong>Est.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 1st person plural form of the verb ‘to be’ in Latin?
+<strong>Sumus.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 2nd person plural form of the verb ‘to be’ in Latin?
+<strong>Estis.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>What is the 3rd person plural form of the verb ‘to be’ in Latin?
+<strong>Sunt.</strong></p>
+</blockquote>
+
+<p><strong>Verdict</strong>: <code class="language-plaintext highlighter-rouge">text-davinci-003</code> does really well! I think overall these translations are pretty good. You can probably quibble with some of the choices, but this is generally pretty good. However, it does get some of the basic verb form questions wrong, which is surprising - these should be really easy for it!</p>
+
+<h3 id="text-davinvi-003-greek"><code class="language-plaintext highlighter-rouge">text-davinvi-003</code> Greek</h3>
+
+<blockquote>
+  <p>Translate the following to English from Homeric Greek:</p>
+
+  <p>μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος οὐλομένην, ἣ μυρί᾽ Ἀχαιοῖς ἄλγε᾽ ἔθηκε, πολλὰς δ᾽ ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν οἰωνοῖσί τε πᾶσι, Διὸς δ᾽ ἐτελείετο βουλή, ἐξ οὗ δὴ τὰ πρῶτα διαστήτην ἐρίσαντε  Ἀτρεΐδης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.</p>
+
+  <p>English:
+<strong>Sing, goddess, the anger of Peleus’ son Achilleus, that destructive wrath which brought countless woes upon the Achaeans, and sent forth to Hades many valiant souls of heroes; and made their bodies a prey for dogs and all birds, and the will of Zeus was accomplished since that time when first there stood in strife Atreus’ son, king of men, and brilliant Achilleus.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Translate the following to English from Ancient Greek:</p>
+
+  <p>καθὰ δὲ προεθέμην, ἐρῶ περὶ ἑνὸς πίνακος τοῦ δοκοῦντός μοι κρείττονος. μῦθος μὲν ἦν τεταγμένος ἐν αὐτῷ ὁ κατὰ τὸν Ναύπλιον. τὰ δὲ κατὰ μέρος εἶχεν οὕτως· ἀνοιχθέντος ἐν ἀρχῇ τοῦ πίνακος ἐφαίνετο ζῴδια γεγραμμένα δώδεκα· ταῦτα δὲ ἦν εἰς τρεῖς στίχους διῃρημένα· ἦσαν δὲ οὗτοι πεποιημένοι τῶν Δαναῶν τινες ἐπισκευάζοντες τὰς ναῦς καὶ γινόμενοι περὶ καθολκήν.</p>
+
+  <p>English: 
+<strong>As I had previously planned, I saw a painting which seemed better to me. A myth was depicted in it, concerning the story of Nauplius. In parts, it was arranged in this way: when the painting was opened, there were twelve zodiacs written in three verses; these were composed by some of the Danaans, who were making repairs to the ships and becoming involved in a voyage.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Translate the following to English from Ancient Greek:</p>
+
+  <p>καθὰ δὲ προεθέμην, ἐρῶ περὶ ἑνὸς πίνακος τοῦ δοκοῦντός μοι κρείττονος. μῦθος μὲν ἦν τεταγμένος ἐν αὐτῷ ὁ κατὰ τὸν Ναύπλιον. τὰ δὲ κατὰ μέρος εἶχεν οὕτως· ἀνοιχθέντος ἐν ἀρχῇ τοῦ πίνακος ἐφαίνετο ζῴδια γεγραμμένα δώδεκα· ταῦτα δὲ ἦν εἰς τρεῖς στίχους διῃρημένα· ἦσαν δὲ οὗτοι πεποιημένοι τῶν Δαναῶν τινες ἐπισκευάζοντες τὰς ναῦς καὶ γινόμενοι περὶ καθολκήν.</p>
+
+  <p>English: 
+As I laid out before, <strong>I saw a painting that seemed better than the others. There was a myth drawn on it, according to the story of Nauplius. The painting was divided into twelve parts, which were further divided into three verses. These verses were composed by some of the Greeks who were repairing their ships and preparing for a voyage.</strong></p>
+</blockquote>
+
+<p><strong>Verdict</strong>: I think that <code class="language-plaintext highlighter-rouge">text-davinci-003</code> does much better than <code class="language-plaintext highlighter-rouge">002</code> here: it gets the Iliad more or less fine, while the Heron has some issues (likely due to vocab issues). This is pretty surprisingly good to me, and I imagine with even a little exposure to more Ancient Greek text the model would do even better. Without telling it to translate ‘from Greek’, as I did for <code class="language-plaintext highlighter-rouge">002</code>, the model does a bit worse, and muddles more words, but is still pretty good.</p>
+
+<h3 id="chatgpt">ChatGPT</h3>
+
+<p>Next, let’s try ChatGPT. To be fair, I’m going to use the same prompts as above on a blank conversation (as there is no API available yet). To be exact, I’m using the <em>January 30th</em> edition of ChatGPT.</p>
+
+<p>ChatGPT (currently) gives titles to the conversations that occur. I don’t know what model does this, but it gives some interesting insight as to what a (I guess GPT-based) model thinks is going on. I’ve included these titles below the prompt and model response.</p>
+
+<h3 id="chatgpt-latin"><code class="language-plaintext highlighter-rouge">ChatGPT</code> Latin</h3>
+
+<blockquote>
+  <p>Translate the following to English from Latin:</p>
+
+  <p>Turnus ut infractos adverso Marte Latinos defecisse videt, sua nunc promissa reposci, se signari oculis, ultro implacabilis ardet attollitque animos. Poenorum qualis in arvis saucius ille gravi venantum vulnere pectus tum demum movet arma leo gaudetque comantis excutiens cervice toros fixumque latronis inpavidus frangit telum et fremit ore cruento: haud secus adcenso gliscit violentia Turno.</p>
+
+  <p>English:</p>
+
+  <p><strong>When Turnus sees that the Latins have fallen under the unfavorable power of Mars despite their unbroken spirit, he now demands that his promises be fulfilled. He rages and raises his spirit, burning with implacable anger. Just as a wounded lion in the fields, once struck by a serious wound from hunters, then only moves to arms, rejoicing as he shakes his mane and fearlessly breaks the weapon of the thief with his steadfast neck and snarling with bloody mouth, so does Turnus’s violence boil up when he ascends.</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Turnus’ Furious Ascension</p>
+
+<blockquote>
+  <p>Translate the following to English from Latin:
+Atque aliqua ex illis cum regum nomina quaeret, Quae loca, qui montes, quaeve ferantur aquae, Omnia responde, nec tantum siqua rogabit; Et quae nescieris, ut bene nota refer.</p>
+
+  <p>English:</p>
+
+  <p><strong>And answer some of them when they ask about the names of kings, what places, what mountains, and what waters are said to exist; respond to everything, not only if someone asks; and what you do not know, report as well known.</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Answer Regal Questions</p>
+
+<blockquote>
+  <p>Translate the following to English from Latin:
+fide sapientiaque vestra fretus plus oneris sustuli quam ferre me posse intellego. hoc onus si vos aliqua ex parte adlevabitis, feram ut potero studio et industria, iudices; sin a vobis, id quod non spero, deserar, tamen animo non deficiam et id quod suscepi quoad potero perferam. quod si perferre non potero1, opprimi me onere offici malo quam id quod mihi cum fide semel impositum est aut propter perfidiam abicere aut propter infirmitatem animi deponere.</p>
+
+  <p>English:</p>
+
+  <p><strong>Relying on your faith and wisdom, I have taken on more weight than I understand I am able to bear. If you can relieve this burden in any way, I will bear it to the best of my abilities with effort and determination, judges. If I am abandoned by you, which I do not hope for, I will not let my spirit falter, and I will carry out what I have undertaken as best as I can. If I am unable to carry it out, I would rather be crushed by the weight of my duty than abandon or lay down what was once entrusted to me with faith because of my own faithlessness or weakness of spirit.</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Fide Sapientiaque Onus Sustuli</p>
+
+<blockquote>
+  <p>What is the 1st person singular form of the verb ‘to be’ in Latin?
+<strong>In Latin, the 1st person singular form of the verb “to be” is “sum.”</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: 1st Person Singular “to be” in Latin</p>
+
+<blockquote>
+  <p>What is the 2nd person singular form of the verb ‘to be’ in Latin?
+<strong>The 2nd person singular form of the verb “to be” in Latin is “es.”</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: 2nd Person “Es” Latin “To Be”</p>
+
+<blockquote>
+  <p>What is the 3rd person singular form of the verb ‘to be’ in Latin?
+<strong>In Latin, the 3rd person singular form of the verb “to be” is “est”.</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: 3rd Person Singular Latin “Est”</p>
+
+<blockquote>
+  <p>What is the 1st person plural form of the verb ‘to be’ in Latin?
+<strong>The 1st person plural form of the verb “to be” in Latin is “sumus.”</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Latin 1st Person Plural To Be</p>
+
+<blockquote>
+  <p>What is the 2nd person plural form of the verb ‘to be’ in Latin?
+<strong>The 2nd person plural form of the verb “to be” in Latin is “estis.”</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Latin 2nd Plural “to be”</p>
+
+<blockquote>
+  <p>What is the 3rd person plural form of the verb ‘to be’ in Latin?
+<strong>The third person plural form of the verb “to be” in Latin is “sunt.”</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Latin 3rd Person Plural “sunt”</p>
+
+<p><strong>Verdict</strong>: Wildly, I think ChatGPT’s quality here is still really good, and it gets all the verb forms right! I think it’s definitely as good as <code class="language-plaintext highlighter-rouge">text-davinci-003</code>, although still a little muddled. I suspect more context would help in some cases, giving the model a better idea of what it is translating. Considering the improvements over <code class="language-plaintext highlighter-rouge">002</code>, I definitely wonder if both <code class="language-plaintext highlighter-rouge">text-davinci-003</code> and ChatGPT have benefited from Latin students using it to help with homework… 🤔</p>
+
+<h3 id="chatgpt-greek"><code class="language-plaintext highlighter-rouge">ChatGPT</code> Greek</h3>
+
+<blockquote>
+  <p>Translate the following to English from Homeric Greek:</p>
+
+  <p>μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος οὐλομένην, ἣ μυρί᾽ Ἀχαιοῖς ἄλγε᾽ ἔθηκε, πολλὰς δ᾽ ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν οἰωνοῖσί τε πᾶσι, Διὸς δ᾽ ἐτελείετο βουλή, ἐξ οὗ δὴ τὰ πρῶτα διαστήτην ἐρίσαντε  Ἀτρεΐδης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.</p>
+
+  <p>English:
+<strong>“Sing, goddess, the anger of Achilles, son of Peleus, that brought countless woes upon the Achaeans, and sent many valiant souls of heroes to Hades, and made them themselves food for dogs and all birds; for so was the will of Zeus fulfilled, from which the first sufferings arose, that of Atreus’ son, king of men, and Achilles, the glorious.”</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Homeric Greek Translation</p>
+
+<blockquote>
+  <p>Translate the following to English from Ancient Greek:</p>
+
+  <p>καθὰ δὲ προεθέμην, ἐρῶ περὶ ἑνὸς πίνακος τοῦ δοκοῦντός μοι κρείττονος. μῦθος μὲν ἦν τεταγμένος ἐν αὐτῷ ὁ κατὰ τὸν Ναύπλιον. τὰ δὲ κατὰ μέρος εἶχεν οὕτως· ἀνοιχθέντος ἐν ἀρχῇ τοῦ πίνακος ἐφαίνετο ζῴδια γεγραμμένα δώδεκα· ταῦτα δὲ ἦν εἰς τρεῖς στίχους διῃρημένα· ἦσαν δὲ οὗτοι πεποιημένοι τῶν Δαναῶν τινες ἐπισκευάζοντες τὰς ναῦς καὶ γινόμενοι περὶ καθολκήν.</p>
+
+  <p>English: 
+<strong>“And as I previously mentioned, I love a picture that seems to me to be better. A story was depicted in it about the Naulpian. The parts were arranged in this way: when the picture was opened at the beginning, twelve zodiacs appeared written; these were divided into three lines. And these were made by some of the Danai, repairing the ships and becoming around the harbor.”</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Description of a Superior Painting Depicting the Battle of Nafplion</p>
+
+<blockquote>
+  <p>Translate the following to English:</p>
+
+  <p>καθὰ δὲ προεθέμην, ἐρῶ περὶ ἑνὸς πίνακος τοῦ δοκοῦντός μοι κρείττονος. μῦθος μὲν ἦν τεταγμένος ἐν αὐτῷ ὁ κατὰ τὸν Ναύπλιον. τὰ δὲ κατὰ μέρος εἶχεν οὕτως· ἀνοιχθέντος ἐν ἀρχῇ τοῦ πίνακος ἐφαίνετο ζῴδια γεγραμμένα δώδεκα· ταῦτα δὲ ἦν εἰς τρεῖς στίχους διῃρημένα· ἦσαν δὲ οὗτοι πεποιημένοι τῶν Δαναῶν τινες ἐπισκευάζοντες τὰς ναῦς καὶ γινόμενοι περὶ καθολκήν.</p>
+
+  <p>English: 
+As I laid out before, <strong>I fell in love with a painting that seemed to me to be superior. There was a story depicted on it, about Nauplius. Part of it was as follows: when the painting was opened at the beginning, there were twelve zodiac signs written in it, which were divided into three lines. These were made by some of the Danaans as they were repairing their ships and undergoing hardship.</strong></p>
+</blockquote>
+
+<p>ChatGPT Title: Painted Nauplian Mythology</p>
+
+<p><strong>Verdict</strong>: Interestingly, I feel that <code class="language-plaintext highlighter-rouge">text-davinci-003</code> did a bit better with these, and ChatGPT makes some interesting spelling errors at times (Danai? Naulpian?). Overall, it’s definitely still impressive, but I wonder if the use of (allegedly) a smaller model or the further training that ChatGPT went through has cost it some Greek ability compared to <code class="language-plaintext highlighter-rouge">text-davinci-003</code>.</p>
+
+<p>Overall, these model improvements are very impressive, especially considering translating Ancient Greek and Latin are likely pretty obscure uses for these models - it’d be interesting to learn if these improvements have come from explicit related feedback during the RLHF training process (students, professors giving feedback on classical language translations), or if it’s a byproduct of other tasks (e.g., feedback on general translation tasks, or further pretraining on related data). A big issue that pops out to me here is managing context: many of the issues with the Heron translation likely come from not knowing the surrounding context of the extract and choosing sub-optimal translations (<code class="language-plaintext highlighter-rouge">ζῴδια</code> could be Zodiac-related, but it can also mean `figurine’, which is the correct translation here) from this. Likely, giving the model longer extracts or prompting it with the domain / theme / etc of the text would further improve its translations.</p>
+
+<p>However, even just as-is I think that the current abilities displayed here are pretty impressive, and are more than good enough to be moderately useful, although would not replace an expert translation and / or well-annotated text.</p>
+
+  </div><a class="u-url" href="/2022/09/07/gpt3-greek.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+      </div>
+      <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/hamish-ivison-6a17a1118" title="hamish-ivison-6a17a1118"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li><li>
+    <a href="/feed.xml">
+      <svg class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+      </svg>
+    </a>
+  </li>
+</ul></div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>

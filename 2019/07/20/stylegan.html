@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Catching Some GANemons | Hamish Ivison</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Catching Some GANemons" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Looking at generating pokemon with GANs, and hosting the resulting models." />
+<meta property="og:description" content="Looking at generating pokemon with GANs, and hosting the resulting models." />
+<link rel="canonical" href="https://hamishivi.github.io/2019/07/20/stylegan.html" />
+<meta property="og:url" content="https://hamishivi.github.io/2019/07/20/stylegan.html" />
+<meta property="og:site_name" content="Hamish Ivison" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Catching Some GANemons" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://hamishivi.github.io/2019/07/20/stylegan.html"},"description":"Looking at generating pokemon with GANs, and hosting the resulting models.","url":"https://hamishivi.github.io/2019/07/20/stylegan.html","@type":"BlogPosting","headline":"Catching Some GANemons","dateModified":"2019-07-20T00:00:00+00:00","datePublished":"2019-07-20T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+      
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/assets/css/style_dark.css" >
+    <link rel="stylesheet" href="/assets/css/style_dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="/assets/css/style_light.css" media="(prefers-color-scheme: light)"><link type="application/atom+xml" rel="alternate" href="https://hamishivi.github.io/feed.xml" title="Hamish Ivison" />
+
+<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+      $(".btnId").click(function(){
+          var str = $(this).attr('id');
+          var ret = str.split("_");
+          var id = ret[1];
+          $('#' + id).toggle();
+          $(this).toggleClass("dropped");
+      });
+  });
+
+</script>
+
+    
+  </head><body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/"><span style="color: #2ecc71">H</span>amish <span style="color: #2ecc71">I</span>vison</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger"><a class="page-link" href="/">About</a><a class="page-link" href="/non-technical.html">Random</a><a class="page-link" href="/technical.html">Side Projects</a></div>
+        </nav></div>
+    <dark-mode-toggle
+    id="theme-toggle"
+    appearance="toggle"
+    style="position: absolute; right: 25px; top: 60%;"></dark-mode-toggle>
+  </header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Catching Some GANemons</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2019-07-20T00:00:00+00:00" itemprop="datePublished">
+        Jul 20, 2019
+      </time><hspace></hspace>
+      &nbsp;
+      
+      
+      <a href="/tag/blog"><code class="highligher-rouge"><nobr>blog</nobr></code></a>&nbsp;
+    
+      
+      <a href="/tag/technical"><code class="highligher-rouge"><nobr>technical</nobr></code></a>&nbsp;
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Since doing a university assignment on GANs last year, I’ve enjoyed keeping up and playing around with new GAN algorithms. My assignment was on Wasserstein-GANs (WGANs), a (at the time) fairly new way of training GANs that allowed for faster and more stable training - check out the paper <a href="https://arxiv.org/abs/1701.07875">here</a> if you’re interested. I then extended this to the WGAN-GP, or gradient penalty WGAN, which fixed a big issue in the Wasserstein algorithm through the use of gradient penalties (paper <a href="https://arxiv.org/abs/1704.00028">here</a>). I implemented these in a repository on my Github and played with a few datasets, mainly pokemon and anime face ones - for more details, please see the <a href="https://github.com/hamishivi/pokemongenerator">repository itself</a>.</p>
+
+<p>Even more recently, I was impressed (like many) by the <a href="https://arxiv.org/abs/1812.04948">StyleGAN</a> developed NVIDIA, and already having a repository for messing with GAN algorithms, I decided to implement (or rather, adapt another person’s implementation - I didn’t have that much free time) a StyleGAN and train it on my old toy datasets. So after some tuning, I trained a very basic StyleGAN on both a small-ish anime face dataset and a tiny pokemon image dataset (essentially just the official Sugimori art for all pokemon up to generation 6) - again, see my repository for details. The results aren’t the best, but they are interesting to look at, at the very least.</p>
+
+<p>I didn’t stop there- after having successfully trained these models, I have now uploaded them into a docker container and am serving them using <a href="https://www.tensorflow.org/tfx/guide/serving">tf-serve</a>, which makes turning Tensorflow models into REST APIs nice and easy. After wrapping these behind a basic python API, I now have a fun little web API for generating anime faces and pokemon images, as you can see below!</p>
+
+<h2 id="anime-faces">Anime Faces</h2>
+
+<p>If you reload the page, the faces will also change - each is simply loaded from an API endpoint that generates a random face each time it is called. Again, the results aren’t the best - I simply trained this model for around one day on my personal desktop, with a small dataset.</p>
+
+<p><img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=1" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=2" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=3" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=4" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=5" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=6" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=7" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=8" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=9" />
+<img style="display: inline;" src="https://secret-meadow-15542.herokuapp.com/stylegenanime?dummy=10" /></p>
+
+<h2 id="ganemon">GANemon</h2>
+
+<p>Like the anime faces, these images will change if you refresh the page. Again, the results aren’t the best - I simply trained this model for around one or two days on my personal desktop, with a small dataset.</p>
+
+<p><img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=1" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=2" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=3" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=4" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=5" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=6" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=7" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=8" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=9" />
+<img style="display: inline;" height="128px" src="https://secret-meadow-15542.herokuapp.com/stylegenpoke?dummy=10" /></p>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>To be more specific about my setup, I first trained these models on their respective datasets for 1,000,000 steps. See my <code class="language-plaintext highlighter-rouge">pokemongenerator</code> repository for the hyperparameters and details on these models. I then took the saved Keras model for just the generator and transformed it into a frozen graph and then a SavedModel using the following code (warning, it is fairly ad-hoc, and uses deprecated Tensorflow functionality):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+<span class="kn">import</span> <span class="nn">keras.backend</span> <span class="k">as</span> <span class="n">K</span>
+<span class="kn">from</span> <span class="nn">style</span> <span class="kn">import</span> <span class="n">AdaIN</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+
+<span class="c1"># from https://stackoverflow.com/questions/45466020/how-to-export-keras-h5-to-tensorflow-pb
+</span><span class="k">def</span> <span class="nf">freeze_session</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">keep_var_names</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">output_names</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">clear_devices</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="s">"""
+    Freezes the state of a session into a pruned computation graph.
+
+    Creates a new computation graph where variable nodes are replaced by
+    constants taking their current value in the session. The new graph will be
+    pruned so subgraphs that are not necessary to compute the requested
+    outputs are removed.
+    @param session The TensorFlow session to be frozen.
+    @param keep_var_names A list of variable names that should not be frozen,
+                          or None to freeze all the variables in the graph.
+    @param output_names Names of the relevant graph outputs.
+    @param clear_devices Remove the device directives from the graph for better portability.
+    @return The frozen graph definition.
+    """</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">graph</span>
+    <span class="k">with</span> <span class="n">graph</span><span class="p">.</span><span class="n">as_default</span><span class="p">():</span>
+        <span class="n">freeze_var_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">op</span><span class="p">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tf</span><span class="p">.</span><span class="n">global_variables</span><span class="p">()).</span><span class="n">difference</span><span class="p">(</span><span class="n">keep_var_names</span> <span class="ow">or</span> <span class="p">[]))</span>
+        <span class="n">output_names</span> <span class="o">=</span> <span class="n">output_names</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="n">output_names</span> <span class="o">+=</span> <span class="p">[</span><span class="n">v</span><span class="p">.</span><span class="n">op</span><span class="p">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tf</span><span class="p">.</span><span class="n">global_variables</span><span class="p">()]</span>
+        <span class="n">input_graph_def</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="n">as_graph_def</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">clear_devices</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">input_graph_def</span><span class="p">.</span><span class="n">node</span><span class="p">:</span>
+                <span class="n">node</span><span class="p">.</span><span class="n">device</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="n">frozen_graph</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">graph_util</span><span class="p">.</span><span class="n">convert_variables_to_constants</span><span class="p">(</span>
+            <span class="n">session</span><span class="p">,</span> <span class="n">input_graph_def</span><span class="p">,</span> <span class="n">output_names</span><span class="p">,</span> <span class="n">freeze_var_names</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">frozen_graph</span>
+
+<span class="c1"># we take in the model name as an argument
+</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">K</span><span class="p">.</span><span class="n">set_learning_phase</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># I had my weights in a weights folder. Custom objects was for a custom keras layer
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="sa">f</span><span class="s">'./weights/</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s">.h5'</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="p">{</span> <span class="s">'AdaInstanceNormalization'</span><span class="p">:</span> <span class="n">AdaIN</span><span class="p">.</span><span class="n">AdaInstanceNormalization</span><span class="p">})</span>
+<span class="c1"># freeze our graph
+</span><span class="n">frozen_graph</span> <span class="o">=</span> <span class="n">freeze_session</span><span class="p">(</span><span class="n">K</span><span class="p">.</span><span class="n">get_session</span><span class="p">(),</span> <span class="n">output_names</span><span class="o">=</span><span class="p">[</span><span class="n">out</span><span class="p">.</span><span class="n">op</span><span class="p">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">model</span><span class="p">.</span><span class="n">outputs</span><span class="p">])</span>
+
+<span class="c1"># begin the process of saving the model
+</span><span class="n">builder</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">saved_model</span><span class="p">.</span><span class="n">builder</span><span class="p">.</span><span class="n">SavedModelBuilder</span><span class="p">(</span><span class="sa">f</span><span class="s">'tfserve/</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+<span class="n">sigs</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="p">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">import_graph_def</span><span class="p">(</span><span class="n">frozen_graph</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+    <span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+    <span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+    <span class="c1"># to get these names, I had to manually inspect the graph. There's many better ways to do this,
+</span>    <span class="c1"># such as naming tensors.
+</span>    <span class="n">output</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">get_default_graph</span><span class="p">().</span><span class="n">get_tensor_by_name</span><span class="p">(</span><span class="s">"conv2d_40/Tanh_1:0"</span><span class="p">)</span>
+    <span class="n">input_1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">get_default_graph</span><span class="p">().</span><span class="n">get_tensor_by_name</span><span class="p">(</span><span class="s">"input_2_1:0"</span><span class="p">)</span>
+    <span class="n">input_2</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">get_default_graph</span><span class="p">().</span><span class="n">get_tensor_by_name</span><span class="p">(</span><span class="s">"input_3_1:0"</span><span class="p">)</span>
+    <span class="n">input_3</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">get_default_graph</span><span class="p">().</span><span class="n">get_tensor_by_name</span><span class="p">(</span><span class="s">"input_4_1:0"</span><span class="p">)</span>
+
+    <span class="n">sigs</span><span class="p">[</span><span class="n">tf</span><span class="p">.</span><span class="n">saved_model</span><span class="p">.</span><span class="n">signature_constants</span><span class="p">.</span><span class="n">DEFAULT_SERVING_SIGNATURE_DEF_KEY</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">tf</span><span class="p">.</span><span class="n">saved_model</span><span class="p">.</span><span class="n">signature_def_utils</span><span class="p">.</span><span class="n">predict_signature_def</span><span class="p">(</span>
+            <span class="p">{</span><span class="s">"in1"</span><span class="p">:</span> <span class="n">input_1</span><span class="p">,</span> <span class="s">"in2"</span><span class="p">:</span> <span class="n">input_2</span><span class="p">,</span> <span class="s">"in3"</span><span class="p">:</span> <span class="n">input_3</span><span class="p">},</span> <span class="p">{</span><span class="s">"out"</span><span class="p">:</span> <span class="n">output</span><span class="p">})</span>
+
+    <span class="n">builder</span><span class="p">.</span><span class="n">add_meta_graph_and_variables</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="p">[</span><span class="n">tf</span><span class="p">.</span><span class="n">saved_model</span><span class="p">.</span><span class="n">SERVING</span><span class="p">],</span> <span class="n">signature_def_map</span><span class="o">=</span><span class="n">sigs</span><span class="p">)</span>
+    <span class="n">builder</span><span class="p">.</span><span class="n">save</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>After running this script, the saved model parts (a <code class="language-plaintext highlighter-rouge">saved_model.pb</code> file and a <code class="language-plaintext highlighter-rouge">variables</code>) folder should be put in a directory structure like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MODEL_NAME
+  \_  
+    1
+     \_ 
+       saved_model.pb
+       variables
+</code></pre></div></div>
+
+<p>The ‘1’ is for the model number. More nuanced setups may have multiple ML model numbers, but for this project I just used the one model.</p>
+
+<p>Then, you can use the tf-serving docker image to serve this model. I modified the <a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/tools/docker/Dockerfile">basic tf-serve docker image</a> to store my saved model within the container and deployed it using Heroku’s docker deployment functionality. This is actually enough to have a tensorflow-based API up and running, which is pretty cool!</p>
+
+<p>However, considering I had two models I wanted to deploy and serve, and I wanted to handle preprocessing and image construction myself, I ‘wrapped’ the API with a basic python flask API. This API is what is <em>actually</em> being called above, and simply handles the number generation and turns the GAN response into an actual image. So, the actual final architecture looks something like this:</p>
+
+<p><img src="https://i.imgur.com/Dbosc8l.png" alt="Architecture Overview" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>This was a fun and cool little project to work on, and I’d definitely recommend trying to serve your toy models on the internet! If they’re small enough, there are free hosting options, and it’s really neat to have something ‘live’ on the internet that you created. Hopefully, this is useful to you if you ever want to host your own TF models, or something similar. 😄</p>
+
+  </div><a class="u-url" href="/2019/07/20/stylegan.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+      </div>
+      <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/hamish-ivison-6a17a1118" title="hamish-ivison-6a17a1118"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li><li>
+    <a href="/feed.xml">
+      <svg class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+      </svg>
+    </a>
+  </li>
+</ul></div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>

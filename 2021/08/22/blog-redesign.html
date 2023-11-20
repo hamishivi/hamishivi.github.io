@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Blog Redesign | Hamish Ivison</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Blog Redesign" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A quick go-over of my recent blog changes." />
+<meta property="og:description" content="A quick go-over of my recent blog changes." />
+<link rel="canonical" href="https://hamishivi.github.io/2021/08/22/blog-redesign.html" />
+<meta property="og:url" content="https://hamishivi.github.io/2021/08/22/blog-redesign.html" />
+<meta property="og:site_name" content="Hamish Ivison" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Blog Redesign" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://hamishivi.github.io/2021/08/22/blog-redesign.html"},"description":"A quick go-over of my recent blog changes.","url":"https://hamishivi.github.io/2021/08/22/blog-redesign.html","@type":"BlogPosting","headline":"Blog Redesign","dateModified":"2021-08-22T00:00:00+00:00","datePublished":"2021-08-22T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+      
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/assets/css/style_dark.css" >
+    <link rel="stylesheet" href="/assets/css/style_dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="/assets/css/style_light.css" media="(prefers-color-scheme: light)"><link type="application/atom+xml" rel="alternate" href="https://hamishivi.github.io/feed.xml" title="Hamish Ivison" />
+
+<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+      $(".btnId").click(function(){
+          var str = $(this).attr('id');
+          var ret = str.split("_");
+          var id = ret[1];
+          $('#' + id).toggle();
+          $(this).toggleClass("dropped");
+      });
+  });
+
+</script>
+
+    
+  </head><body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/"><span style="color: #2ecc71">H</span>amish <span style="color: #2ecc71">I</span>vison</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger"><a class="page-link" href="/">About</a><a class="page-link" href="/non-technical.html">Random</a><a class="page-link" href="/technical.html">Side Projects</a></div>
+        </nav></div>
+    <dark-mode-toggle
+    id="theme-toggle"
+    appearance="toggle"
+    style="position: absolute; right: 25px; top: 60%;"></dark-mode-toggle>
+  </header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Blog Redesign</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-08-22T00:00:00+00:00" itemprop="datePublished">
+        Aug 22, 2021
+      </time><hspace></hspace>
+      &nbsp;
+      
+      
+      <a href="/tag/blog"><code class="highligher-rouge"><nobr>blog</nobr></code></a>&nbsp;
+    
+      
+      <a href="/tag/non-technical"><code class="highligher-rouge"><nobr>non-technical</nobr></code></a>&nbsp;
+    
+      
+      <a href="/tag/technical"><code class="highligher-rouge"><nobr>technical</nobr></code></a>&nbsp;
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>As a quick note, I’ve recently done a go-over of the design of my blog. In this post, I’m just going to go over the changes and how my blog setup currently works. I won’t go too deep into details as my setup largely follows the standard <a href="https://pages.github.com/">Github Pages</a> and <a href="https://jekyllrb.com/">Jekyll</a> setup.</p>
+
+<p>I’m using the default <a href="https://github.com/jekyll/minima">Minima</a> theme, considering it’s both simple and fairly easy to modify. These are currently the various things I’ve added to it (beyond general style tweaks):</p>
+
+<ul>
+  <li>A light-dark mode toggle, utilising Google Chrome Lab’s <a href="https://github.com/GoogleChromeLabs/dark-mode-toggle"><code class="language-plaintext highlighter-rouge">dark-mode-toggle</code></a> element</li>
+  <li>A tag system, based on <a href="http://longqian.me/2017/02/09/github-jekyll-tag/">Long Qian’s guide</a>, which I also use to split my posts into the ‘side projects’ and ‘random’ sections above.</li>
+</ul>
+
+<p>As I tweak the plugins and design, I’ll come back to this post and add my changes to the list above. Hopefully, it provides a useful list of ways to tweak a Github Pages site to your liking (and remind me of what I added if I chose to change it up again). Alternatively, you can find the codebase for this site <a href="https://github.com/hamishivi/hamishivi.github.io">here</a>.</p>
+
+  </div><a class="u-url" href="/2021/08/22/blog-redesign.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+      </div>
+      <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/hamish-ivison-6a17a1118" title="hamish-ivison-6a17a1118"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/hamishivi" title="hamishivi"><svg class="svg-icon "><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li><li>
+    <a href="/feed.xml">
+      <svg class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+      </svg>
+    </a>
+  </li>
+</ul></div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>
