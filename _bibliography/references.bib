@@ -1,15 +1,24 @@
-@misc{ivison2023camels,
+@article{ivison2023camels,
       abstract={Since the release of TÜLU [Wang et al., 2023b], open resources for instruction tuning have developed quickly, from better base models to new finetuning techniques. We test and incorporate a number of these advances into TÜLU, resulting in TÜLU 2, a suite of improved TÜLU models for advancing the understanding and best practices of adapting pretrained language models to downstream tasks and user preferences. Concretely, we release: (1) TÜLU-V2-mix, an improved collection of high-quality instruction datasets; (2) TÜLU 2, LLAMA-2 models finetuned on the V2 mixture; (3) TÜLU 2+DPO, TÜLU 2 models trained with direct preference optimization (DPO), including the largest DPO-trained model to date (TÜLU 2+DPO 70B); (4) CODE TÜLU 2, CODE LLAMA models finetuned on our V2 mix that outperform CODE LLAMA and its instruction-tuned variant, CODE LLAMA-Instruct. Our evaluation from multiple perspectives shows that the TÜLU 2 suite achieves state-of-the-art performance among open models and matches or exceeds the performance of GPT-3.5-turbo-0301 on several benchmarks. We release all the checkpoints, data, training and evaluation code to facilitate future open efforts on adapting large language models.},
       title={Camels in a Changing Climate: Enhancing LM Adaptation with Tulu 2}, 
       author={<b>Hamish Ivison*</b> and Yizhong Wang* and Valentina Pyatkin and Nathan Lambert and Matthew Peters and Pradeep Dasigi and Joel Jang and David Wadden and Noah A. Smith and Iz Beltagy and Hannaneh Hajishirzi},
       year={2023},
       url={https://arxiv.org/abs/2311.10702},
       eprint={2311.10702},
-      archivePrefix={arXiv},
+      journal={arXiv preprint},
       primaryClass={cs.CL}
 }
 
-@misc{tulu,
+@inproceedings{backtracking,
+  title={Backtracking Mathematical Reasoning of Language Models to the Pretraining Data},
+  author={Yasaman Razeghi* and <b>Hamish Ivison*</b> and Sameer Singh and Yanai Elazar},
+  booktitle={NeurIPS Workshop on Attributing Model Behavior at Scale},
+  year={2023},
+  url={https://openreview.net/forum?id=EKvqw9k3lC},
+  abstract={In-context learning and chain-of-thought prompting have demonstrated surprising performance improvements on mathematical reasoning benchmarks. Therefore, understanding the underlying factors enabling these capabilities is crucial. However, the specific aspects of pretraining data that equip models with mathematical reasoning capabilities remain largely unexplored and are less studied systematically. In this study, we identify subsets of model pretraining data that contribute to math reasoning ability of the model, and evaluate it on several mathematical operations (e.g. addition, multiplication) and tasks (e.g. the asdiv dataset). We measure the importance of such subsets by continual training of the model on pretraining data subsets, and then we quantify the change in performance on the mathematical benchmark to assess their importance. If a subset results in an improved performance, we conjecture that such subset contributes to a model's overall mathematical ability. Our results unveil that while training on math-only data contributes to simple arithmetic abilities, it does not solely explain performance on more complex reasoning abilities like chain-of-thought reasoning. We also find that code data contributes to chain-of-thought reasoning while reducing the arithmetic performance.}
+}
+
+@inproceedings{tulu,
       abstract = {In this work we explore recent advances in instruction-tuning language models on a range of open instruction-following datasets. Despite recent claims that open models can be on par with state-of-the-art proprietary models, these claims are often accompanied by limited evaluation, making it difficult to compare models across the board and determine the utility of various resources. We provide a large set of instruction-tuned models from 6.7B to 65B parameters in size, trained on 12 instruction datasets ranging from manually curated (e.g., OpenAssistant) to synthetic and distilled (e.g., Alpaca) and systematically evaluate them on their factual knowledge, reasoning, multilinguality, coding, and open-ended instruction following abilities through a collection of automatic, model-based, and human-based metrics. We further introduce T\"ulu, our best performing instruction-tuned model suite finetuned on a combination of high-quality open resources. Our experiments show that different instruction-tuning datasets can uncover or enhance specific skills, while no single dataset (or combination) provides the best performance across all evaluations. Interestingly, we find that model and human preference-based evaluations fail to reflect differences in model capabilities exposed by benchmark-based evaluations, suggesting the need for the type of systemic evaluation performed in this work. Our evaluations show that the best model in any given evaluation reaches on average 83% of ChatGPT performance, and 68% of GPT-4 performance, suggesting that further investment in building better base models and instruction-tuning data is required to close the gap. We release our instruction-tuned models, including a fully finetuned 65B T\"ulu, along with our code, data, and evaluation framework at https://github.com/allenai/open-instruct to facilitate future research.},
       title={How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources}, 
       author={Yizhong Wang* and <b>Hamish Ivison*</b> and Pradeep Dasigi and Jack Hessel and Tushar Khot and Khyathi Raghavi Chandu and David Wadden and Kelsey MacMillan and Noah A. Smith and Iz Beltagy and Hannaneh Hajishirzi},
@@ -24,12 +33,12 @@
   abstract = {Diffusion models have emerged as a powerful paradigm for generation, obtaining strong performance in various domains with continuous-valued inputs. Despite the promises of fully non-autoregressive text generation, applying diffusion models to natural language remains challenging due to its discrete nature. In this work, we propose Text-to-text Self-conditioned Simplex Diffusion (TESS), a text diffusion model that is fully non-autoregressive, employs a new form of self-conditioning, and applies the diffusion process on the logit simplex space rather than the typical learned embedding space. Through extensive experiments on natural language understanding and generation tasks including summarization, text simplification, paraphrase generation, and question generation, we demonstrate that TESS outperforms state-of-the-art non-autoregressive models and is competitive with pretrained autoregressive sequence-to-sequence models.},
   author = {Rabeeh Karimi Mahabadi and Jaesung Tae and <b>Hamish Ivison</b> and James Henderson and Iz Beltagy and Matthew E. Peters and Arman Cohan},
   title = {TESS: Text-to-Text Self-Conditioned Simplex Diffusion},
-  journal = {arxiv},
+  journal = {arXiv preprint},
   url = {https://arxiv.org/abs/2305.08379},
   year = {2023}
 }
 
-@article{hint,
+@inproceedings{hint,
   abstract = {Recent NLP models have the great ability to generalise `zero-shot' to new tasks using only an instruction as guidance. However, these approaches usually repeat their instructions with every input, requiring costly reprocessing of lengthy instructions for every inference example. To alleviate this, we introduce Hypernetworks for INstruction Tuning (HINT), which convert task instructions and examples using a pretrained text encoder into parameter-efficient modules inserted into an underlying model, eliminating the need to include instructions in the model input. Compared to prior approaches that concatenate instructions with every input instance, we find that HINT models are significantly more compute-efficient and consistently outperform these approaches for a given inference budget.},
   author = {<b>Hamish Ivison</b> and Akshita Bhagia and Yizhong Wang and Hannaneh Hajishirzi and Matthew Peters},
   title = {HINT: Hypernetwork Instruction Tuning for Efficient Zero-Shot Generalisation},
@@ -39,7 +48,7 @@
 }
 
 
-@article{deft,
+@inproceedings{deft,
   abstract = {Language models trained on massive prompted multitask datasets like T0 (Sanh et al., 2021) or FLAN (Wei et al., 2021a) can generalize to tasks unseen during training. We show that training on a carefully chosen subset of instances can outperform training on all available data on a variety of datasets. We assume access to a small number (250--1000) of unlabeled target task instances, select their nearest neighbors from a pool of multitask data, and use the retrieved data to train target task-specific models. Our method is more data-efficient than training a single multitask model, while still outperforming it by large margins. We evaluate across a diverse set of tasks not in the multitask pool we retrieve from, including those used to evaluate T0 and additional complex tasks including legal and scientific document QA. We retrieve small subsets of P3 (the collection of prompted datasets from which T0's training data was sampled) and finetune T5 models that outperform the 3-billion parameter variant of T0 (T0-3B) by 3--30% on 12 out of 14 evaluation datasets while using at most 2% of the data used to train T0-3B. These models also provide a better initialization than T0-3B for few-shot finetuning on target-task data, as shown by a 2--23% relative improvement over few-shot finetuned T0-3B models on 8 datasets. Our code is available at https://github.com/allenai/data-efficient-finetuning.},
   author = {<b>Hamish Ivison</b> and Noah A. Smith and Hannaneh Hajishirzi and Pradeep Dasigi},
   title = {Data-Efficient Finetuning Using Cross-Task Nearest Neighbors},
@@ -48,13 +57,12 @@
   year = {2023}
 }
 
-@article{hyperdecoders,
+@inproceedings{hyperdecoders,
   url = {https://arxiv.org/abs/2203.08304},
   author = {<b>Hamish Ivison</b> and Peters, Matthew E.},
   keywords = {Computation and Language (cs.CL), FOS: Computer and information sciences, FOS: Computer and information sciences},
   title = {Hyperdecoders: Instance-specific decoders for multi-task NLP},
   journal = {Findings of EMNLP},
-  publisher = {arXiv},
   year = {2022},
   abstract = {We investigate input-conditioned hypernetworks for multi-tasking in NLP, generating parameter-efficient adaptations for a decoder using a hypernetwork conditioned on the output of an encoder. This approach produces a unique decoder for every input instance, allowing the network a larger degree of flexibility than prior work that specializes the decoder for each task. We apply our method to sequence classification tasks, extractive QA, and summarisation and find that it surpasses previous parameter efficient fine-tuning methods and often outperforms fully finetuning the underlying model. An analysis of the embeddings used by our hypernetwork shows that they are sensitive to output label and type, suggesting that our approach better maps from encoder representations to output labels.}
 }
@@ -68,7 +76,7 @@
                {A} Survey},
   year      = {2021},
   url       = {https://arxiv.org/abs/2103.11072},
-  eprinttype = {arXiv},
+  journal = {arXiv preprint},
   eprint    = {2103.11072},
   timestamp = {Wed, 24 Mar 2021 15:50:40 +0100},
   biburl    = {https://dblp.org/rec/journals/corr/abs-2103-11072.bib},

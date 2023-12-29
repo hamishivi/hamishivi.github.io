@@ -2,6 +2,9 @@
 
 Just a place for my random thoughts and musings :)
 
+To run locally (since I always forget): `bundler exec jekyll serve`
+Look at [this stackoverflow post](https://stackoverflow.com/questions/47026174/find-spec-for-exe-cant-find-gem-bundler-0-a-gemgemnotfoundexception) for install issues.
+
 ## Quick notes to self
 
 - set mathjax to true for posts that use equations. If not, don't (this will add in the script to load mathjax)
@@ -12,4 +15,4 @@ Just a place for my random thoughts and musings :)
 
 [] The green first letter plugin for more titles, programmatically set (if this is possible)
 [] make the light/dark change less hacky, ideally using css vars and not the current dual-sheet setup (I'm lazy)
-[] general improvements to the notion import process to make it more seamless.
+
