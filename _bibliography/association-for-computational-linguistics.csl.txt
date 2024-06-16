@@ -6,8 +6,6 @@
     <id>http://www.zotero.org/styles/association-for-computational-linguistics</id>
     <link href="http://www.zotero.org/styles/association-for-computational-linguistics" rel="self"/>
     <link href="http://www.aclweb.org/" rel="documentation"/>
-    <!-- No stable link for style documentation; cf. acl.bst, a bibtex style file distributed in each conference. -->
-    <!-- According to acl.bst, the ACL Conference Proceedings Style was based on the `aaai-named` format by Oren Patashnik in 1985, and later modified for the Proceedings of the ACL by Peter F. Patel-Schneider in 1988, Stuart Shieber in 1991, and Fernando Pereira in 1992. -->
     <author>
       <name>Hajime Senuma</name>
       <email>hajime.senuma@gmail.com</email>
@@ -23,7 +21,7 @@
   </info>
   <macro name="author">
     <names variable="author">
-      <name form="long" and="text" delimiter=", "/>
+      <name form="long" and="text" delimiter=", " font-size="small"/>
       <substitute>
         <text value=""/>
       </substitute>
@@ -31,10 +29,10 @@
   </macro>
   <macro name="author-short">
     <names variable="author">
-      <name form="short" and="text" delimiter=", "/>
+      <name form="short" and="text" delimiter=", " font-size="small"/>
       <substitute>
         <names variable="editor">
-          <name form="short" and="text" delimiter=", "/>
+          <name form="short" and="text" delimiter=", " font-size="small"/>
         </names>
         <text value="mis"/>
       </substitute>
@@ -42,13 +40,13 @@
   </macro>
   <macro name="editor">
     <names variable="editor">
-      <name form="long" and="text" delimiter=", "/>
-      <label prefix=", " form="long"/>
+      <name form="long" and="text" delimiter=", " font-size="small"/>
+      <label prefix=", " form="long" font-size="small"/>
     </names>
   </macro>
   <macro name="author-or-editor">
     <names variable="author">
-      <name form="long" and="text" delimiter=", "/>
+      <name form="long" and="text" delimiter=", " font-size="small"/>
       <substitute>
         <text macro="editor"/>
         <text value=""/>
@@ -58,7 +56,7 @@
   <macro name="year-date">
     <choose>
       <if variable="issued">
-        <date variable="issued">
+        <date variable="issued" font-size="small">
           <date-part name="year"/>
         </date>
       </if>
@@ -68,30 +66,30 @@
     </choose>
   </macro>
   <macro name="month">
-    <date variable="issued">
+    <date variable="issued" font-size="small">
       <date-part name="month"/>
     </date>
   </macro>
   <macro name="edition">
-    <number variable="edition" form="ordinal"/>
-    <text term="edition" prefix=" "/>
+    <number variable="edition" form="ordinal" font-size="small"/>
+    <text term="edition" prefix=" " font-size="small"/>
   </macro>
   <macro name="volume-or-number">
     <choose>
       <if variable="volume">
-        <group delimiter=" ">
+        <group delimiter=" " font-size="small">
           <label variable="volume"/>
           <number variable="volume"/>
         </group>
       </if>
       <else-if variable="number">
-        <group delimiter=" ">
+        <group delimiter=" " font-size="small">
           <text value="number"/>
           <number variable="number"/>
         </group>
       </else-if>
       <else-if variable="issue">
-        <group delimiter=" ">
+        <group delimiter=" " font-size="small">
           <text value="number"/>
           <number variable="issue"/>
         </group>
@@ -101,27 +99,27 @@
   <macro name="event-or-publisher-place">
     <choose>
       <if variable="event-place">
-        <text variable="event-place"/>
+        <text variable="event-place" font-size="small"/>
       </if>
       <else>
-        <text variable="publisher-place"/>
+        <text variable="publisher-place" font-size="small"/>
       </else>
     </choose>
   </macro>
   <macro name="thesis-type">
     <choose>
       <if variable="genre">
-        <text variable="genre"/>
+        <text variable="genre" font-size="small"/>
       </if>
       <else>
-        <text value="Ph.D. thesis"/>
+        <text value="Ph.D. thesis" font-size="small"/>
       </else>
     </choose>
   </macro>
   <macro name="volume-and-collection-title">
     <choose>
       <if variable="volume collection-title" match="all">
-        <group delimiter=" ">
+        <group delimiter=" " font-size="small">
           <text term="volume"/>
           <number variable="volume"/>
           <text value="of"/>
@@ -129,22 +127,20 @@
         </group>
       </if>
       <else-if variable="volume">
-        <group delimiter=" ">
+        <group delimiter=" " font-size="small">
           <text term="volume"/>
           <number variable="volume"/>
         </group>
       </else-if>
-      <!-- TODO: else-if for issue or number-->
       <else>
-        <text variable="collection-title"/>
+        <text variable="collection-title" font-size="small"/>
       </else>
     </choose>
   </macro>
   <macro name="technical-report">
     <choose>
       <if variable="number issue" match="any">
-        <group delimiter=" ">
-          <!-- uppercased "report" -->
+        <group delimiter=" " font-size="small">
           <text value="Technical Report"/>
           <choose>
             <if variable="number">
@@ -157,16 +153,14 @@
         </group>
       </if>
       <else>
-        <!-- lowercased "report" -->
-        <text value="Technical report"/>
+        <text value="Technical report" font-size="small"/>
       </else>
     </choose>
   </macro>
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
-    <!-- no sorting for citation -->
     <layout prefix="(" suffix=")" delimiter="; ">
       <text macro="author-short"/>
-      <text macro="year-date" prefix=", "/>
+      <text macro="year-date" prefix=", " font-size="small"/>
     </layout>
   </citation>
   <bibliography et-al-min="20" et-al-use-first="19">
@@ -176,25 +170,26 @@
       <key variable="title"/>
     </sort>
     <layout>
+      <!-- title -->
+      <text variable="title" font-weight="bold" suffix=".&#10;"/>
       <!-- author -->
       <choose>
         <if type="book">
-          <text macro="author-or-editor" suffix="."/>
+          <text macro="author-or-editor" suffix=". " font-size="small"/>
         </if>
         <else>
-          <text macro="author" suffix="."/>
+          <text macro="author" suffix=". " font-size="small"/>
         </else>
       </choose>
       <!-- year -->
-      <date variable="issued" prefix=" " suffix=".">
+      <date variable="issued" prefix=" " suffix="." font-size="small">
         <date-part name="year"/>
       </date>
       <!-- title and other information -->
       <choose>
         <!-- corresponds to "article" in bibtex -->
         <if type="article-journal">
-          <text variable="title" prefix=" " suffix="."/>
-          <group prefix=" " suffix=".">
+          <group prefix=" " suffix="." font-size="small">
             <text variable="container-title" font-style="italic"/>
             <text variable="volume" prefix=", "/>
             <text variable="issue" prefix="(" suffix=")"/>
@@ -206,9 +201,9 @@
         <else-if type="book">
           <text variable="title" prefix=" " suffix="." font-style="italic"/>
           <group delimiter=", " suffix=".">
-            <text macro="volume-and-collection-title"/>
+            <text macro="volume-and-collection-title" font-size="small"/>
           </group>
-          <group delimiter=", " prefix=" " suffix=".">
+          <group delimiter=", " prefix=" " suffix="." font-size="small">
             <text variable="publisher"/>
             <text variable="publisher-place"/>
             <text macro="edition"/>
@@ -218,8 +213,8 @@
         <!-- corresponds to "inbook" and "incollection" in bibtex -->
         <else-if type="chapter">
           <text variable="title" prefix=" " suffix="."/>
-          <text term="in" text-case="capitalize-first" prefix=" " suffix=" "/>
-          <group delimiter=", " suffix=".">
+          <text term="in" text-case="capitalize-first" prefix=" " suffix=" " font-size="small"/>
+          <group delimiter=", " suffix="." font-size="small">
             <text macro="editor"/>
             <text variable="container-title" font-style="italic"/>
             <text macro="volume-and-collection-title"/>
@@ -232,7 +227,7 @@
               <text variable="page"/>
             </group>
           </group>
-          <group delimiter=", " prefix=" " suffix=".">
+          <group delimiter=", " prefix=" " suffix="." font-size="small">
             <text variable="publisher"/>
             <text variable="publisher-place"/>
             <text macro="edition"/>
@@ -242,7 +237,7 @@
         <!-- corresponds to "booklet" in bibtex -->
         <else-if type="pamphlet">
           <text variable="title" prefix=" " suffix="."/>
-          <group delimiter=", " prefix=" " suffix=".">
+          <group delimiter=", " prefix=" " suffix="." font-size="small">
             <text variable="publisher-place"/>
             <text macro="month"/>
           </group>
@@ -250,8 +245,8 @@
         <!-- corresponds to "inproceedings" and "conference" in bibtex -->
         <else-if type="paper-conference">
           <text variable="title" prefix=" " suffix=". "/>
-          <text term="in" text-case="capitalize-first" suffix=" "/>
-          <group suffix="." delimiter=", ">
+          <text term="in" text-case="capitalize-first" suffix=" " font-size="small"/>
+          <group suffix="." delimiter=", " font-size="small">
             <text macro="editor"/>
             <text variable="container-title" font-style="italic"/>
             <text macro="volume-or-number"/>
@@ -266,7 +261,7 @@
               </if>
             </choose>
           </group>
-          <group prefix=" " suffix="." delimiter=", ">
+          <group prefix=" " suffix="." delimiter=", " font-size="small">
             <text variable="publisher"/>
             <choose>
               <if variable="event-place publisher-place" match="none">
@@ -278,7 +273,7 @@
         <!-- corresponds to "techreport" in bibtex -->
         <else-if type="report">
           <text variable="title" prefix=" " suffix="."/>
-          <group delimiter=", " prefix=" " suffix=".">
+          <group delimiter=", " prefix=" " suffix="." font-size="small">
             <text macro="technical-report"/>
             <text variable="publisher"/>
             <text variable="publisher-place"/>
@@ -288,8 +283,7 @@
         <!-- corresponds to "phdthesis" and "masterthesis" in bibtex -->
         <else-if type="thesis">
           <text variable="title" prefix=" " suffix="." font-style="italic"/>
-          <group delimiter=", " prefix=" " suffix=".">
-            <!-- If you want to output text other than "Ph.D thesis", specify the "genre" field to an appropriate value like "Master's thesis".-->
+          <group delimiter=", " prefix=" " suffix="." font-size="small">
             <text macro="thesis-type"/>
             <text variable="publisher"/>
             <text variable="publisher-place"/>
@@ -303,7 +297,7 @@
         </else>
       </choose>
       <!-- note -->
-      <text variable="note" prefix=" " suffix="."/>
+      <text variable="note" prefix=" " suffix="." font-size="small"/>
     </layout>
   </bibliography>
 </style>
