@@ -5,13 +5,14 @@
       eprint={2406.09279},
       archivePrefix={arXiv},
       url={https://arxiv.org/abs/2406.09279},
-      abstract={Learning from preference feedback has emerged as an essential step for improving the generation quality and performance of modern language models (LMs). Despite its widespread use, the way preference-based learning is applied varies wildly, with differing data, learning algorithms, and evaluations used, making disentangling the impact of each aspect difficult. In this work, we identify four core aspects of preference-based learning: preference data, learning algorithm, reward model, and policy training prompts, systematically investigate the impact of these components on downstream model performance, and suggest a recipe for strong learning for preference feedback. Our findings indicate that all aspects are important for performance, with better preference data leading to the largest improvements, followed by the choice of learning algorithm, the use of improved reward models, and finally the use of additional unlabeled prompts for policy training. Notably, PPO outperforms DPO by up to 2.5% in math and 1.2% in general domains. High-quality preference data leads to improvements of up to 8% in instruction following and truthfulness. Despite significant gains of up to 5% in mathematical evaluation when scaling up reward models, we surprisingly observe marginal improvements in other categories. We publicly release the code used for training and evaluating our models, along with the models and datasets themselves.}
+      abstract={Learning from preference feedback has emerged as an essential step for improving the generation quality and performance of modern language models (LMs). Despite its widespread use, the way preference-based learning is applied varies wildly, with differing data, learning algorithms, and evaluations used, making disentangling the impact of each aspect difficult. In this work, we identify four core aspects of preference-based learning: preference data, learning algorithm, reward model, and policy training prompts, systematically investigate the impact of these components on downstream model performance, and suggest a recipe for strong learning for preference feedback. Our findings indicate that all aspects are important for performance, with better preference data leading to the largest improvements, followed by the choice of learning algorithm, the use of improved reward models, and finally the use of additional unlabeled prompts for policy training. Notably, PPO outperforms DPO by up to 2.5% in math and 1.2% in general domains. High-quality preference data leads to improvements of up to 8% in instruction following and truthfulness. Despite significant gains of up to 5% in mathematical evaluation when scaling up reward models, we surprisingly observe marginal improvements in other categories. We publicly release the code used for training and evaluating our models, along with the models and datasets themselves.},
+      code={https://github.com/allenai/open-instruct}
 }
 
 @article{Groeneveld2023OLMo,
   title={OLMo: Accelerating the Science of Language Models},
   author={Groeneveld, Dirk and Beltagy, Iz and ...  and <b>Hamish Ivison</b> and ... and Smith, Noah A. and Hajishirzi, Hannaneh},
-  journal={Preprint},
+  journal={ACL},
   year={2024},
   url={https://arxiv.org/abs/2402.00838},
   abstract={Language models (LMs) have become ubiquitous in both NLP research and in
@@ -27,7 +28,8 @@
     inference code, we release OLMo and the whole framework, including training
     data and training and evaluation code. We hope this release will empower and
     strengthen the open research community and inspire a new wave of innovation.},
-  dontshowbib={true}
+  dontshowbib={true},
+  code={https://github.com/allenai/OLMo}
 }
 
 @inproceedings{backtracking,
@@ -46,8 +48,9 @@
       year={2023},
       url={https://arxiv.org/abs/2311.10702},
       eprint={2311.10702},
-      journal={arXiv preprint},
-      primaryClass={cs.CL}
+      journal={technical report},
+      primaryClass={cs.CL},
+      code={https://github.com/allenai/open-instruct}
 }
 
 @inproceedings{tulu,
@@ -58,7 +61,8 @@
       url = {https://arxiv.org/abs/2306.04751},
       eprint={2306.04751},
       journal={NeurIPS Datasets and Benchmarks Track},
-      primaryClass={cs.CL}
+      primaryClass={cs.CL},
+      code={https://github.com/allenai/open-instruct}
 }
 
 @article{tess,
@@ -67,7 +71,8 @@
   title = {TESS: Text-to-Text Self-Conditioned Simplex Diffusion},
   journal = {EACL},
   url = {https://arxiv.org/abs/2305.08379},
-  year = {2024}
+  year = {2024},
+  code={https://github.com/allenai/tess-diffusion}
 }
 
 @inproceedings{hint,
@@ -76,7 +81,8 @@
   title = {HINT: Hypernetwork Instruction Tuning for Efficient Zero-Shot Generalisation},
   journal = {ACL},
   url = {https://arxiv.org/abs/2212.10315},
-  year = {2023}
+  year = {2023},
+  code={https://github.com/allenai/hyper-task-descriptions}
 }
 
 
@@ -85,6 +91,7 @@
   author = {<b>Hamish Ivison</b> and Noah A. Smith and Hannaneh Hajishirzi and Pradeep Dasigi},
   title = {Data-Efficient Finetuning Using Cross-Task Nearest Neighbors},
   journal = {Findings of ACL},
+  code={https://github.com/allenai/data-efficient-finetuning},
   url = {https://arxiv.org/abs/2212.00196},
   year = {2023}
 }
@@ -96,6 +103,7 @@
   title = {Hyperdecoders: Instance-specific decoders for multi-task NLP},
   journal = {Findings of EMNLP},
   year = {2022},
+  code={https://github.com/allenai/hyperdecoders},
   abstract = {We investigate input-conditioned hypernetworks for multi-tasking in NLP, generating parameter-efficient adaptations for a decoder using a hypernetwork conditioned on the output of an encoder. This approach produces a unique decoder for every input instance, allowing the network a larger degree of flexibility than prior work that specializes the decoder for each task. We apply our method to sequence classification tasks, extractive QA, and summarisation and find that it surpasses previous parameter efficient fine-tuning methods and often outperforms fully finetuning the underlying model. An analysis of the embeddings used by our hypernetwork shows that they are sensitive to output label and type, suggesting that our approach better maps from encoder representations to output labels.}
 }
 
