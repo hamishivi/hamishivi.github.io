@@ -2,18 +2,18 @@
   title={Personalizing Reinforcement Learning from Human Feedback with Variational Preference Learning},
   author={Sriyash Poddar and Yanming Wan and <b>Hamish Ivison</b> and Abhishek Gupta and Natasha Jaques},
   year={2024},
-  archivePrefix={arXiv},
   url={https://arxiv.org/abs/2408.10075},
   abstract={Reinforcement Learning from Human Feedback (RLHF) is a powerful paradigm for aligning foundation models to human values and preferences. However, current RLHF techniques cannot account for the naturally occurring differences in individual human preferences across a diverse population. When these differences arise, traditional RLHF frameworks simply average over them, leading to inaccurate rewards and poor performance for individual subgroups. To address the need for pluralistic alignment, we develop a class of multimodal RLHF methods. Our proposed techniques are based on a latent variable formulation - inferring a novel user-specific latent and learning reward models and policies conditioned on this latent without additional user-specific data. While conceptually simple, we show that in practice, this reward modeling requires careful algorithmic considerations around model architecture and reward scaling. To empirically validate our proposed technique, we first show that it can provide a way to combat underspecification in simulated control problems, inferring and optimizing user-specific reward functions. Next, we conduct experiments on pluralistic language datasets representing diverse user preferences and demonstrate improved reward function accuracy. We additionally show the benefits of this probabilistic framework in terms of measuring uncertainty, and actively learning user preferences. This work enables learning from diverse populations of users with divergent preferences, an important challenge that naturally occurs in problems from robot learning to foundation model alignment.},
-  code={https://github.com/WEIRDLabUW/vpl_llm}
+  code={https://github.com/WEIRDLabUW/vpl_llm},
+  journal={NeurIPS},
 }
 
-@misc{ivison2024unpacking,
+@inproceedings{ivison2024unpacking,
       title={Unpacking DPO and PPO: Disentangling Best Practices for Learning from Preference Feedback}, 
       author={<b>Hamish Ivison</b> and Yizhong Wang and Jiacheng Liu and Zeqiu Wu and Valentina Pyatkin and Nathan Lambert and Noah A. Smith and Yejin Choi and Hannaneh Hajishirzi},
       year={2024},
       eprint={2406.09279},
-      archivePrefix={arXiv},
+      journal={NeurIPS},
       url={https://arxiv.org/abs/2406.09279},
       abstract={Learning from preference feedback has emerged as an essential step for improving the generation quality and performance of modern language models (LMs). Despite its widespread use, the way preference-based learning is applied varies wildly, with differing data, learning algorithms, and evaluations used, making disentangling the impact of each aspect difficult. In this work, we identify four core aspects of preference-based learning: preference data, learning algorithm, reward model, and policy training prompts, systematically investigate the impact of these components on downstream model performance, and suggest a recipe for strong learning for preference feedback. Our findings indicate that all aspects are important for performance, with better preference data leading to the largest improvements, followed by the choice of learning algorithm, the use of improved reward models, and finally the use of additional unlabeled prompts for policy training. Notably, PPO outperforms DPO by up to 2.5% in math and 1.2% in general domains. High-quality preference data leads to improvements of up to 8% in instruction following and truthfulness. Despite significant gains of up to 5% in mathematical evaluation when scaling up reward models, we surprisingly observe marginal improvements in other categories. We publicly release the code used for training and evaluating our models, along with the models and datasets themselves.},
       code={https://github.com/allenai/open-instruct}
