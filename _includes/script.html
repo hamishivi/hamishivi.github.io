@@ -17,3 +17,18 @@
   });
 
 </script>
+<script>
+  function toggleArrow(year) {
+    const content = document.getElementById(`content-${year}`);
+    const arrow = document.getElementById(`arrow-${year}`);
+
+    // Toggle the display of the content
+    if (content.style.display === "none" || content.style.display === "") {
+      content.style.display = "block";
+      arrow.classList.add("up"); // Rotate the arrow
+    } else {
+      content.style.display = "none";
+      arrow.classList.remove("up"); // Reset the arrow
+    }
+  }
+</script>

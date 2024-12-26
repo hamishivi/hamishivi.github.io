@@ -481,3 +481,53 @@ figcaption {
 [data-tooltip]:hover {
   text-decoration: none !important;
 }
+
+.year-content {
+  display: none; /* Hidden by default */
+  margin-left: 20px;
+  color: #000;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #000;
+}
+
+.toggle-button span {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.toggle-button span.up {
+  transform: rotate(180deg); /* Rotate the arrow when active */
+}
+
+p {
+  color: #bbbbbb;
+}
+
+ul {
+  color: #bbbbbb;
+}
+
+/* no underline on hover for a id = arrow */
+a#arrow:hover {
+  text-decoration: none;
+}
+
+span b:first-of-type {
+  display: block;
+  font-size: 16px;
+}
+
+span *:not(b:first-of-type) {
+  font-size: .9em;
+}
+
+span {
+  font-size: .8em;
+}

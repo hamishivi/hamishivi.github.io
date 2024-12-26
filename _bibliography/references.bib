@@ -4,12 +4,13 @@
   abstract = {Language model post-training is applied to refine behaviors and unlock new skills across a wide range of recent language models, but open recipes for applying these techniques lag behind proprietary ones. The underlying training data and recipes for post-training are simultaneously the most important pieces of the puzzle and the portion with the least transparency. To bridge this gap, we introduce Tülu 3, a family of fully-open state-of-the-art post-trained models, alongside its data, code, and training recipes, serving as a comprehensive guide for modern post-training techniques. Tülu 3, which builds on Llama 3.1 base models, achieves results surpassing the instruct versions of Llama 3.1, Qwen 2.5, Mistral, and even closed models such as  GPT-4o-mini and Claude 3.5-Haiku. The training algorithms for our models include supervised finetuning (SFT), Direct Preference Optimization (DPO), and a novel method we call Reinforcement Learning with Verifiable Rewards (RLVR).  With Tülu 3, we build a multi-task evaluation scheme for post-training with development and unseen evaluations, standard benchmark implementations, and substantial decontamination of existing open datasets on said benchmarks. We conclude with analysis and discussion of training methods that did not reliably improve performance. The Tülu 3 release includes model weights, a demo, and the complete recipe --- datasets for diverse core skills, a robust toolkit for data curation and evaluation, the training code and infrastructure, and, most importantly, a detailed report for reproducing and further adapting the Tülu 3 approach to more domains.},
   year = {2024},
   email = {tulu@allenai.org},
-  url={https://allenai.org/papers/tulu-3-report.pdf},
+  url={https://arxiv.org/abs/2411.15124},
+  code={https://github.com/allenai/open-instruct}
 }
 
-@inproceedings{Poddar2024PersonalizingRL,
+@article{Poddar2024PersonalizingRL,
   title={Personalizing Reinforcement Learning from Human Feedback with Variational Preference Learning},
-  author={Sriyash Poddar and Yanming Wan and <b>Hamish Ivison</b> and Abhishek Gupta and Natasha Jaques},
+  author={Sriyash Poddar* and Yanming Wan* and <b>Hamish Ivison</b> and Abhishek Gupta and Natasha Jaques},
   year={2024},
   url={https://arxiv.org/abs/2408.10075},
   abstract={Reinforcement Learning from Human Feedback (RLHF) is a powerful paradigm for aligning foundation models to human values and preferences. However, current RLHF techniques cannot account for the naturally occurring differences in individual human preferences across a diverse population. When these differences arise, traditional RLHF frameworks simply average over them, leading to inaccurate rewards and poor performance for individual subgroups. To address the need for pluralistic alignment, we develop a class of multimodal RLHF methods. Our proposed techniques are based on a latent variable formulation - inferring a novel user-specific latent and learning reward models and policies conditioned on this latent without additional user-specific data. While conceptually simple, we show that in practice, this reward modeling requires careful algorithmic considerations around model architecture and reward scaling. To empirically validate our proposed technique, we first show that it can provide a way to combat underspecification in simulated control problems, inferring and optimizing user-specific reward functions. Next, we conduct experiments on pluralistic language datasets representing diverse user preferences and demonstrate improved reward function accuracy. We additionally show the benefits of this probabilistic framework in terms of measuring uncertainty, and actively learning user preferences. This work enables learning from diverse populations of users with divergent preferences, an important challenge that naturally occurs in problems from robot learning to foundation model alignment.},
@@ -17,7 +18,7 @@
   journal={NeurIPS},
 }
 
-@inproceedings{ivison2024unpacking,
+@article{ivison2024unpacking,
       title={Unpacking DPO and PPO: Disentangling Best Practices for Learning from Preference Feedback}, 
       author={<b>Hamish Ivison</b> and Yizhong Wang and Jiacheng Liu and Zeqiu Wu and Valentina Pyatkin and Nathan Lambert and Noah A. Smith and Yejin Choi and Hannaneh Hajishirzi},
       year={2024},
@@ -51,7 +52,7 @@
   code={https://github.com/allenai/OLMo}
 }
 
-@inproceedings{backtracking,
+@article{backtracking,
   title={Backtracking Mathematical Reasoning of Language Models to the Pretraining Data},
   author={Yasaman Razeghi* and <b>Hamish Ivison*</b> and Sameer Singh and Yanai Elazar},
   booktitle={The Second Tiny Papers Track at ICLR 2024},
@@ -72,7 +73,7 @@
       code={https://github.com/allenai/open-instruct}
 }
 
-@inproceedings{tulu,
+@article{tulu,
       abstract = {In this work we explore recent advances in instruction-tuning language models on a range of open instruction-following datasets. Despite recent claims that open models can be on par with state-of-the-art proprietary models, these claims are often accompanied by limited evaluation, making it difficult to compare models across the board and determine the utility of various resources. We provide a large set of instruction-tuned models from 6.7B to 65B parameters in size, trained on 12 instruction datasets ranging from manually curated (e.g., OpenAssistant) to synthetic and distilled (e.g., Alpaca) and systematically evaluate them on their factual knowledge, reasoning, multilinguality, coding, and open-ended instruction following abilities through a collection of automatic, model-based, and human-based metrics. We further introduce T\"ulu, our best performing instruction-tuned model suite finetuned on a combination of high-quality open resources. Our experiments show that different instruction-tuning datasets can uncover or enhance specific skills, while no single dataset (or combination) provides the best performance across all evaluations. Interestingly, we find that model and human preference-based evaluations fail to reflect differences in model capabilities exposed by benchmark-based evaluations, suggesting the need for the type of systemic evaluation performed in this work. Our evaluations show that the best model in any given evaluation reaches on average 83% of ChatGPT performance, and 68% of GPT-4 performance, suggesting that further investment in building better base models and instruction-tuning data is required to close the gap. We release our instruction-tuned models, including a fully finetuned 65B T\"ulu, along with our code, data, and evaluation framework at https://github.com/allenai/open-instruct to facilitate future research.},
       title={How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources}, 
       author={Yizhong Wang* and <b>Hamish Ivison*</b> and Pradeep Dasigi and Jack Hessel and Tushar Khot and Khyathi Raghavi Chandu and David Wadden and Kelsey MacMillan and Noah A. Smith and Iz Beltagy and Hannaneh Hajishirzi},
@@ -94,7 +95,7 @@
   code={https://github.com/allenai/tess-diffusion}
 }
 
-@inproceedings{hint,
+@article{hint,
   abstract = {Recent NLP models have the great ability to generalise `zero-shot' to new tasks using only an instruction as guidance. However, these approaches usually repeat their instructions with every input, requiring costly reprocessing of lengthy instructions for every inference example. To alleviate this, we introduce Hypernetworks for INstruction Tuning (HINT), which convert task instructions and examples using a pretrained text encoder into parameter-efficient modules inserted into an underlying model, eliminating the need to include instructions in the model input. Compared to prior approaches that concatenate instructions with every input instance, we find that HINT models are significantly more compute-efficient and consistently outperform these approaches for a given inference budget.},
   author = {<b>Hamish Ivison</b> and Akshita Bhagia and Yizhong Wang and Hannaneh Hajishirzi and Matthew Peters},
   title = {HINT: Hypernetwork Instruction Tuning for Efficient Zero-Shot Generalisation},
@@ -105,7 +106,7 @@
 }
 
 
-@inproceedings{deft,
+@article{deft,
   abstract = {Language models trained on massive prompted multitask datasets like T0 (Sanh et al., 2021) or FLAN (Wei et al., 2021a) can generalize to tasks unseen during training. We show that training on a carefully chosen subset of instances can outperform training on all available data on a variety of datasets. We assume access to a small number (250--1000) of unlabeled target task instances, select their nearest neighbors from a pool of multitask data, and use the retrieved data to train target task-specific models. Our method is more data-efficient than training a single multitask model, while still outperforming it by large margins. We evaluate across a diverse set of tasks not in the multitask pool we retrieve from, including those used to evaluate T0 and additional complex tasks including legal and scientific document QA. We retrieve small subsets of P3 (the collection of prompted datasets from which T0's training data was sampled) and finetune T5 models that outperform the 3-billion parameter variant of T0 (T0-3B) by 3--30% on 12 out of 14 evaluation datasets while using at most 2% of the data used to train T0-3B. These models also provide a better initialization than T0-3B for few-shot finetuning on target-task data, as shown by a 2--23% relative improvement over few-shot finetuned T0-3B models on 8 datasets. Our code is available at https://github.com/allenai/data-efficient-finetuning.},
   author = {<b>Hamish Ivison</b> and Noah A. Smith and Hannaneh Hajishirzi and Pradeep Dasigi},
   title = {Data-Efficient Finetuning Using Cross-Task Nearest Neighbors},
@@ -115,7 +116,7 @@
   year = {2023}
 }
 
-@inproceedings{hyperdecoders,
+@article{hyperdecoders,
   url = {https://arxiv.org/abs/2203.08304},
   author = {<b>Hamish Ivison</b> and Peters, Matthew E.},
   keywords = {Computation and Language (cs.CL), FOS: Computer and information sciences, FOS: Computer and information sciences},
