@@ -15,6 +15,15 @@ See below for papers I've worked on. You can also check out my [Semantic Scholar
 
 In addition to these, I also help maintain [Open-Instruct](https://github.com/allenai/open-instruct), a codebase for general LM post-training. Send me a note if you need some help with it!
 
+<!-- 2025 -->
+<div class="year-section" id="year-2025">
+    <button class="toggle-button" onclick="toggleArrow('2025')">
+        <p><span id="arrow-2025" class="up"><a id="arrow">▼</a></span>2025</p>
+    </button>
+    <div class="year-content" id="content-2025" style="display: block;">
+        {% bibliography --query @*[year=2025] %}
+    </div>
+</div>
 <!-- 2024 -->
 <div class="year-section" id="year-2024">
     <button class="toggle-button" onclick="toggleArrow('2024')">

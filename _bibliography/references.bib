@@ -1,3 +1,53 @@
+@article{ivisondata2025,
+  title={{Large-Scale Data Selection for Instruction Tuning}},
+  author={<b>Hamish Ivison</b> and Muru Zhang and Faeze Brahman and Pang Wei Koh and Pradeep Dasigi},
+  year={2025},
+  eprint={2503.01807},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2503.01807},
+  abstract={Selecting high-quality training data from a larger pool is a crucial step 
+  when instruction-tuning language models, as carefully curated datasets often produce
+  models that outperform those trained on much larger, noisier datasets. Automated data
+  selection approaches for instruction-tuning are typically tested by selecting small
+  datasets (roughly 10k samples) from small pools (100-200k samples). However, popular
+  deployed instruction-tuned models often train on hundreds of thousands to millions of
+  samples, subsampled from even larger data pools. We present a systematic study of how
+  well data selection methods scale to these settings, selecting up to 2.5M samples from
+  pools of up to 5.8M samples and evaluating across 7 diverse tasks. We show that many
+  recently proposed methods fall short of random selection in this setting (while using
+  more compute), and even decline in performance when given access to larger pools of data
+  to select over. However, we find that a variant of representation-based data selection
+  (RDS+), which uses weighted mean pooling of pretrained LM hidden states, consistently
+  outperforms more complex methods across all settings tested -- all whilst being more
+  compute-efficient. Our findings highlight that the scaling properties of proposed automated
+  selection methods should be more closely examined.},
+  code={https://github.com/hamishivi/automated-instruction-selection}
+ }
+
+@article{taeivison2025tess2,
+  title={{TESS 2: A Large-Scale Generalist Diffusion Language Model}},
+  author={Jaesung Tae* and <b>Hamish Ivison*</b> and Sachin Kumar and Arman Cohan},
+  year={2025},
+  eprint={2502.13917},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2502.13917},
+  code={https://github.com/hamishivi/tess-2},
+  abstract={We introduce TESS 2, a general instruction-following diffusion language model
+  that outperforms contemporary instruction-tuned diffusion models, as well as matches and
+  sometimes exceeds strong autoregressive (AR) models. We train TESS 2 by first adapting a
+  strong AR model via continued pretraining with the usual cross-entropy as diffusion loss,
+  and then performing further instruction tuning. We find that adaptation training as well
+  as the choice of the base model is crucial for training good instruction-following diffusion
+  models. We further propose reward guidance, a novel and modular inference-time guidance
+  procedure to align model outputs without needing to train the underlying model. Finally,
+  we show that TESS 2 further improves with increased inference-time compute, highlighting
+  the utility of diffusion LMs in having fine-grained controllability over the amount of
+  compute used at inference time.
+}
+ }
+
 @article{olmo20242olmo2furious,
   title={2 OLMo 2 Furious}, 
   author={{Team OLMo (inc. <b>Hamish Ivison</b>)}},
