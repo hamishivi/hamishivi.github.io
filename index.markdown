@@ -13,7 +13,7 @@ If you have questions about my work, general academia/software/research-related 
 
 See below for papers I've worked on. You can also check out my [Semantic Scholar](https://www.semanticscholar.org/author/Hamish-Ivison/2056776606) and [Google Scholar](https://scholar.google.com/citations?user=JxCXMlkAAAAJ) profiles.
 
-In addition to these, I also help maintain [Open-Instruct](https://github.com/allenai/open-instruct), a codebase for general LM post-training. Send me a note if you need some help with it!
+In addition to these, I also help maintain [Open-Instruct](https://github.com/allenai/open-instruct), a codebase for LM post-training. Send me a note if you need some help with it!
 
 <!-- 2025 -->
 <div class="year-section" id="year-2025">
