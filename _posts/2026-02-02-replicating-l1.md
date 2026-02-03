@@ -97,7 +97,7 @@ What does our reward look like? I experimented with four different setups:
 To visualise the "up to" and "exact" rewards for a desired length of 3200 tokens:
 <img src="https://i.imgur.com/1Z5NGlO.png" alt="Reward visualisation" width="500" style="display: block; margin: 0 auto;">
 
-How do we evaluate? Basically, I evaluated on MATH-500 with desired lengths of `{100, 1024, 2048, 4096, 6144, 8192, 9216, 10240}` (set via the prompt). I measure both performance at the various lengths and how far off the lengths are from the desired output length (shown via violin plot below). I also did one out-of-domain experiment running evaluation on MMLU with the same lengths.
+How do we evaluate? Basically, I evaluated on [MATH-500](https://huggingface.co/datasets/HuggingFaceH4/MATH-500) with desired lengths of `{100, 1024, 2048, 4096, 6144, 8192, 9216, 10240}` (set via the prompt). I measure both performance at the various lengths and how far off the lengths are from the desired output length (shown via violin plot below). I also did one out-of-domain experiment running evaluation on [MMLU](https://arxiv.org/abs/2009.03300) with the same lengths.
 
 ### Results
 
@@ -133,7 +133,7 @@ As you can see, the model matches the performance of the 'no length control' bas
 
 #### What about out-of-domain generalisation?
 
-Finally, I also wanted to see how well the length control did at tasks that were OOD. Recall we are training on math data only, so I evaluated on MMLU, which is a general QA task.
+Finally, I also wanted to see how well the length control did at tasks that were OOD. Recall we are training on math data only, so I evaluated on [MMLU](https://arxiv.org/abs/2009.03300), which is a general QA task.
 
 <img src="https://i.imgur.com/AcqVjam.png" alt="Length control on MMLU" width="500" style="display: block; margin: 0 auto;">
 
