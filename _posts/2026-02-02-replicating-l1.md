@@ -5,9 +5,9 @@ tags: blog technical
 description: Results replicating the recent L1 paper.
 ---
 
-### Intro
-
 > Note to reader: This blog post is a (lightly) edited version of a post I originally wrote in May 2025, but dropped due to getting busy with life. I've finally cleaned it up and shared it, but understand it's a bit out of date! Lots of interesting and cool work on LM overthinking and length control has come out since then, one example being [GDPO](https://arxiv.org/abs/2601.05242).
+
+### Intro
 
 A large flaw of autoregressive thinking models is that their inference can simply go on and on. For example, if we take DeepSeek-R1 and provide it with a slightly nonsense riddle, it very quickly degrades into endless guess-and-checking:
 
@@ -16,7 +16,7 @@ A large flaw of autoregressive thinking models is that their inference can simpl
 
 This is partly just due to the fact that long CoTs take some time to generate, and can also be part of an issue known as *overthinking*, wherein models often think for longer and produce longer CoTs for problems they will eventually get wrong or they did not need to spend all that time on. There is a decent amount of literature on this at this point, and papers that propose to solve the issue by better learning how to allocate compute for questions.
 
-One particular approach to solving this I found interesting earlier in the year was *L1: Controlling How Long A Reasoning Model Thinks With Reinforcement Learning*. The idea behind the paper is simple: let's just *reward the model for getting the length right* during RL training! (Perhaps) surprisingly, a fairly simple reward works well here. Doing everything during RL training is something I'm interested in doing right now, so I quite liked this, and worked a little on replicating this in [Open-Instruct](https://github.com/allenai/open_instruct), a post-training codebase I contribute to quite a bit.
+One particular approach to solving this I found interesting earlier in the year was [L1: Controlling How Long A Reasoning Model Thinks With Reinforcement Learning](https://arxiv.org/abs/2503.04697). The idea behind the paper is simple: let's just *reward the model for getting the length right* during RL training! (Perhaps) surprisingly, a fairly simple reward works well here. Doing everything during RL training is something I'm interested in doing right now, so I quite liked this, and worked a little on replicating this in [Open-Instruct](https://github.com/allenai/open_instruct), a post-training codebase I contribute to quite a bit.
 
 In order to replicate, I set up a small setting I cared about: Given a math dataset, can I RL-train with an additional length control reward to achieve a 'reasonable' degree of length control without sacrificing quality? In particular, I was interested in the following properties:
 
@@ -125,7 +125,7 @@ Let's start by just looking at how well each approach actually adheres to the le
 
 #### What about performance?
 
-You might be curious about performance. Below I've plotted performance at different output lengths for the 8k "exact" reward (and I found the other methods to be similar in performance, apart from the 'up to' reward which just learns to be short).
+You might be curious about performance. Below I've plotted performance at different output lengths for the 8k "exact" reward (and I found the other methods to be similar in performance, apart from the 'up to' reward which just learns to be short). Note I evaluated both using greedy and temperature (temperature of 0.7) sampling, hence the two lines.
 
 <img src="https://i.imgur.com/syY0Ro5.png" alt="Performance at different lengths" width="500" style="display: block; margin: 0 auto;">
 
@@ -139,7 +139,7 @@ Finally, I also wanted to see how well the length control did at tasks that were
 
 Here, we see that **length control still works, but less strongly** on these OOD tasks. I consider this pretty successful, since in reality we can just train on a diverse mixture and minimise how many OOD cases the model needs to deal with (and later for Olmo 3 we did indeed train on a moderately diverse mixture of data).
 
-Sadly, we do see performance drop:
+Sadly, we do see performance drop (all curves using temperature 0.7 sampling):
 
 <img src="https://i.imgur.com/r2dhxk1.png" alt="MMLU performance comparison" width="500" style="display: block; margin: 0 auto;">
 
@@ -154,7 +154,7 @@ I did this project to answer a few questions, and we can now clearly do that:
 - *Do we get out-of-domain length generalisation? If I train on lengths 0-4096, will the model generate 8000 tokens if I ask?*
     - Sadly, no! This really sucks, and is partly why I moved on from these results. It would be interesting to see if more work on the setup could change this (meta-learning? mixing in unfinished samples?)
 - *Do I observe inference-time scaling effects as I ask for longer and longer generations?*
-    - Yes, weakly so! Our data and eval were 'too easy' such that past 2k tokens the model could just do really well, but we still see some inference-time scaling effects.
+    - Yes, weakly so! Our data and eval were 'too easy' such that past 2k tokens the model could just do really well, but we still see some inference-time scaling effects. Using a budget of 100 tokens underperforms 1000 tokens, which underperforms 2000 tokens, and then there performance plateaus.
 - *If I train on just math, how well does length control generalise out?*
     - Surprisingly well! It's not as good as training on a diverse mixture, but it's still pretty good. This suggests that the model is learning to generalise length control to new tasks, and that the length control task is not too difficult.
 
