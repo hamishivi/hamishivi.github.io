@@ -17,55 +17,55 @@ In addition to these, I also help maintain [Open-Instruct](https://github.com/al
 
 <!-- 2025 -->
 <div class="year-section" id="year-2025">
-    <button class="toggle-button" onclick="toggleArrow('2025')">
-        <p><span id="arrow-2025" class="up"><a id="arrow">▼</a></span>2025</p>
+    <button class="toggle-button" onclick="toggleArrow('2025')" aria-expanded="true" aria-controls="content-2025">
+        <p><span id="arrow-2025" class="up" aria-hidden="true">▼</span>2025</p>
     </button>
-    <div class="year-content" id="content-2025" style="display: block;">
+    <div class="year-content" id="content-2025" style="display: block;" role="region" aria-labelledby="year-2025">
         {% bibliography --query @*[year=2025] %}
     </div>
 </div>
 <!-- 2024 -->
 <div class="year-section" id="year-2024">
-    <button class="toggle-button" onclick="toggleArrow('2024')">
-        <p><span id="arrow-2024" class="up"><a id="arrow">▼</a></span>2024</p>
+    <button class="toggle-button" onclick="toggleArrow('2024')" aria-expanded="true" aria-controls="content-2024">
+        <p><span id="arrow-2024" class="up" aria-hidden="true">▼</span>2024</p>
     </button>
-    <div class="year-content" id="content-2024" style="display: block;">
+    <div class="year-content" id="content-2024" style="display: block;" role="region" aria-labelledby="year-2024">
         {% bibliography --query @*[year=2024] %}
     </div>
 </div>
 <!-- 2023 -->
 <div class="year-section" id="year-2023">
-    <button class="toggle-button" onclick="toggleArrow('2023')">
-        <p><span id="arrow-2023"><a id="arrow">▼</a></span>2023</p>
+    <button class="toggle-button" onclick="toggleArrow('2023')" aria-expanded="false" aria-controls="content-2023">
+        <p><span id="arrow-2023" aria-hidden="true">▼</span>2023</p>
     </button>
-    <div class="year-content" id="content-2023">
+    <div class="year-content" id="content-2023" role="region" aria-labelledby="year-2023">
         {% bibliography --query @*[year=2023] %}
     </div>
 </div>
 <!-- 2022 -->
 <div class="year-section" id="year-2022">
-    <button class="toggle-button" onclick="toggleArrow('2022')">
-        <p><span id="arrow-2022"><a id="arrow">▼</a></span>2022</p>
+    <button class="toggle-button" onclick="toggleArrow('2022')" aria-expanded="false" aria-controls="content-2022">
+        <p><span id="arrow-2022" aria-hidden="true">▼</span>2022</p>
     </button>
-    <div class="year-content" id="content-2022">
+    <div class="year-content" id="content-2022" role="region" aria-labelledby="year-2022">
         {% bibliography --query @*[year=2022] %}
     </div>
 </div>
 <!-- 2021 -->
 <div class="year-section" id="year-2021">
-    <button class="toggle-button" onclick="toggleArrow('2021')">
-        <p><span id="arrow-2021"><a id="arrow">▼</a></span>2021</p>
+    <button class="toggle-button" onclick="toggleArrow('2021')" aria-expanded="false" aria-controls="content-2021">
+        <p><span id="arrow-2021" aria-hidden="true">▼</span>2021</p>
     </button>
-    <div class="year-content" id="content-2021">
+    <div class="year-content" id="content-2021" role="region" aria-labelledby="year-2021">
         {% bibliography --query @*[year=2021] %}
     </div>
 </div>
 <!-- 2020 -->
 <div class="year-section" id="year-2020">
-    <button class="toggle-button" onclick="toggleArrow('2020')">
-        <p><span id="arrow-2020"><a id="arrow">▼</a></span>2020</p>
+    <button class="toggle-button" onclick="toggleArrow('2020')" aria-expanded="false" aria-controls="content-2020">
+        <p><span id="arrow-2020" aria-hidden="true">▼</span>2020</p>
     </button>
-    <div class="year-content" id="content-2020">
+    <div class="year-content" id="content-2020" role="region" aria-labelledby="year-2020">
         {% bibliography --query @*[year=2020] %}
     </div>
 </div>

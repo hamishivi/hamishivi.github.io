@@ -1,34 +1,43 @@
 {% if page.mathjax %}
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% endif %}
 <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-<script>
-  $(document).ready(function(){
-      $(".btnId").click(function(){
-          var str = $(this).attr('id');
-          var ret = str.split("_");
-          var id = ret[1];
-          $('#' + id).toggle();
-          $(this).toggleClass("dropped");
+<script defer>
+  // Toggle for bibliography abstract/bibtex dropdowns (replaces jQuery)
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.btnId').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var str = this.getAttribute('id');
+        var ret = str.split('_');
+        var id = ret[1];
+        var target = document.getElementById(id);
+        if (target) {
+          target.style.display = target.style.display === 'none' ? 'block' : 'none';
+        }
+        this.classList.toggle('dropped');
       });
+    });
   });
 
-</script>
-<script>
+  // Toggle for year sections with accessibility support
   function toggleArrow(year) {
     const content = document.getElementById(`content-${year}`);
     const arrow = document.getElementById(`arrow-${year}`);
+    const button = content.previousElementSibling;
 
     // Toggle the display of the content
-    if (content.style.display === "none" || content.style.display === "") {
-      content.style.display = "block";
-      arrow.classList.add("up"); // Rotate the arrow
+    const isExpanded = content.style.display === 'block';
+    content.style.display = isExpanded ? 'none' : 'block';
+    
+    if (isExpanded) {
+      arrow.classList.remove('up');
     } else {
-      content.style.display = "none";
-      arrow.classList.remove("up"); // Reset the arrow
+      arrow.classList.add('up');
+    }
+    
+    // Update ARIA state
+    if (button) {
+      button.setAttribute('aria-expanded', !isExpanded);
     }
   }
 </script>

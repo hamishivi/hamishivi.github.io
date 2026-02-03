@@ -14,5 +14,4 @@ Look at [this stackoverflow post](https://stackoverflow.com/questions/47026174/f
 ## Things I'd like to add in the future
 
 [] The green first letter plugin for more titles, programmatically set (if this is possible)
-[] make the light/dark change less hacky, ideally using css vars and not the current dual-sheet setup (I'm lazy)
-
+[x] make the light/dark change less hacky, ideally using css vars and not the current dual-sheet setup ~~(I'm lazy)~~ DONE!
