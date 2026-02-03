@@ -107,19 +107,19 @@ Let's start by just looking at how well each approach actually adheres to the le
 
 1. **"Exact" reward (4k)**: This works well but we see the model doesn't generalise to lengths past ~4000, even though it was allowed to generate up to 8k during training. This suggests that this form of length control *doesn't generalise to new lengths*.
 
-<img src="https://i.imgur.com/r2dhxk1.png" alt="Exact reward (4k)" width="500" style="display: block; margin: 0 auto;">
+<img src="https://i.imgur.com/GEWJ4Z7.png" alt="Exact reward (4k)" width="500" style="display: block; margin: 0 auto;">
 
 2. **"Exact" reward (8k)**: This also works well! But again, past 8000 desired length it falls apart. I found that upping the learning rate and training for longer generally improved the model's adherence to the length budget.
 
-<img src="https://i.imgur.com/wqkCPhS.png" alt="Exact reward (8k)" width="500" style="display: block; margin: 0 auto;">
+<img src="https://i.imgur.com/XMnRMUz.png" alt="Exact reward (8k)" width="500" style="display: block; margin: 0 auto;">
 
-3. **"Exact" reward (bucketed)**: The model does very well at adhering to the bucketed values it was trained on, and again doesn't generalise further.
+3. **"Exact" reward (bucketed)**: The model does very well at adhering to the bucketed values it was trained on, and again doesn't generalise further. I think the wonky violin for 8192 is just to that being right on the output limit used during RL training.
 
-<img src="https://i.imgur.com/yKAzTnh.png" alt="Exact reward (bucketed)" width="500" style="display: block; margin: 0 auto;">
+<img src="https://i.imgur.com/w6IDJ2v.png" alt="Exact reward (bucketed)" width="500" style="display: block; margin: 0 auto;">
 
-4. **"Up to" reward (8k)**: This seems to just encourage the model to always be short (although it does still stay in budget, technically!).
+4. **"Up to" reward (8k)**: This seems to just encourage the model to always be short (although it does still stay in , technically!).
 
-<img src="https://i.imgur.com/XMnRMUz.png" alt="Up to reward (8k)" width="500" style="display: block; margin: 0 auto;">
+<img src="https://i.imgur.com/isTJDob.png" alt="Up to reward (8k)" width="500" style="display: block; margin: 0 auto;">
 
 **Takeaways**: Training on the budget works really well! We get pretty good length control, although it's not exact exact. However, we don't generalise to new lengths, and so we can't use this technique to scale inference-time compute beyond what we used during training. Interestingly, we also see an 'up to' reward doesn't work that well, as the model just learns to always be short: instead, we need the tight 'exact' reward.
 
@@ -127,7 +127,7 @@ Let's start by just looking at how well each approach actually adheres to the le
 
 You might be curious about performance. Below I've plotted performance at different output lengths for the 8k "exact" reward (and I found the other methods to be similar in performance, apart from the 'up to' reward which just learns to be short).
 
-<img src="https://i.imgur.com/GEWJ4Z7.png" alt="Performance at different lengths" width="500" style="display: block; margin: 0 auto;">
+<img src="https://i.imgur.com/syY0Ro5.png" alt="Performance at different lengths" width="500" style="display: block; margin: 0 auto;">
 
 As you can see, the model matches the performance of the 'no length control' baseline once we hit >= 2000 tokens in output. This suggests: **a:** we can get length control without sacrificing performance, and **b:** the model doesn't need to generate long chains to do well. **b** is especially interesting, since the model without length control is fairly yappy and does make use of the full 8k token budget quite often. This suggests that the model **learns to compress its reasoning as part of the length control task**. Perhaps this would drop performance in more complex tasks, but here it's very encouraging. Indeed, much work over the past year found that reasoning models could compress their reasoning chains quite a lot.
 
@@ -135,13 +135,13 @@ As you can see, the model matches the performance of the 'no length control' bas
 
 Finally, I also wanted to see how well the length control did at tasks that were OOD. Recall we are training on math data only, so I evaluated on MMLU, which is a general QA task.
 
-<img src="https://i.imgur.com/isTJDob.png" alt="Length control on MMLU" width="500" style="display: block; margin: 0 auto;">
+<img src="https://i.imgur.com/AcqVjam.png" alt="Length control on MMLU" width="500" style="display: block; margin: 0 auto;">
 
 Here, we see that **length control still works, but less strongly** on these OOD tasks. I consider this pretty successful, since in reality we can just train on a diverse mixture and minimise how many OOD cases the model needs to deal with (and later for Olmo 3 we did indeed train on a moderately diverse mixture of data).
 
 Sadly, we do see performance drop:
 
-<img src="https://i.imgur.com/AynOhoN.png" alt="MMLU performance comparison" width="500" style="display: block; margin: 0 auto;">
+<img src="https://i.imgur.com/r2dhxk1.png" alt="MMLU performance comparison" width="500" style="display: block; margin: 0 auto;">
 
 Note that 'bucketed' is the bucketed reward mentioned above, and the other two are the 'exact' rewards trained for differing amounts of time with different LRs. All three perform worse than the base model. However, this might just be due to the model overfitting on the training data (math-only), for which I don't have an experiment.
 
