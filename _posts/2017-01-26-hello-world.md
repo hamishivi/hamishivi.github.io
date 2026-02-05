@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hello, World!
-tags: blog random non-technical
+tags: blog non-technical personal
 ---
 
 Hi there! This is my current blog, or at least my attempt at it... We'll see how it goes.

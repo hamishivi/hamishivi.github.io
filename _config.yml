@@ -4,6 +4,10 @@ description: >-
 baseurl: ""
 url: "https://hamishivi.github.io"
 
+# Header navigation pages
+header_pages:
+  - about.markdown
+  - blog.md
 
 # Build settings
 plugins:

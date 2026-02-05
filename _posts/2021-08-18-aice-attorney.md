@@ -1,7 +1,7 @@
 ---
 layout: post
 title: AI-ce Attorney
-tags: blog technical
+tags: blog technical nlp project
 description: I made a fun little animated Ace Attorney AI script generator.
 ---
 

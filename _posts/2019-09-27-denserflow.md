@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DenserFlow
-tags: blog technical
+tags: blog technical ml project
 description: A toy neural network library.
 ---
 

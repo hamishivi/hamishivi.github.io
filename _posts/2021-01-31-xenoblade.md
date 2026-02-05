@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Wandering the Bionis
-tags: blog non-technical
+tags: blog non-technical games
 description: A look at the world of Xenoblade Chronicles.
 ---
 

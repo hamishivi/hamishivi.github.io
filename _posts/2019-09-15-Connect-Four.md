@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Minimax and Connect-Four
-tags: blog technical
+tags: blog technical games project
 description: An explanation of the theory and code behind a c++ connect-four AI.
 ---
 

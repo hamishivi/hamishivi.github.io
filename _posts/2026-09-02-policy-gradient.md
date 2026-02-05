@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction to Policy Gradient for LMs"
-tags: blog technical
+tags: blog technical rl nlp
 mathjax: true
 description: A basic introduction to policy gradient for language models.
 ---

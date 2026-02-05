@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Notes on the Symposium
-tags: blog greek non-technical
+tags: blog non-technical classics
 description: Some notes from a class I recently took.
 ---
 

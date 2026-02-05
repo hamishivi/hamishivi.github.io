@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Blog Redesign
-tags: blog non-technical technical
+tags: blog technical web
 description: A quick go-over of my recent blog changes.
 ---
 

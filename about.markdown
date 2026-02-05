@@ -1,7 +1,10 @@
 ---
-layout: page
+layout: default
 title: About
 permalink: /about/
+redirect_to: /
 ---
 
-This page redirects to the homepage. See the main site for information about me!
+<script>window.location.href = "/";</script>
+<meta http-equiv="refresh" content="0;url=/">
+<p>Redirecting to <a href="/">homepage</a>...</p>

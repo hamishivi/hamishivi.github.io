@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PhD Hunting 🎯
-tags: blog non-technical technical
+tags: blog non-technical personal
 description: My own experience around applying for and getting into PhD programs.
 ---
 

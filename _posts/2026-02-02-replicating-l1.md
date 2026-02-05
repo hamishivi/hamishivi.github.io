@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Results Replicating L1 for Tulu
-tags: blog technical
+tags: blog technical rl nlp
 description: Results replicating the recent L1 paper.
 ---
 

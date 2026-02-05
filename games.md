@@ -1,12 +1,12 @@
 ---
 layout: default
-permalink: /non-technical
+permalink: /games
 ---
 <div class="post">
-<h1>Non-technical</h1>
-<p>My random thoughts and musings on various things I've read or played recently.</p>
+<h1>Games</h1>
+<p>Posts about video games and game AI.</p>
 <ul>
-{% for post in site.tags.non-technical %}
+{% for post in site.tags.games %}
   <li>
     <a href="{{ post.url }}">{{ post.title }}</a>
     ({{ post.date | date_to_string }}){% for tag in post.tags %}{% unless tag == "blog" %} <a href="/{{ tag }}" class="post-tag">{{ tag }}</a>{% endunless %}{% endfor %}<br>
