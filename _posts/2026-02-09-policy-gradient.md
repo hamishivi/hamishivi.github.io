@@ -327,7 +327,7 @@ $$
 b(s_t) \equiv \frac{1}{B}\sum_{n=1}^{B} G^n_t \quad\text{, where B is our batch size}
 $$
 
-Then:
+Let $x$ denote our current sample in the batch. Then:
 
 $$
 \begin{aligned}
