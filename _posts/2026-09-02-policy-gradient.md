@@ -6,7 +6,7 @@ mathjax: true
 description: A basic introduction to policy gradient for language models.
 ---
 
-These are a lightly adapted set of notes for a 'RL101' lecture I gave for some research groups meetings. These aim to be a reasonably thorough introduction to policy gradient, specifically in the context of language models. I go far enough to get to CISPO and a (improved version of) a basic REINFORCE algorithm, but I don't cover all the way to PPO.
+These are a lightly adapted set of notes for a 'RL101' lecture I gave for some research groups meetings. These aim to be a reasonably thorough introduction to policy gradient, specifically in the context of language models. I go far enough to get to CISPO (which honestly is pretty much one of the better algorithms out there right now), but I don't cover all the way to PPO.
 These notes are adapted from when I took RL here at UW.
 
 ## Terminology
