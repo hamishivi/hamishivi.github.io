@@ -332,7 +332,7 @@ Let $x$ denote our current sample in the batch. Then:
 $$
 \begin{aligned}
 \nabla_\theta J(\theta)
-&= \mathbb{E}_{\tau\sim\pi_\theta}\left[\sum_{t=0}^{T-1} \nabla_\theta\log\pi_\theta(a_t\mid s_t)\,(G^x_t - b(s_t))\right] \text{, let $x$ be our current sample in the batch.}\\
+&= \mathbb{E}_{\tau\sim\pi_\theta}\left[\sum_{t=0}^{T-1} \nabla_\theta\log\pi_\theta(a_t\mid s_t)\,(G^x_t - b(s_t))\right]\\
 &= \mathbb{E}_{\tau\sim\pi_\theta}\left[\sum_{t=0}^{T-1} \nabla_\theta\log\pi_\theta(a_t\mid s_t)\,(G^x_t - \frac{1}{B}\sum_{n=1}^{B} G^n_t)\right] \\
 &= \mathbb{E}_{\tau\sim\pi_\theta}\left[\sum_{t=0}^{T-1} \nabla_\theta\log\pi_\theta(a_t\mid s_t)\,(G^x_t -  \frac{1}{B}G^x_t - \frac{1}{B}\sum_{n=1,\ne x}^{B}G^n_t)\right] \\
 &= \mathbb{E}_{\tau\sim\pi_\theta}\left[\sum_{t=0}^{T-1} \nabla_\theta\log\pi_\theta(a_t\mid s_t)\,(\frac{B-1}{B}G^x_t - \frac{1}{B}\sum_{n=1,\ne x}^{B}G^n_t)\right]

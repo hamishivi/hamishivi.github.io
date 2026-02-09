@@ -708,6 +708,13 @@ span {
   font-size: .8em;
 }
 
+/* MathJax display equations: scroll on narrow screens */
+mjx-container[jax="CHTML"][display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
 /* Aside/callout boxes */
 .aside {
   background-color: var(--color-aside-bg);
