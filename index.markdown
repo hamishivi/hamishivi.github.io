@@ -15,6 +15,15 @@ See below for papers I've worked on. You can also check out my [Semantic Scholar
 
 In addition to these, I also help maintain [Open-Instruct](https://github.com/allenai/open-instruct), a codebase for LM post-training. Send me a note if you need some help with it!
 
+<!-- 2026 -->
+<div class="year-section" id="year-2025">
+    <button class="toggle-button" onclick="toggleArrow('2025')" aria-expanded="true" aria-controls="content-2025">
+        <p><span id="arrow-2025" class="up" aria-hidden="true">▼</span>2025</p>
+    </button>
+    <div class="year-content" id="content-2025" style="display: block;" role="region" aria-labelledby="year-2025">
+        {% bibliography --query @*[year=2025] %}
+    </div>
+</div>
 <!-- 2025 -->
 <div class="year-section" id="year-2025">
     <button class="toggle-button" onclick="toggleArrow('2025')" aria-expanded="true" aria-controls="content-2025">
@@ -26,7 +35,7 @@ In addition to these, I also help maintain [Open-Instruct](https://github.com/al
 </div>
 <!-- 2024 -->
 <div class="year-section" id="year-2024">
-    <button class="toggle-button" onclick="toggleArrow('2024')" aria-expanded="true" aria-controls="content-2024">
+    <button class="toggle-button" onclick="toggleArrow('2024')" aria-expanded="false" aria-controls="content-2024">
         <p><span id="arrow-2024" class="up" aria-hidden="true">▼</span>2024</p>
     </button>
     <div class="year-content" id="content-2024" style="display: block;" role="region" aria-labelledby="year-2024">
