@@ -16,12 +16,12 @@ See below for papers I've worked on. You can also check out my [Semantic Scholar
 In addition to these, I also help maintain [Open-Instruct](https://github.com/allenai/open-instruct), a codebase for LM post-training. Send me a note if you need some help with it!
 
 <!-- 2026 -->
-<div class="year-section" id="year-2025">
-    <button class="toggle-button" onclick="toggleArrow('2025')" aria-expanded="true" aria-controls="content-2025">
-        <p><span id="arrow-2025" class="up" aria-hidden="true">▼</span>2025</p>
+<div class="year-section" id="year-2026">
+    <button class="toggle-button" onclick="toggleArrow('2026')" aria-expanded="true" aria-controls="content-2026">
+        <p><span id="arrow-2026" class="up" aria-hidden="true">▼</span>2026</p>
     </button>
-    <div class="year-content" id="content-2025" style="display: block;" role="region" aria-labelledby="year-2025">
-        {% bibliography --query @*[year=2025] %}
+    <div class="year-content" id="content-2026" style="display: block;" role="region" aria-labelledby="year-2026">
+        {% bibliography --query @*[year=2026] %}
     </div>
 </div>
 <!-- 2025 -->
