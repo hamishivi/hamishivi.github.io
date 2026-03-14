@@ -1,4 +1,16 @@
 
+@misc{xiao2026metareinforcementlearningselfreflectionagentic,
+      title={Meta-Reinforcement Learning with Self-Reflection for Agentic Search}, 
+      author={Teng Xiao and Yige Yuan and Hamish Ivison and Huaisheng Zhu and Faeze Brahman and Nathan Lambert and Pradeep Dasigi and Noah A. Smith and Hannaneh Hajishirzi},
+      year={2026},
+      eprint={2603.11327},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2603.11327}, 
+      code={https://github.com/tengxiao1/MR-Search},
+      abstract={This paper introduces MR-Search, an in-context meta reinforcement learning (RL) formulation for agentic search with self-reflection. Instead of optimizing a policy within a single independent episode with sparse rewards, MR-Search trains a policy that conditions on past episodes and adapts its search strategy across episodes. MR-Search learns to learn a search strategy with self-reflection, allowing search agents to improve in-context exploration at test-time. Specifically, MR-Search performs cross-episode exploration by generating explicit self-reflections after each episode and leveraging them as additional context to guide subsequent attempts, thereby promoting more effective exploration during test-time. We further introduce a multi-turn RL algorithm that estimates a dense relative advantage at the turn level, enabling fine-grained credit assignment on each episode. Empirical results across various benchmarks demonstrate the advantages of MR-Search over baselines based RL, showing strong generalization and relative improvements of 9.2% to 19.3% across eight benchmarks.}
+}
+
 @inproceedings{olmo3-report,
       title={Olmo 3}, 
       author={{Team OLMo (inc. <b>Hamish Ivison</b>, core contributor)}},
