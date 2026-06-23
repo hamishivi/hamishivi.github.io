@@ -2,7 +2,7 @@
 layout: home
 ---
 
-Hi, I'm <a href="#" data-tooltip="[ˈheɪmɪʃ]">Hamish</a>! I'm (currently) a PhD student at the University of Washington at [H2Lab](https://h2lab.cs.washington.edu/), advised by [Hannaneh Hajishirzi](https://homes.cs.washington.edu/~hannaneh/). I'm generally interested in NLP research, with a focus on post-training for language models. I'm interested in making language models more usable for more people, and exploring ways to improve them that go beyond next-token training (with a focus on reinforcement learning). Additionally, I'm also interested in improving and exploring language model data mixtures, and dabble in alternatives approaches to language modelling.
+Hi, I'm <a href="#" data-tooltip="[ˈheɪmɪʃ]">Hamish</a>! I'm (currently) a PhD student at the University of Washington at [H2Lab](https://h2lab.cs.washington.edu/), advised by [Hannaneh Hajishirzi](https://homes.cs.washington.edu/~hannaneh/), and a part-time student researcher at Google DeepMind. I'm generally interested in NLP research, with a focus on post-training for language models. I'm interested in making language models more usable for more people, and exploring ways to improve them that go beyond next-token training (with a focus on reinforcement learning). Additionally, I'm also interested in improving and exploring language model data mixtures, and dabble in alternatives approaches to language modelling.
 
 I'm from Sydney and did my undergraduate at the University of Sydney, doing a Bachelor of Arts and IT and triple majoring in Linguistics, Classical Greek, and Computer Science. I also did some NLP with the [UsydNLP group](https://usydnlp.info/), examining multi-hop question answering. Throughout my undergrad (and just after), I spent some time at the [Commonwealth Bank of Australia](https://www.commbank.com.au/), start-up-y stuff, and [Optiver](https://www.optiver.com/). Before my PhD, I was a predoctoral researcher at [AI2](https://allenai.org/) on the [AllenNLP team](https://allenai.org/allennlp).
 
@@ -12,8 +12,6 @@ If you have questions about my work, general academia/software/research-related 
 <h2>Papers</h2>
 
 See below for papers I've worked on. You can also check out my [Semantic Scholar](https://www.semanticscholar.org/author/Hamish-Ivison/2056776606) and [Google Scholar](https://scholar.google.com/citations?user=JxCXMlkAAAAJ) profiles.
-
-In addition to these, I also help maintain [Open-Instruct](https://github.com/allenai/open-instruct), a codebase for LM post-training. Send me a note if you need some help with it!
 
 <!-- 2026 -->
 <div class="year-section" id="year-2026">
