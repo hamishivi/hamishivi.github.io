@@ -13,7 +13,7 @@ MathJax = {
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% endif %}
-<script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+<script type="module" src="https://unpkg.com/dark-mode-toggle@0.18.0"></script>
 <script>
   // Dark mode toggle handling
   document.addEventListener('DOMContentLoaded', function() {
@@ -35,6 +35,18 @@ MathJax = {
         const theme = e.detail.colorScheme;
         root.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
+      });
+    }
+
+    // Accessible mobile navigation toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNav = document.querySelector('.site-nav');
+    if (menuToggle && siteNav) {
+      menuToggle.addEventListener('click', function() {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!isExpanded));
+        this.setAttribute('aria-label', isExpanded ? 'Open navigation menu' : 'Close navigation menu');
+        siteNav.classList.toggle('is-open', !isExpanded);
       });
     }
     
@@ -74,7 +86,7 @@ MathJax = {
     
     // Update ARIA state
     if (button) {
-      button.setAttribute('aria-expanded', !isExpanded);
+      button.setAttribute('aria-expanded', String(!isExpanded));
     }
   }
 </script>

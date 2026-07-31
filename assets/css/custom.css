@@ -276,6 +276,20 @@ main { display: block; }
 /** Images */
 img { max-width: 100%; vertical-align: middle; }
 
+iframe { max-width: 100%; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 /** Figures */
 figure > img { display: block; }
 
@@ -407,32 +421,38 @@ table td { border: 1px solid var(--color-border); }
   z-index: 4;
 }
 
-.site-nav .nav-trigger { display: none; }
+.site-nav .menu-toggle {
+  display: block;
+  float: right;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
 
-.site-nav .menu-icon { float: right; width: 36px; height: 26px; line-height: 0; padding-top: 10px; text-align: center; }
+.site-nav .menu-icon { display: block; width: 36px; line-height: 0; text-align: center; }
 
 .site-nav .menu-icon > svg path { fill: var(--color-text-secondary); }
 
-.site-nav label[for="nav-trigger"] { display: block; float: right; width: 36px; height: 36px; z-index: 2; cursor: pointer; }
+.site-nav .trigger { clear: both; display: none; }
 
-.site-nav input ~ .trigger { clear: both; display: none; }
-
-.site-nav input:checked ~ .trigger { display: block; padding-bottom: 5px; }
+.site-nav.is-open .trigger { display: block; padding-bottom: 5px; }
 
 .site-nav .page-link { color: var(--color-text); line-height: 1.5; display: block; padding: 5px 10px; margin-left: 20px; }
 
 .site-nav .page-link:not(:last-child) { margin-right: 0; }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 601px) {
   .site-nav {
     position: static;
     float: right;
     border: none;
     background-color: inherit;
   }
-  .site-nav label[for="nav-trigger"] { display: none; }
-  .site-nav .menu-icon { display: none; }
-  .site-nav input ~ .trigger { display: block; }
+  .site-nav .menu-toggle { display: none; }
+  .site-nav .trigger { display: block; }
   .site-nav .page-link { display: inline; padding: 0; margin-left: auto; }
   .site-nav .page-link:not(:last-child) { margin-right: 20px; }
 }
@@ -575,7 +595,8 @@ figcaption {
 }
 
 .button-4:focus-visible,
-.toggle-button:focus-visible {
+.toggle-button:focus-visible,
+.menu-toggle:focus-visible {
   outline: 3px solid var(--color-link);
   outline-offset: 3px;
 }
