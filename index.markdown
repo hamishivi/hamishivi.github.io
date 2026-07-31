@@ -33,7 +33,7 @@ See below for papers I've worked on. You can also check out my [Semantic Scholar
 </div>
 <!-- 2024 -->
 <div class="year-section" id="year-2024">
-    <button class="toggle-button" onclick="toggleArrow('2024')" aria-expanded="false" aria-controls="content-2024">
+    <button class="toggle-button" onclick="toggleArrow('2024')" aria-expanded="true" aria-controls="content-2024">
         <p><span id="arrow-2024" class="up" aria-hidden="true">▼</span>2024</p>
     </button>
     <div class="year-content" id="content-2024" style="display: block;" role="region" aria-labelledby="year-2024">
