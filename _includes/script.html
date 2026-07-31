@@ -41,14 +41,17 @@ MathJax = {
     // Toggle for bibliography abstract/bibtex dropdowns
     document.querySelectorAll('.btnId').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var str = this.getAttribute('id');
-        var ret = str.split('_');
-        var id = ret[1];
+        var id = this.getAttribute('aria-controls');
+        if (!id) {
+          return;
+        }
         var target = document.getElementById(id);
         if (target) {
-          target.style.display = target.style.display === 'none' ? 'block' : 'none';
+          var isExpanded = this.getAttribute('aria-expanded') === 'true';
+          target.style.display = isExpanded ? 'none' : 'block';
+          this.setAttribute('aria-expanded', String(!isExpanded));
+          this.classList.toggle('dropped', !isExpanded);
         }
-        this.classList.toggle('dropped');
       });
     });
   });
