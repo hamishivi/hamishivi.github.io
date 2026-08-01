@@ -15,6 +15,32 @@ MathJax = {
 {% endif %}
 <script type="module" src="https://unpkg.com/dark-mode-toggle@0.18.0"></script>
 <script>
+  function setYearExpanded(section, expanded) {
+    const content = section.querySelector('.year-content');
+    const button = section.querySelector('.toggle-button');
+    const arrow = button ? button.querySelector('span') : null;
+
+    if (!content || !button) {
+      return;
+    }
+
+    content.style.display = expanded ? 'block' : 'none';
+    button.setAttribute('aria-expanded', String(expanded));
+    if (arrow) {
+      arrow.classList.toggle('up', expanded);
+    }
+  }
+
+  // Kept global because the year buttons call this function directly.
+  function toggleArrow(year) {
+    const section = document.getElementById(`year-${year}`);
+    if (!section) {
+      return;
+    }
+    const button = section.querySelector('.toggle-button');
+    setYearExpanded(section, button.getAttribute('aria-expanded') !== 'true');
+  }
+
   // Dark mode toggle handling
   document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.querySelector('dark-mode-toggle');
@@ -66,27 +92,59 @@ MathJax = {
         }
       });
     });
+
+    // Filter the blog archive by topic without leaving the page.
+    const postItems = Array.from(document.querySelectorAll('#post-list .post-list-item'));
+    const filterChips = Array.from(document.querySelectorAll('.filter-chip'));
+    const postStatus = document.getElementById('post-filter-status');
+    let activeTag = 'all';
+
+    function filterPosts() {
+      let visibleCount = 0;
+
+      postItems.forEach(function(item) {
+        const tags = (item.dataset.tags || '').toLowerCase().split(/\s+/);
+        const isVisible = activeTag === 'all' || tags.includes(activeTag);
+        item.hidden = !isVisible;
+        visibleCount += isVisible ? 1 : 0;
+      });
+
+      if (postStatus) {
+        postStatus.textContent = `${visibleCount} ${visibleCount === 1 ? 'post' : 'posts'}`;
+      }
+    }
+
+    if (postItems.length) {
+      filterChips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          activeTag = (chip.dataset.tag || 'all').toLowerCase();
+          filterChips.forEach(function(otherChip) {
+            const isActive = otherChip === chip;
+            otherChip.classList.toggle('is-active', isActive);
+            otherChip.setAttribute('aria-pressed', String(isActive));
+          });
+          filterPosts();
+        });
+      });
+      filterPosts();
+    }
+
+    // Expand or collapse all publication years at once.
+    const publicationSections = Array.from(document.querySelectorAll('.year-section'));
+    const expandPublications = document.getElementById('expand-publications');
+    const collapsePublications = document.getElementById('collapse-publications');
+
+    if (expandPublications && collapsePublications && publicationSections.length) {
+      expandPublications.addEventListener('click', function() {
+        publicationSections.forEach(function(section) {
+          setYearExpanded(section, true);
+        });
+      });
+      collapsePublications.addEventListener('click', function() {
+        publicationSections.forEach(function(section) {
+          setYearExpanded(section, false);
+        });
+      });
+    }
   });
-
-  // Toggle for year sections with accessibility support
-  function toggleArrow(year) {
-    const content = document.getElementById(`content-${year}`);
-    const arrow = document.getElementById(`arrow-${year}`);
-    const button = content.previousElementSibling;
-
-    // Toggle the display of the content
-    const isExpanded = content.style.display === 'block';
-    content.style.display = isExpanded ? 'none' : 'block';
-    
-    if (isExpanded) {
-      arrow.classList.remove('up');
-    } else {
-      arrow.classList.add('up');
-    }
-    
-    // Update ARIA state
-    if (button) {
-      button.setAttribute('aria-expanded', String(!isExpanded));
-    }
-  }
 </script>

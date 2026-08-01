@@ -1,8 +1,13 @@
 title: Hamish Ivison
 description: >-
-  Hamish's site.
+  Hamish Ivison is a University of Washington PhD student researching
+  post-training, reinforcement learning, and data for language models.
 baseurl: ""
 url: "https://ivison.id.au"
+author:
+  name: Hamish Ivison
+  email: hamishiv@cs.washington.edu
+logo: /assets/static/me-400.jpg
 
 # Header navigation pages
 header_pages:

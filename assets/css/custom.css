@@ -2,16 +2,17 @@
 :root {
   /* Light theme (default) */
   --color-text: #111111;
-  --color-text-secondary: #828282;
-  --color-text-muted: #999999;
+  --color-text-secondary: #5f6368;
+  --color-text-muted: #6b6b6b;
   --color-background: #fdfdfd;
   --color-background-alt: #f7f7f7;
   --color-background-code: #eeeeff;
   --color-background-dropdown: #dedede;
   --color-border: #e8e8e8;
   --color-border-dark: #e0e0e0;
-  --color-link: #2a7ae2;
-  --color-link-visited: #1756a9;
+  --color-link: #1a5fb4;
+  --color-link-visited: #5a2d82;
+  --color-accent: #13783d;
   --color-header: #424242;
   --color-header-border: #424242;
   --color-table-text: #3f3f3f;
@@ -60,6 +61,7 @@
     --color-border-dark: #4e4e4e;
     --color-link: #79b8ff;
     --color-link-visited: #79b8ff;
+    --color-accent: #2ecc71;
     --color-header: #a6a6a6;
     --color-header-border: #181818;
     --color-table-text: #bbbbbb;
@@ -107,6 +109,7 @@
   --color-border-dark: #4e4e4e;
   --color-link: #79b8ff;
   --color-link-visited: #79b8ff;
+  --color-accent: #2ecc71;
   --color-header: #a6a6a6;
   --color-header-border: #181818;
   --color-table-text: #bbbbbb;
@@ -140,16 +143,17 @@
 /* Manual light theme override (when user explicitly selects light) */
 :root[data-theme="light"] {
   --color-text: #111111;
-  --color-text-secondary: #828282;
-  --color-text-muted: #999999;
+  --color-text-secondary: #5f6368;
+  --color-text-muted: #6b6b6b;
   --color-background: #fdfdfd;
   --color-background-alt: #f7f7f7;
   --color-background-code: #eeeeff;
   --color-background-dropdown: #dedede;
   --color-border: #e8e8e8;
   --color-border-dark: #e0e0e0;
-  --color-link: #2a7ae2;
-  --color-link-visited: #1756a9;
+  --color-link: #1a5fb4;
+  --color-link-visited: #5a2d82;
+  --color-accent: #13783d;
   --color-header: #424242;
   --color-header-border: #424242;
   --color-table-text: #3f3f3f;
@@ -396,6 +400,8 @@ table td { border: 1px solid var(--color-border); }
 
 .site-title, .site-title:visited { color: var(--color-header); }
 
+.site-title-accent { color: var(--color-accent); }
+
 #theme-toggle {
   position: absolute;
   right: 25px;
@@ -596,7 +602,9 @@ figcaption {
 
 .button-4:focus-visible,
 .toggle-button:focus-visible,
-.menu-toggle:focus-visible {
+.menu-toggle:focus-visible,
+.utility-button:focus-visible,
+.filter-chip:focus-visible {
   outline: 3px solid var(--color-link);
   outline-offset: 3px;
 }
@@ -802,4 +810,129 @@ mjx-container[jax="CHTML"][display="true"] {
   color: var(--color-link);
   border-color: var(--color-link);
   text-decoration: none;
+}
+
+/* Search and filtering controls */
+.archive-tools,
+.publication-tools {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 8px;
+  background: var(--color-background-alt);
+}
+
+.filter-label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.publication-actions,
+.tag-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.publication-tools.publication-actions {
+  margin: 1.5rem 0;
+}
+
+.utility-button,
+.filter-chip {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--color-text-secondary);
+  border-radius: 999px;
+  color: var(--color-text);
+  background: var(--color-background);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.utility-button:hover,
+.filter-chip:hover,
+.filter-chip.is-active {
+  color: var(--color-background);
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+}
+
+.filter-status {
+  margin: 0.5rem 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.filterable-post-list > li {
+  margin-bottom: 1rem;
+}
+
+.post-card {
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-background);
+}
+
+.post-card-heading {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.post-card-heading h2 {
+  margin-bottom: 0.35rem;
+  font-size: 1.25rem;
+}
+
+.post-card-heading time {
+  flex: 0 0 auto;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+
+.post-tags .post-tag {
+  margin-left: 0;
+}
+
+.post-card p {
+  margin-bottom: 0;
+}
+
+.profile-photo {
+  float: left;
+  width: 25%;
+  margin: 0.5em;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 2.5%;
+}
+
+@media screen and (max-width: 600px) {
+  .post-card-heading {
+    display: block;
+  }
+
+  .post-card-heading time {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .profile-photo {
+    width: 32%;
+  }
 }

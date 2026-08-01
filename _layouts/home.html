@@ -8,7 +8,10 @@ layout: default
   {%- else -%}
     <h1 class="visually-hidden">Hamish Ivison</h1>
   {%- endif -%}
-  <img src="/assets/static/me.jpg" alt="Hamish Ivison, PhD student at University of Washington" style="width:25%; border-radius: 2.5%; float: left; margin: .5em" loading="lazy">
+  <picture class="profile-photo">
+    <source srcset="{{ '/assets/static/me-400.webp' | relative_url }}" type="image/webp">
+    <img src="{{ '/assets/static/me-400.jpg' | relative_url }}" alt="Hamish Ivison, PhD student at University of Washington" width="400" height="503" fetchpriority="high">
+  </picture>
   {{ content }}
 
 </div>

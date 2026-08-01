@@ -1,5 +1,7 @@
 ---
 layout: home
+description: Research, publications, and writing from Hamish Ivison, a University of Washington PhD student working on language-model post-training and reinforcement learning.
+image: /assets/static/me-400.jpg
 ---
 
 Hi, I'm <a href="#" data-tooltip="[ˈheɪmɪʃ]">Hamish</a>! I'm (currently) a PhD student at the University of Washington at [H2Lab](https://h2lab.cs.washington.edu/), advised by [Hannaneh Hajishirzi](https://homes.cs.washington.edu/~hannaneh/), and a part-time student researcher at Google DeepMind. I'm generally interested in NLP research, with a focus on post-training for language models. I'm interested in making language models more usable for more people, and exploring ways to improve them that go beyond next-token training (with a focus on reinforcement learning). Additionally, I'm also interested in improving and exploring language model data mixtures, and dabble in alternatives approaches to language modelling.
@@ -13,8 +15,13 @@ If you have questions about my work, general academia/software/research-related 
 
 See below for papers I've worked on. You can also check out my [Semantic Scholar](https://www.semanticscholar.org/author/Hamish-Ivison/2056776606) and [Google Scholar](https://scholar.google.com/citations?user=JxCXMlkAAAAJ) profiles.
 
+<div class="publication-tools publication-actions" aria-label="Publication display controls">
+    <button id="expand-publications" class="utility-button" type="button">Expand all years</button>
+    <button id="collapse-publications" class="utility-button" type="button">Collapse all years</button>
+</div>
+
 <!-- 2026 -->
-<div class="year-section" id="year-2026">
+<div class="year-section" id="year-2026" data-default-expanded="true">
     <button id="toggle-2026" class="toggle-button" onclick="toggleArrow('2026')" aria-expanded="true" aria-controls="content-2026">
         <span id="arrow-2026" class="up" aria-hidden="true">▼</span>2026
     </button>
@@ -23,25 +30,25 @@ See below for papers I've worked on. You can also check out my [Semantic Scholar
     </div>
 </div>
 <!-- 2025 -->
-<div class="year-section" id="year-2025">
-    <button id="toggle-2025" class="toggle-button" onclick="toggleArrow('2025')" aria-expanded="true" aria-controls="content-2025">
-        <span id="arrow-2025" class="up" aria-hidden="true">▼</span>2025
+<div class="year-section" id="year-2025" data-default-expanded="false">
+    <button id="toggle-2025" class="toggle-button" onclick="toggleArrow('2025')" aria-expanded="false" aria-controls="content-2025">
+        <span id="arrow-2025" aria-hidden="true">▼</span>2025
     </button>
-    <div class="year-content" id="content-2025" style="display: block;" role="region" aria-labelledby="toggle-2025">
+    <div class="year-content" id="content-2025" role="region" aria-labelledby="toggle-2025">
         {% bibliography --query @*[year=2025] %}
     </div>
 </div>
 <!-- 2024 -->
-<div class="year-section" id="year-2024">
-    <button id="toggle-2024" class="toggle-button" onclick="toggleArrow('2024')" aria-expanded="true" aria-controls="content-2024">
-        <span id="arrow-2024" class="up" aria-hidden="true">▼</span>2024
+<div class="year-section" id="year-2024" data-default-expanded="false">
+    <button id="toggle-2024" class="toggle-button" onclick="toggleArrow('2024')" aria-expanded="false" aria-controls="content-2024">
+        <span id="arrow-2024" aria-hidden="true">▼</span>2024
     </button>
-    <div class="year-content" id="content-2024" style="display: block;" role="region" aria-labelledby="toggle-2024">
+    <div class="year-content" id="content-2024" role="region" aria-labelledby="toggle-2024">
         {% bibliography --query @*[year=2024] %}
     </div>
 </div>
 <!-- 2023 -->
-<div class="year-section" id="year-2023">
+<div class="year-section" id="year-2023" data-default-expanded="false">
     <button id="toggle-2023" class="toggle-button" onclick="toggleArrow('2023')" aria-expanded="false" aria-controls="content-2023">
         <span id="arrow-2023" aria-hidden="true">▼</span>2023
     </button>
@@ -50,7 +57,7 @@ See below for papers I've worked on. You can also check out my [Semantic Scholar
     </div>
 </div>
 <!-- 2022 -->
-<div class="year-section" id="year-2022">
+<div class="year-section" id="year-2022" data-default-expanded="false">
     <button id="toggle-2022" class="toggle-button" onclick="toggleArrow('2022')" aria-expanded="false" aria-controls="content-2022">
         <span id="arrow-2022" aria-hidden="true">▼</span>2022
     </button>
@@ -59,7 +66,7 @@ See below for papers I've worked on. You can also check out my [Semantic Scholar
     </div>
 </div>
 <!-- 2021 -->
-<div class="year-section" id="year-2021">
+<div class="year-section" id="year-2021" data-default-expanded="false">
     <button id="toggle-2021" class="toggle-button" onclick="toggleArrow('2021')" aria-expanded="false" aria-controls="content-2021">
         <span id="arrow-2021" aria-hidden="true">▼</span>2021
     </button>
@@ -68,7 +75,7 @@ See below for papers I've worked on. You can also check out my [Semantic Scholar
     </div>
 </div>
 <!-- 2020 -->
-<div class="year-section" id="year-2020">
+<div class="year-section" id="year-2020" data-default-expanded="false">
     <button id="toggle-2020" class="toggle-button" onclick="toggleArrow('2020')" aria-expanded="false" aria-controls="content-2020">
         <span id="arrow-2020" aria-hidden="true">▼</span>2020
     </button>
