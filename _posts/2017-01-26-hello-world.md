@@ -2,6 +2,7 @@
 layout: post
 title: Hello, World!
 tags: blog non-technical personal
+description: A brief introduction to the blog and what I planned to write.
 ---
 
 Hi there! This is my current blog, or at least my attempt at it... We'll see how it goes.

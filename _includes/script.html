@@ -13,7 +13,6 @@ MathJax = {
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% endif %}
-<script type="module" src="https://unpkg.com/dark-mode-toggle@0.18.0"></script>
 <script>
   function setYearExpanded(section, expanded) {
     const content = section.querySelector('.year-content');
@@ -35,28 +34,74 @@ MathJax = {
     setYearExpanded(section, button.getAttribute('aria-expanded') !== 'true');
   }
 
-  // Dark mode toggle handling
   document.addEventListener('DOMContentLoaded', function() {
-    const toggle = document.querySelector('dark-mode-toggle');
+    const toggle = document.getElementById('theme-toggle');
     const root = document.documentElement;
-    
-    // Restore saved preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      root.setAttribute('data-theme', savedTheme);
-      if (toggle) {
-        toggle.mode = savedTheme;
-      }
+
+    function updateThemeToggle() {
+      if (!toggle) return;
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      toggle.setAttribute('aria-pressed', String(isDark));
+      toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
     }
-    
-    // Listen for toggle changes
+
     if (toggle) {
-      toggle.addEventListener('colorschemechange', function(e) {
-        const theme = e.detail.colorScheme;
+      updateThemeToggle();
+      toggle.addEventListener('click', function() {
+        const theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+        try {
+          localStorage.setItem('theme', theme);
+        } catch (error) {}
+        updateThemeToggle();
       });
     }
+
+    const systemTheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    if (systemTheme) {
+      systemTheme.addEventListener('change', function(event) {
+        let savedTheme = null;
+        try {
+          savedTheme = localStorage.getItem('theme');
+        } catch (error) {}
+        if (!savedTheme) {
+          root.setAttribute('data-theme', event.matches ? 'dark' : 'light');
+          updateThemeToggle();
+        }
+      });
+    }
+
+    document.querySelectorAll('.pronunciation').forEach(function(wrapper) {
+      const trigger = wrapper.querySelector('.pronunciation-trigger');
+      if (!trigger) return;
+
+      function setPronunciationOpen(open) {
+        wrapper.classList.toggle('is-open', open);
+        wrapper.classList.toggle('is-dismissed', !open);
+        trigger.setAttribute('aria-expanded', String(open));
+      }
+
+      trigger.addEventListener('click', function() {
+        setPronunciationOpen(!wrapper.classList.contains('is-open'));
+      });
+
+      trigger.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          setPronunciationOpen(false);
+        }
+      });
+
+      trigger.addEventListener('blur', function() {
+        wrapper.classList.remove('is-open', 'is-dismissed');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+
+      wrapper.addEventListener('mouseleave', function() {
+        wrapper.classList.remove('is-open', 'is-dismissed');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    });
 
     // Accessible mobile navigation toggle
     const menuToggle = document.querySelector('.menu-toggle');

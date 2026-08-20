@@ -9,7 +9,6 @@ logo: /assets/static/me-400.jpg
 
 # Header navigation pages
 header_pages:
-  - about.markdown
   - blog.md
 
 # Build settings

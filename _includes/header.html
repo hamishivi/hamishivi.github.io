@@ -28,9 +28,10 @@
           </nav>
         {%- endif -%}
 
-        <dark-mode-toggle
-          id="theme-toggle"
-          appearance="toggle"></dark-mode-toggle>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">
+          <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true">☀︎</span>
+          <span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true">☾</span>
+        </button>
       </div>
     </div>
   </header>

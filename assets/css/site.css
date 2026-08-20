@@ -33,7 +33,6 @@
   --color-button-border: var(--color-accent-border);
   --color-button-hover-bg: var(--color-accent-soft);
   --color-button-hover-text: var(--color-accent-strong);
-  --color-tooltip-bg: hsla(0, 0%, 80%, 0.9);
   --color-aside-bg: #f0f4ff;
   --color-aside-border: #a0b4e0;
   
@@ -85,7 +84,6 @@
     --color-button-border: var(--color-accent-border);
     --color-button-hover-bg: var(--color-accent-soft);
     --color-button-hover-text: var(--color-accent-strong);
-    --color-tooltip-bg: hsla(0, 0%, 20%, 0.9);
     --color-aside-bg: #1e2a3a;
     --color-aside-border: #3a4a5e;
     
@@ -136,7 +134,6 @@
   --color-button-border: var(--color-accent-border);
   --color-button-hover-bg: var(--color-accent-soft);
   --color-button-hover-text: var(--color-accent-strong);
-  --color-tooltip-bg: hsla(0, 0%, 20%, 0.9);
   --hl-comment: #545454;
   --hl-error: #f07178;
   --hl-keyword: #89DDFF;
@@ -183,7 +180,6 @@
   --color-button-border: var(--color-accent-border);
   --color-button-hover-bg: var(--color-accent-soft);
   --color-button-hover-text: var(--color-accent-strong);
-  --color-tooltip-bg: hsla(0, 0%, 80%, 0.9);
   --hl-comment: #998;
   --hl-error: #a61717;
   --hl-keyword: inherit;
@@ -339,13 +335,12 @@ a:visited { color: var(--color-link-visited); }
 a:hover { color: var(--color-text); text-decoration: underline; }
 
 a:focus-visible,
-button:focus-visible,
-dark-mode-toggle:focus-visible {
+button:focus-visible {
   outline: 2px solid var(--color-link);
   outline-offset: 3px;
 }
 
-.home > p a:not([data-tooltip]),
+.home > p a,
 .post-content p a,
 .post-content li a {
   text-decoration: underline;
@@ -462,11 +457,54 @@ table td { border: 1px solid var(--color-border); }
   padding-left: var(--space-4);
 }
 
-#theme-toggle {
-  display: block;
+.theme-toggle {
+  appearance: none;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
   flex: 0 0 auto;
-  line-height: normal;
-  transform: translateY(-2px);
+  width: 3.25rem;
+  height: 1.75rem;
+  padding: 2px;
+  border: 1px solid var(--color-accent-border);
+  border-radius: 999px;
+  background: var(--color-background-alt);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.theme-toggle::before {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid var(--color-accent-border);
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  content: "";
+  transform: translateY(-50%);
+  transition: transform 0.18s ease;
+}
+
+:root[data-theme="dark"] .theme-toggle::before {
+  transform: translate(1.42rem, -50%);
+}
+
+.theme-toggle-icon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:root[data-theme="light"] .theme-toggle-sun,
+:root[data-theme="dark"] .theme-toggle-moon {
+  color: var(--color-accent-strong);
 }
 
 .site-title, .site-title:visited { color: var(--color-header); }
@@ -557,7 +595,6 @@ table td { border: 1px solid var(--color-border); }
 /** Page content */
 .page-content { padding: var(--space-7) 0; flex: 1 0 auto; }
 
-.home-profile-image,
 .profile-photo {
   display: block;
   border-radius: 6px;
@@ -576,7 +613,6 @@ table td { border: 1px solid var(--color-border); }
 .home::after { content: ""; display: table; clear: both; }
 
 @media screen and (max-width: 600px) {
-  .home-profile-image,
   .profile-photo {
     float: none;
     margin: 0 auto var(--space-5);
@@ -777,87 +813,54 @@ figcaption {
   max-height: 24rem;
 }
 
-/**
- * Tooltip Styles
- */
-
-/* Add this attribute to the element that needs a tooltip */
-[data-tooltip] {
+.pronunciation {
+  display: inline-block;
   position: relative;
-  z-index: 2;
-  cursor: pointer;
-  color: inherit !important;
-  border-bottom: 0;
+}
+
+.pronunciation-trigger {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: help;
+  font: inherit;
+  line-height: inherit;
   text-decoration-line: underline;
   text-decoration-style: dotted;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
 }
 
-/* Hide the tooltip content by default */
-[data-tooltip]:before,
-[data-tooltip]:after {
+.pronunciation-tooltip {
+  position: absolute;
+  z-index: 5;
+  bottom: calc(100% + var(--space-2));
+  left: 50%;
   visibility: hidden;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  pointer-events: none;
-  color: inherit !important;
-}
-
-/* Position tooltip above the element */
-[data-tooltip]:before {
-  position: absolute;
-  bottom: 150%;
-  left: 50%;
-  margin-bottom: 5px;
-  margin-left: -40px;
-  padding: 7px;
   width: max-content;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: var(--color-tooltip-bg);
-  color: #fff;
-  content: attr(data-tooltip);
-  text-align: center;
-  font-size: 14px;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--color-accent-border);
+  border-radius: 4px;
+  background: var(--color-background-alt);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 12%);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
   line-height: 1.2;
-  color: inherit !important;
+  opacity: 0;
+  pointer-events: auto;
+  transform: translate(-50%, 3px);
+  transition: opacity 0.14s ease, transform 0.14s ease, visibility 0.14s ease;
 }
 
-/* Triangle hack to make tooltip look like a speech bubble */
-[data-tooltip]:after {
-  position: absolute;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -5px;
-  width: 0;
-  border-top: 5px solid var(--color-tooltip-bg);
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-  content: " ";
-  font-size: 0;
-  line-height: 0;
-  color: inherit !important;
-}
-
-/* Show tooltip content on hover */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
+.pronunciation:not(.is-dismissed):hover .pronunciation-tooltip,
+.pronunciation:not(.is-dismissed):focus-within .pronunciation-tooltip,
+.pronunciation.is-open:not(.is-dismissed) .pronunciation-tooltip {
   visibility: visible;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
-  color: inherit !important;
-  text-decoration: none !important;
-}
-
-[data-tooltip]:hover {
-  text-decoration-line: underline !important;
-  text-decoration-style: dotted !important;
-  text-decoration-thickness: 1px !important;
-  text-underline-offset: 0.15em;
+  transform: translate(-50%, 0);
 }
 
 /* Year sections */
@@ -903,11 +906,6 @@ p {
 
 ul {
   color: var(--color-text);
-}
-
-/* no underline on hover for arrow */
-a#arrow:hover {
-  text-decoration: none;
 }
 
 .bibliography > div > span > b:first-of-type {
@@ -973,37 +971,6 @@ mjx-container[jax="CHTML"][display="true"] {
   border: 0;
 }
 
-/* Post tags in blog listing */
-.post-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 20px;
-}
-
-.post-filter {
-  appearance: none;
-  background: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  font-size: 0.75rem;
-  line-height: 1.4;
-  padding: 3px 9px;
-}
-
-.post-filter:hover {
-  border-color: var(--color-link);
-  color: var(--color-link);
-}
-
-.post-filter[aria-pressed="true"] {
-  background-color: var(--color-link);
-  border-color: var(--color-link);
-  color: var(--color-background);
-}
-
 .post-tag {
   font-size: 0.7em;
   color: var(--color-text-secondary);
@@ -1014,10 +981,6 @@ mjx-container[jax="CHTML"][display="true"] {
   text-decoration: none;
   display: inline-block;
 }
-
-.blog-post-item { margin-bottom: var(--space-4); }
-
-.blog-post-item .post-meta { margin-top: var(--space-1); }
 
 @media screen and (max-width: 600px) {
   .page-content { padding: var(--space-6) 0; }

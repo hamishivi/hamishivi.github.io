@@ -3,11 +3,6 @@ layout: default
 ---
 
 <div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- else -%}
-    <h1 class="visually-hidden">Hamish Ivison</h1>
-  {%- endif -%}
   <picture class="profile-photo">
     <source srcset="{{ '/assets/static/me-400.webp' | relative_url }}" type="image/webp">
     <img src="{{ '/assets/static/me-400.jpg' | relative_url }}" alt="Hamish Ivison, PhD student at University of Washington" width="400" height="503" fetchpriority="high">
