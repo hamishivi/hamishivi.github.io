@@ -433,20 +433,46 @@ table td { border: 1px solid var(--color-border); }
   border-top: 5px solid var(--color-header-border);
   border-bottom: 1px solid var(--color-border);
   min-height: 55.95px;
-  line-height: 54px;
   position: relative;
 }
 
-.site-title { font-size: 1.625rem; font-weight: 400; letter-spacing: 0; margin-bottom: 0; float: left; }
+.site-header .wrapper {
+  display: flex;
+  align-items: center;
+  min-height: 55px;
+}
 
-@media screen and (max-width: 600px) { .site-title { padding-right: 45px; } }
+.site-header .wrapper::after { display: none; }
+
+.site-title {
+  flex: 0 1 auto;
+  font-size: 1.625rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-left: auto;
+  padding-left: var(--space-4);
+}
+
+#theme-toggle {
+  display: block;
+  flex: 0 0 auto;
+  line-height: normal;
+  transform: translateY(-2px);
+}
 
 .site-title, .site-title:visited { color: var(--color-header); }
 
 .site-nav {
-  position: absolute;
-  top: 9px;
-  right: 15px;
+  position: relative;
   background-color: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: 5px;
@@ -471,7 +497,18 @@ table td { border: 1px solid var(--color-border); }
 
 .site-nav .trigger { clear: both; display: none; }
 
-.site-nav.is-open .trigger { display: block; padding-bottom: 5px; }
+.site-nav.is-open .trigger {
+  display: block;
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  min-width: 9rem;
+  padding: var(--space-2) 0;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: var(--color-background);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 10%);
+}
 
 .site-nav .page-link { color: var(--color-text); line-height: 1.5; display: block; padding: 5px 10px; margin-left: 20px; }
 
@@ -480,7 +517,6 @@ table td { border: 1px solid var(--color-border); }
 @media screen and (min-width: 601px) {
   .site-nav {
     position: static;
-    float: right;
     border: none;
     background-color: inherit;
   }
@@ -488,6 +524,13 @@ table td { border: 1px solid var(--color-border); }
   .site-nav .trigger { display: block; }
   .site-nav .page-link { display: inline; padding: 0; margin-left: auto; }
   .site-nav .page-link:not(:last-child) { margin-right: 20px; }
+}
+
+@media screen and (max-width: 600px) {
+  .header-controls {
+    gap: var(--space-3);
+    padding-left: var(--space-3);
+  }
 }
 
 /** Site footer */
