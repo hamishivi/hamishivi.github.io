@@ -20,23 +20,17 @@ MathJax = {
     const button = section.querySelector('.toggle-button');
     const arrow = button ? button.querySelector('span') : null;
 
-    if (!content || !button) {
-      return;
-    }
+    if (!content || !button) return;
 
     content.style.display = expanded ? 'block' : 'none';
     button.setAttribute('aria-expanded', String(expanded));
-    if (arrow) {
-      arrow.classList.toggle('up', expanded);
-    }
+    if (arrow) arrow.classList.toggle('up', expanded);
   }
 
   // Kept global because the year buttons call this function directly.
   function toggleArrow(year) {
     const section = document.getElementById(`year-${year}`);
-    if (!section) {
-      return;
-    }
+    if (!section) return;
     const button = section.querySelector('.toggle-button');
     setYearExpanded(section, button.getAttribute('aria-expanded') !== 'true');
   }
@@ -76,20 +70,101 @@ MathJax = {
       });
     }
     
-    // Toggle for bibliography abstract/bibtex dropdowns
-    document.querySelectorAll('.btnId').forEach(function(btn) {
+    // Animated, mutually exclusive bibliography detail panels
+    const detailButtons = Array.from(document.querySelectorAll('.btnId'));
+
+    function closePublicationDetail(button, panel, immediate) {
+      button.setAttribute('aria-expanded', 'false');
+      button.classList.remove('dropped');
+      panel.classList.remove('is-open');
+      panel.setAttribute('aria-hidden', 'true');
+      panel.inert = true;
+
+      if (immediate) {
+        panel.hidden = true;
+        return;
+      }
+
+      let finished = false;
+      const finishClosing = function() {
+        if (finished) return;
+        finished = true;
+        if (!panel.classList.contains('is-open')) panel.hidden = true;
+      };
+
+      panel.addEventListener('transitionend', finishClosing, { once: true });
+      window.setTimeout(finishClosing, 320);
+    }
+
+    detailButtons.forEach(function(btn) {
+      const panel = document.getElementById(btn.dataset.target);
+      if (!panel) return;
+
+      closePublicationDetail(btn, panel, true);
+
       btn.addEventListener('click', function() {
-        var id = this.getAttribute('aria-controls');
-        if (!id) {
-          return;
+        const shouldOpen = this.getAttribute('aria-expanded') !== 'true';
+
+        detailButtons.forEach(function(otherButton) {
+          if (otherButton.getAttribute('aria-expanded') !== 'true') return;
+          const otherPanel = document.getElementById(otherButton.dataset.target);
+          if (otherPanel) closePublicationDetail(otherButton, otherPanel, false);
+        });
+
+        if (shouldOpen) {
+          panel.hidden = false;
+          panel.inert = false;
+          panel.setAttribute('aria-hidden', 'false');
+          this.setAttribute('aria-expanded', 'true');
+          this.classList.add('dropped');
+          window.requestAnimationFrame(function() {
+            panel.classList.add('is-open');
+          });
         }
-        var target = document.getElementById(id);
-        if (target) {
-          var isExpanded = this.getAttribute('aria-expanded') === 'true';
-          target.style.display = isExpanded ? 'none' : 'block';
-          this.setAttribute('aria-expanded', String(!isExpanded));
-          this.classList.toggle('dropped', !isExpanded);
+      });
+    });
+
+    function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      const copied = document.execCommand('copy');
+      textarea.remove();
+      return copied ? Promise.resolve() : Promise.reject(new Error('Copy failed'));
+    }
+
+    document.querySelectorAll('.copy-bibtex').forEach(function(button) {
+      button.addEventListener('click', async function() {
+        const target = document.getElementById(this.dataset.copyTarget);
+        const status = document.getElementById(this.dataset.copyStatus);
+        if (!target) return;
+
+        window.clearTimeout(this.copyResetTimer);
+
+        try {
+          await copyText(target.textContent.trim());
+          this.textContent = 'Copied';
+          this.classList.add('is-copied');
+          if (status) status.textContent = 'BibTeX copied to clipboard.';
+        } catch (error) {
+          this.textContent = 'Try again';
+          this.classList.remove('is-copied');
+          if (status) status.textContent = 'Unable to copy BibTeX.';
         }
+
+        this.copyResetTimer = window.setTimeout(() => {
+          this.textContent = 'Copy';
+          this.classList.remove('is-copied');
+        }, 1800);
       });
     });
 

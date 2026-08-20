@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /technical
+title: Technical
+description: Technical side projects, often involving live code demos and implementation notes.
 ---
 <div class="post">
 <h1>Technical</h1>

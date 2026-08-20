@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /personal
+title: Personal
+description: Personal reflections and media lists.
 ---
 <div class="post">
 <h1>Personal</h1>

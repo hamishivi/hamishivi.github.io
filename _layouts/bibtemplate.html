@@ -1,29 +1,37 @@
 ---
 ---
-{{reference}}
-<br>
+{% capture rendered_reference %}{{reference}}{% endcapture %}
+{{ rendered_reference | replace: "Hamish Ivison", "<strong>Hamish Ivison</strong>" }}
+<div class="publication-actions">
     {% if entry.abstract %}
-    <button class="btn btnId btnPub--abstract button-4" type="button" aria-expanded="false" aria-controls="{{key}}-abstract">Abstract</button>
+    <button class="btn btnId btnPub--abstract button-4" id="b_{{key}}-abstract" type="button" data-target="{{key}}-abstract" aria-controls="{{key}}-abstract" aria-expanded="false">Abstract</button>
     {% endif %}
 
     {% unless entry.dontshowbib %}
-    <button class="btn btnId btnPub--BibTex button-4" type="button" aria-expanded="false" aria-controls="{{key}}-bibtex">BibTeX</button>
+    <button class="btn btnId btnPub--BibTex button-4" id="b_{{key}}-bibtex" type="button" data-target="{{key}}-bibtex" aria-controls="{{key}}-bibtex" aria-expanded="false">BibTeX</button>
     {% endunless %}
-    
+
     {% if entry.url %}
-    <a class="btn button-4 btnPub--download" href="{{entry.url}}">PDF</a>
-    {% endif %}
-    
-    {% if entry.code %}
-    <a class="btn button-4 btnPub--download" href="{{entry.code}}">Code</a>
+    <a href="{{entry.url}}" class="button-4 btnPub--download">PDF</a>
     {% endif %}
 
+    {% if entry.code %}
+    <a href="{{entry.code}}" class="button-4 btnPub--download">Code</a>
+    {% endif %}
+</div>
+
     {% unless entry.dontshowbib %}
-    <div class="dropDownBibtex" id="{{key}}-bibtex" style="display:none;">
-    <pre>{{entry.bibtex}}</pre>
+    <div class="publication-details dropDownBibtex" id="{{key}}-bibtex" aria-hidden="true" hidden>
+    <div class="bibtex-toolbar">
+      <button class="copy-bibtex button-4" type="button" data-copy-target="{{key}}-bibtex-content" data-copy-status="{{key}}-copy-status">Copy</button>
+      <span class="sr-only" id="{{key}}-copy-status" aria-live="polite"></span>
+    </div>
+    <pre id="{{key}}-bibtex-content">{{entry.bibtex}}</pre>
     </div>
     {% endunless %}
-    
-    <div class="dropDownAbstract" id="{{key}}-abstract" style="display:none;">
+
+    {% if entry.abstract %}
+    <div class="publication-details dropDownAbstract" id="{{key}}-abstract" aria-hidden="true" hidden>
     {{entry.abstract}}
     </div>
+    {% endif %}

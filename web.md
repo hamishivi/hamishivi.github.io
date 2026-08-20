@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /web
+title: Web
+description: Posts about web development.
 ---
 <div class="post">
 <h1>Web</h1>

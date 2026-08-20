@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /rl
+title: RL
+description: Posts about reinforcement learning.
 ---
 <div class="post">
 <h1>RL</h1>

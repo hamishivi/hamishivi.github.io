@@ -17,11 +17,10 @@ layout: default
           {{ mdate | date: date_format }}
         </time>
       {%- endif -%}
-      <hspace></hspace>
-      &nbsp;
+      <span class="post-meta-separator" aria-hidden="true">·</span>
       {% for tag in page.tags %}
       {% capture tag_name %}{{ tag }}{% endcapture %}
-      <a href="{{ '/' | append: tag_name | append: '.html' | relative_url }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code></a>&nbsp;
+      <a href="{{ '/' | append: tag_name | append: '.html' | relative_url }}" class="post-tag">{{ tag_name }}</a>
     {% endfor %}</p>
   </header>
 

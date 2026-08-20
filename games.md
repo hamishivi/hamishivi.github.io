@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /games
+title: Games
+description: Posts about video games and game AI.
 ---
 <div class="post">
 <h1>Games</h1>

@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /nlp
+title: NLP
+description: Posts about natural language processing.
 ---
 <div class="post">
 <h1>NLP</h1>

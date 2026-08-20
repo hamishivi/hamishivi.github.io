@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /non-technical
+title: Non-technical
+description: Thoughts and reflections on books, films, games, and other interests.
 ---
 <div class="post">
 <h1>Non-technical</h1>

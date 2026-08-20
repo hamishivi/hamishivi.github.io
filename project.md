@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /project
+title: Projects
+description: Side-project showcases with demos and code.
 ---
 <div class="post">
 <h1>Projects</h1>

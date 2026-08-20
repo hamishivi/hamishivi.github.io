@@ -11,7 +11,7 @@ description: I made a fun little animated Ace Attorney AI script generator.
 
 
 
-As a visual novel, *Ace Attorney* is a text-heavy game, and so with the recent release of the *[Great Ace Attorney Chronicles](https://www.ace-attorney.com/great1-2/en-asia/)* and the popularity of the [twitter court bot](https://twitter.com/acecourtbot2?lang=en), I thought it would be fun to make use of the court bot's code to auto-generate *Ace Attorney* scripts and animate them! This is fairly easy to do, as it turns out - I used the great [aitextgen](https://docs.aitextgen.io/) library for training models and generating text, and the [objection engine library](https://github.com/LuisMayo/objection_engine) for animating the scripts - all I had to do really was train the model itself and write some code to convert it to a format the objection engine recognises.
+As a visual novel, *Ace Attorney* is a text-heavy game, and so with the recent release of the *[Great Ace Attorney Chronicles](https://www.ace-attorney.com/great1-2/en-asia/)* and the popularity of the [twitter court bot](https://twitter.com/acecourtbot2?lang=en), I thought it would be fun to make use of the court bot's code to auto-generate *Ace Attorney* scripts and animate them! This is fairly easy to do, as it turns out - I used the great [aitextgen](https://github.com/minimaxir/aitextgen) library for training models and generating text, and the [objection engine library](https://github.com/LuisMayo/objection_engine) for animating the scripts - all I had to do really was train the model itself and write some code to convert it to a format the objection engine recognises.
 
 
 

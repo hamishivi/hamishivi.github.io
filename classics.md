@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /classics
+title: Classics
+description: Posts about classical languages and ancient history.
 ---
 <div class="post">
 <h1>Classics</h1>

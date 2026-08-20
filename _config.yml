@@ -1,12 +1,10 @@
 title: Hamish Ivison
 description: >-
-  Hamish Ivison is a University of Washington PhD student researching
-  post-training, reinforcement learning, and data for language models.
+  Research, publications, and writing by Hamish Ivison, a PhD student working on language model post-training and reinforcement learning.
 baseurl: ""
 url: "https://ivison.id.au"
 author:
   name: Hamish Ivison
-  email: hamishiv@cs.washington.edu
 logo: /assets/static/me-400.jpg
 
 # Header navigation pages
@@ -35,4 +33,4 @@ scholar:
   style: _bibliography/association-for-computational-linguistics.csl.txt
   bibliography_template: bibtemplate
   bibliography_list_tag: div
-  bibliography_item_tag: ul
+  bibliography_item_tag: div

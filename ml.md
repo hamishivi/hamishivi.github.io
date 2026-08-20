@@ -1,6 +1,8 @@
 ---
 layout: default
 permalink: /ml
+title: ML
+description: Posts about machine learning.
 ---
 <div class="post">
 <h1>ML</h1>

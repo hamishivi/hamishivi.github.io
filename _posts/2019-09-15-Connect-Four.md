@@ -43,7 +43,7 @@ You can augment this with a depth limit, so you can only look ahead some number 
 
 In this diagram, the algorithm goes up to three turns rather than exploring the entire game. As we can see, we alternate between taking the *minimum* of all possible scores (turns 3 to 2) and taking the *maximum* of all possible scores (turns 2 to 1). Crucially, we also assume the opponent will make the best move available to them (hence we take the minimum score when simulating their turn, since high negative scores are worse for us but good for the opponent). Even if the opponent doesn't make their best possible move, this algorithm will still give the best possible move we can make.
 
-# 2: Alpha-Beta Pruning
+## 2: Alpha-Beta Pruning
 
 So far, the AI works really well! But we can still do better - there are far more optimisations we can apply. For example, game-specific optimisations can be made - for connect-four, we could order which columns we search first when placing tokens. In connect-four, searching the middle set of columns is better than searching the outer edges, since the middle set allows for more potential avenues to win - and this is exactly what my AI does!
 
@@ -53,7 +53,7 @@ For example, taking our minimax example above, we **wouldn't** explore the final
 
 ![example tictactoe tree](https://i.imgur.com/6AyC8db.png)
 
-# 3: Going (A) Bit Crazy
+## 3: Going (A) Bit Crazy
 
 At this point, the AI is pretty good. Given enough time, it can never lose (if there is any way to win), and thanks to alpha-beta pruning, it's pretty fast. But we can do better if we are clever about how we represent the game itself in code.
 
@@ -132,7 +132,6 @@ The idea here is simple. First, we shift the board to the right by the column nu
 
 Hence, by ANDing this board with the shifted columns, we isolate the column we want to check - if we want to check the first column, we shift by zero, and then AND it with the above board, resulting in a bitboard with only the bits corresponding to the first column set (if those bits had been set in the first place). For other columns, we simply shift that column to the position of the first column, and then AND it with the above board. Once this is done, we simply count the number of set bits from the bottom up to get the current height of that column. If the height equals the height of the board, we know the column is full. (Note that in my real code, the board layout is a bit different (essentially horizontally flipped), but I opted to keep things a bit simpler in this post. The bit tricks still work, except you use a right shift instead of a left one in the ```get_height``` function). 
 
-# Fin
+## Fin
 
 I hope this was an interesting and useful post, and thanks for reading! I had a bunch of fun writing this code up, especially messing around with the bitboard - I'd really recommend trying out bit-optimising your own code, if you have the time and energy! As a reminder, you can check out the code for the AI itself [here](https://github.com/hamishivi/Connect4/blob/master/ConnectFourTournament.cpp) if you're interested. 😄
-
