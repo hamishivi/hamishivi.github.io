@@ -1,7 +1,7 @@
 ---
 ---
 {% capture rendered_reference %}{{reference}}{% endcapture %}
-{{ rendered_reference | replace: "Hamish Ivison", "<strong>Hamish Ivison</strong>" }}
+{{ rendered_reference | replace: "Hamish Ivison", '<strong class="publication-author-self">Hamish Ivison</strong>' }}
 <div class="publication-actions">
     {% if entry.abstract %}
     <button class="btn btnId btnPub--abstract button-4" id="b_{{key}}-abstract" type="button" data-target="{{key}}-abstract" aria-controls="{{key}}-abstract" aria-expanded="false">Abstract</button>
