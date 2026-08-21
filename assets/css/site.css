@@ -926,13 +926,8 @@ ul {
 }
 
 .publication-author-self {
-  padding: 0.05em 0.2em;
-  border-radius: 3px;
-  background: var(--color-accent-soft);
-  color: var(--color-accent-strong);
-  font-weight: 800;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  color: var(--color-accent);
+  font-weight: 700;
 }
 
 .site-title-accent {
