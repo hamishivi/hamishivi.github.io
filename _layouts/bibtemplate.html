@@ -1,37 +1,36 @@
 ---
 ---
-{% capture rendered_reference %}{{reference}}{% endcapture %}
-{{ rendered_reference | replace: "Hamish Ivison", '<strong class="publication-author-self">Hamish Ivison</strong>' }}
+{{ reference | replace: "Hamish Ivison", '<strong class="publication-author-self">Hamish Ivison</strong>' }}
 <div class="publication-actions">
     {% if entry.abstract %}
-    <button class="btn btnId btnPub--abstract button-4" id="b_{{key}}-abstract" type="button" data-target="{{key}}-abstract" aria-controls="{{key}}-abstract" aria-expanded="false">Abstract</button>
+    <button class="publication-toggle publication-button" type="button" aria-controls="{{key}}-abstract" aria-expanded="false">Abstract</button>
     {% endif %}
 
     {% unless entry.dontshowbib %}
-    <button class="btn btnId btnPub--BibTex button-4" id="b_{{key}}-bibtex" type="button" data-target="{{key}}-bibtex" aria-controls="{{key}}-bibtex" aria-expanded="false">BibTeX</button>
+    <button class="publication-toggle publication-button" type="button" aria-controls="{{key}}-bibtex" aria-expanded="false">BibTeX</button>
     {% endunless %}
 
     {% if entry.url %}
-    <a href="{{entry.url}}" class="button-4 btnPub--download">PDF</a>
+    <a href="{{entry.url}}" class="publication-button">PDF</a>
     {% endif %}
 
     {% if entry.code %}
-    <a href="{{entry.code}}" class="button-4 btnPub--download">Code</a>
+    <a href="{{entry.code}}" class="publication-button">Code</a>
     {% endif %}
 </div>
 
     {% unless entry.dontshowbib %}
-    <div class="publication-details dropDownBibtex" id="{{key}}-bibtex" aria-hidden="true" hidden>
+    <div class="publication-details bibtex-panel" id="{{key}}-bibtex" hidden>
     <div class="bibtex-toolbar">
-      <button class="copy-bibtex button-4" type="button" data-copy-target="{{key}}-bibtex-content" data-copy-status="{{key}}-copy-status">Copy</button>
+      <button class="copy-bibtex publication-button" type="button" data-copy-target="{{key}}-bibtex-content" data-copy-status="{{key}}-copy-status">Copy</button>
       <span class="sr-only" id="{{key}}-copy-status" aria-live="polite"></span>
     </div>
-    <pre id="{{key}}-bibtex-content">{{entry.bibtex}}</pre>
+    <pre id="{{key}}-bibtex-content">{{entry.bibtex | escape}}</pre>
     </div>
     {% endunless %}
 
     {% if entry.abstract %}
-    <div class="publication-details dropDownAbstract" id="{{key}}-abstract" aria-hidden="true" hidden>
+    <div class="publication-details" id="{{key}}-abstract" hidden>
     {{entry.abstract}}
     </div>
     {% endif %}

@@ -26,16 +26,7 @@ description: My random thoughts, musings, and technical side projects.
 {% assign blog_posts = site.tags.blog %}
 {% for post in blog_posts %}
   <li class="post-list-item" data-tags="{{ post.tags | join: ' ' | escape }}">
-    <article class="post-card">
-      <div class="post-card-heading">
-        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b %Y" }}</time>
-      </div>
-      <div class="post-tags" aria-label="Topics">
-        {% for tag in post.tags %}{% unless tag == "blog" %}<a href="/{{ tag }}.html" class="post-tag">{{ tag }}</a>{% endunless %}{% endfor %}
-      </div>
-      <p>{{ post.description }}</p>
-    </article>
+    {% include post_card.html post=post %}
   </li>
 {% endfor %}
 </ul>

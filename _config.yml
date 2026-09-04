@@ -13,22 +13,36 @@ header_pages:
 
 # Build settings
 plugins:
-  - jekyll-remote-theme
   - jekyll-feed
+  - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll/scholar
 
-remote_theme: jekyll/minima@41b97699af658128fa9983e5312ca5516641f335
 markdown: kramdown
-tags:
-minima:
-  skin: dark
-  social_links:
-    twitter: hamishivi
-    github: hamishivi
-    linkedin: hamish-ivison-6a17a1118
+exclude:
+  - readme.md
+  - AGENTS.md
+  - scripts
+  - tests
+  - vendor
+  - .bundle
+  - Gemfile
+  - Gemfile.lock
+  - secrets*
+
+social_links:
+  - name: GitHub
+    icon: github
+    url: https://github.com/hamishivi
+  - name: LinkedIn
+    icon: linkedin
+    url: https://www.linkedin.com/in/hamish-ivison-6a17a1118
+  - name: Twitter
+    icon: twitter
+    url: https://twitter.com/hamishivi
 
 scholar:
+  first_year: 2020
   style: _bibliography/association-for-computational-linguistics.csl.txt
   bibliography_template: bibtemplate
   bibliography_list_tag: div

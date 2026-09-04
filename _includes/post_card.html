@@ -1,0 +1,12 @@
+<article class="post-card">
+  <div class="post-card-heading">
+    <h2><a href="{{ include.post.url | relative_url }}">{{ include.post.title | escape }}</a></h2>
+    <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%d %b %Y" }}</time>
+  </div>
+  <div class="post-tags" aria-label="Topics">
+    {% for tag in include.post.tags %}{% unless tag == 'blog' %}
+      <a href="{{ '/' | append: tag | append: '.html' | relative_url }}" class="post-tag">{{ tag | escape }}</a>
+    {% endunless %}{% endfor %}
+  </div>
+  <p>{{ include.post.description }}</p>
+</article>

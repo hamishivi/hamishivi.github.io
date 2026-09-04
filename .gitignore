@@ -7,3 +7,5 @@ secrets*
 public/
 __pycache__/
 *.pyc
+.bundle/
+.DS_Store

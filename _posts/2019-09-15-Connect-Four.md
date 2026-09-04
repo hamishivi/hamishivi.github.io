@@ -11,7 +11,7 @@ Continuing with my streak of taking University projects and turning them into (s
 
 If you were to start training to be a pro chess player, the first thing you would practice would be prediction - trying to look ahead and see what moves your opponent will make, so you could then plan your own moves based on that. Traditional computer game AI works largely the same way - it tries to make predictions based on the current board, simulating moves and looking ahead to see which move will give it the best chance of winning. Of course, there are some big differences between human and AI players: AI players require the state of the game to be fed to them, disregarding potential hints in the other player's behaviour, and AI players can compute future game states far faster and far more precisely than most humans. Looking at these two differences, it makes sense to leverage this computational power to remove any chance of loss - to simulate *every possible game* from the current point in time. If at any given point of the game, you can see all possible moves, you should never lose (if the game is fair). This is the idea behind decision trees: simply construct a tree, branching at every move, and keep generating it until you have seen all possible ways the game can play out. This works well for games with few possible states, such as tic-tac-toe. Here's an example of a small section of what such a decision tree might look like:
 
-![example tictactoe tree](https://i.imgur.com/bc17oZK.png)
+<img src="https://images.ivison.id.au/2019-09-15-connect-four-01-df939cd9f224.png" alt="A tic-tac-toe game tree showing possible moves and the positions reached after each move." width="681" height="402" loading="lazy">
 
 Even for a simple game like tic-tac-toe, we have lots of possible ways the game can go - each of the nines squares can contain either nothing, X, or O, so we have 19,683 (or 3^9) possible total states! [If you're clever, however, you can still represent this visually without it being too overwhelming.](https://xkcd.com/832/)
 
@@ -39,7 +39,7 @@ function minimax(gameState, maximizingPlayer) is
 
 You can augment this with a depth limit, so you can only look ahead some number of moves (and so save computation time), or you could even update some global variable as you go down each turn, and then return whatever the AI's "best guess" when your time runs out. This is very similar to the decision tree approach, with just some more formalisms about how to choose the best moves. Taking the previous tic-tac-toe example, we can visualise the algorithm like so (the board states are scored randomly, as opposed to being based on board state):
 
-![example tictactoe tree](https://i.imgur.com/EKAvHwE.png)
+<img src="https://images.ivison.id.au/2019-09-15-connect-four-02-8755596a97a3.png" alt="A tic-tac-toe game tree with position scores propagated upward using minimax." width="681" height="431" loading="lazy">
 
 In this diagram, the algorithm goes up to three turns rather than exploring the entire game. As we can see, we alternate between taking the *minimum* of all possible scores (turns 3 to 2) and taking the *maximum* of all possible scores (turns 2 to 1). Crucially, we also assume the opponent will make the best move available to them (hence we take the minimum score when simulating their turn, since high negative scores are worse for us but good for the opponent). Even if the opponent doesn't make their best possible move, this algorithm will still give the best possible move we can make.
 
@@ -51,7 +51,7 @@ Another optimisation we can make is called ['alpha-beta pruning'](https://en.wik
 
 For example, taking our minimax example above, we **wouldn't** explore the final board on the right, since the current minimum score (0) from that right side of the tree is *lower* than the score from the left side (1). Hence, no matter what other board states are left to explore in that subtree, we won't find a move better than the one leading to the left subtree.
 
-![example tictactoe tree](https://i.imgur.com/6AyC8db.png)
+<img src="https://images.ivison.id.au/2019-09-15-connect-four-03-53eb80a16227.png" alt="Alpha-beta pruning on a tic-tac-toe game tree, with an unnecessary branch marked as not explored." width="681" height="431" loading="lazy">
 
 ## 3: Going (A) Bit Crazy
 
@@ -61,7 +61,7 @@ Normally, you would represent a board with a simple two-dimensional array. This 
 
 To use a bit board, we have to maintain two boards - one for each player, since we can only express '1' and '0' in the board itself. You may also want to maintain a third board that just tracks where tokens are placed, but this can be created by bitwise 'OR'ing the two boards together. While the bitboard is a simple one-dimensional bit array, it is useful to keep in mind how each bit maps to a board position:
 
-![bit number to connect-four position mapping](https://i.imgur.com/My2AfOs.png)
+<img src="https://images.ivison.id.au/2019-09-15-connect-four-04-5c86c34393f3.png" alt="A Connect Four board labelled with the bit index assigned to each position." width="171" height="121" loading="lazy">
 
  *The number bit is in the square it represents. The dotted squares are for the "scratch space" that doesn't get used by the actual board, but is utilised by some of the algorithms below. This is not 100% representative of how the bit layout works in my code, but is very similar.*
 
@@ -99,11 +99,11 @@ This looks quite scary (magic numbers oh boy), and is a bit tricky, but all four
 
 Let's now do these steps with this very basic example board:
 
-![Red Tokens at bottom of bit board](https://i.imgur.com/f0nLyX0.png)
+<img src="https://images.ivison.id.au/2019-09-15-connect-four-05-1b772a9feffc.png" alt="A Connect Four bitboard with occupied positions highlighted in red, including tokens along the bottom row." width="171" height="121" loading="lazy">
 
 Lets now apply the above steps to this:
 
-![bit algorithm explanation image](https://i.imgur.com/JjbAjcH.png)
+<img src="https://images.ivison.id.au/2019-09-15-connect-four-06-313e7c0f5d93.png" alt="Bit shifts and bitwise AND operations used to detect four connected tokens on a Connect Four bitboard." width="1017" height="523" loading="lazy">
 
 Note that the four-in-a-row that was vertical is *not* picked up - the algorithm only works for one direction at a time!
 
@@ -128,7 +128,7 @@ int get_height(uint64_t board, int col)
 
 The idea here is simple. First, we shift the board to the right by the column number we wish to inquire about. We then AND this with a magic number, which should correspond to the following board (red means that cell's corresponding bit is set, as above - the precise number will depend on how you implement the bit board):
 
-![bit height algorithm explanation image](https://i.imgur.com/kz0eSTi.png)
+<img src="https://images.ivison.id.au/2019-09-15-connect-four-07-7f3151bbfcab.png" alt="A highlighted Connect Four column illustrating how the height of the occupied stack is represented in bits." width="171" height="121" loading="lazy">
 
 Hence, by ANDing this board with the shifted columns, we isolate the column we want to check - if we want to check the first column, we shift by zero, and then AND it with the above board, resulting in a bitboard with only the bits corresponding to the first column set (if those bits had been set in the first place). For other columns, we simply shift that column to the position of the first column, and then AND it with the above board. Once this is done, we simply count the number of set bits from the bottom up to get the current height of that column. If the height equals the height of the board, we know the column is full. (Note that in my real code, the board layout is a bit different (essentially horizontally flipped), but I opted to keep things a bit simpler in this post. The bit tricks still work, except you use a right shift instead of a left one in the ```get_height``` function). 
 

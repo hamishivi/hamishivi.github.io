@@ -14,7 +14,7 @@ As a warning, I'll be completely spoiling the first few hours of *Xenoblade*, up
 As a brief note, all screenshots below (unless otherwise marked) are from my own new game+ playthrough of the recently-released definitive edition.
 
 <figure>
-<img src="https://assets.nintendo.com.au/image/upload/f_auto/q_auto/v1620776649/NAL/Articles/A%20Beginner%E2%80%99s%20Guide%20to%20Xenoblade%20Chronicles%3A%20Definitive%20Edition/xenoblade-chronicles-definitive-edition-titans-fighting-compressor" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-01-8ca64215282b.gif" alt="Artwork of the Bionis and Mechonis, two enormous titans facing each other above the clouds." loading="lazy" style="margin: 0 auto; width: 100%" width="500" height="281">
 
 <figcaption>The Bionis and Mechonis standing opposite each other. <a href="https://www.nintendo.com/au/news-and-articles/a-beginners-guide-to-xenoblade-chronicles-definitive-edition/">Art from Nintendo</a>.</figcaption>
 </figure>
@@ -26,7 +26,7 @@ Before diving into the game world, let's first stop to talk about *how* we can e
 - Systemic: As a JRPG, *Xenoblade* is a game chock full of systems. Just check out the combat: you have arts, talent arts, tension, chain attacks, status effects, auras, break/topple/daze.... there's a lot to learn and make use of! As such, it is only natural that some of these systems tie into exploration and that exploration itself is systematised to a degree within the game.
 
 <figure>
-<img src="https://i.imgur.com/iIK0gQl.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-02-f9db0d0a8caf.jpg" alt="A Xenoblade battle against Mysterious Face, showing party health, combat arts, and status indicators." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>There's a lot more going on here than just what you're seeing in terms of systems.</figcaption>
 </figure>
@@ -40,7 +40,7 @@ These distinctions are not absolute (you can probably think of anything in a gam
 ## The Main Quest: Rescuing Juju
 
 <figure>
-<img src="https://i.imgur.com/9lup2Ik.png" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-03-a002940cc4ab.png" alt="In-game silhouettes of the Mechonis on the left and the Bionis on the right." loading="lazy" style="margin: 0 auto; width: 100%" width="1971" height="480">
 
 <figcaption>The Mechonis on the left, and the Bionis on the right, as represented in-game.</figcaption>
 </figure>
@@ -48,13 +48,13 @@ These distinctions are not absolute (you can probably think of anything in a gam
 After travelling up from Colony 9 (the starting area, on the Bionis' right calf), players come up to Bionis' leg. The thin and narrow entrance immediately leads into a massive sprawling plain: Gaur plain. Coming from the walled-off Colony 9 and closed-in Tephra Caves, you're immediately struck by the expansiveness of Gaur plain as it stretches beyond the horizon. The game is telling you that, from now on, you're out of the introduction and free to go your own way (to a degree).
 
 <figure>
-<img src="https://i.imgur.com/tk1zdGC.gif" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-04-5b849a799f52.gif" alt="The party walks through a narrow rocky passage toward the open expanse of Gaur Plain." loading="lazy" style="margin: 0 auto; width: 100%" width="640" height="480">
 
 <figcaption>Walking onto Gaur plan.</figcaption>
 </figure>
 
 <figure>
-<img src="https://i.imgur.com/RQrDjVw.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-05-56dc354082f1.jpg" alt="Colony 9 viewed from above, enclosed by high cliffs that mark the limits of exploration." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>Colony 9. Notice the clear walls on the other side, clearly indicating the limits of exploration.</figcaption>
 </figure>
@@ -62,13 +62,13 @@ After travelling up from Colony 9 (the starting area, on the Bionis' right calf)
 As we progress through the main quest, we are initially guided to a buggy in the middle of the plain, then a small oasis on its other side, then teleported back to the buggy, before then going to a refugee camp at the end of the plain (this route is mapped below). This continuous ping-ponging explicitly encourages the player to take different routes and explore the map a bit as they wander to the next checkpoint: through the use of various explicit mechanics (which we will get to soon), you're encouraged to take detours on this already very winding path, and if you want to take the most direct route, you'll still end up taking different paths throughout the plain, marked in blue below. Along the way, we meet Juju and Sharla, two siblings from Colony 6 (another colony of humans, or 'homs', further up the leg of the Bionis). After reaching the refugee camp, Sharla joins our party and Juju runs off to colony 6 to prove himself - leaving us to chase after him.
 
 <figure>
-<img src="https://i.imgur.com/W6mT7CV.png" alt="" loading="lazy" style="margin: 0 auto; width: 100%; background-color: black;"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-06-f43f4e91803c.png" alt="Map tracing the main quest across Gaur Plain, from the entrance to the buggy, oasis, and refugee camp; a dotted segment marks a teleport." loading="lazy" style="margin: 0 auto; width: 100%; background-color: black;" width="571" height="522">
 
 <figcaption>1: Start of Gaur Plain; 2: Where you find the broken buggy; 3: The oasis; 4: The refugee camp. Dotted line indicates teleporting from the oasis back to the buggy.</figcaption>
 </figure>
 
 <figure>
-<img src="https://i.imgur.com/SSCkuRg.png" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-07-c5948dc9d752.png" alt="Sharla stands in front of a broken buggy while Juju sits beside it." loading="lazy" style="margin: 0 auto; width: 100%" width="1000" height="473">
 
 <figcaption>Juju and Sharla. Screenshot from the <a href='https://xenoblade.fandom.com/wiki/Juju?file=XC1DE-Sharla-and-Juju.jpg'><i>Xenoblade</i> wiki</a>.</figcaption>
 </figure>
@@ -76,7 +76,7 @@ As we progress through the main quest, we are initially guided to a buggy in the
 Once we reach the refugee camp, we get the chance to stock up on items and accept some sidequests before progressing with the main quest. From the refugee camp, it's a fairly straightforward path to Raguel bridge, taking us past some of the larger landmarks in the map, and over Raguel lake. All these landmarks are explorable, with various sidequests taking place in them. As such, some players will likely detour and explore the areas to complete sidequests (or just to check it out) before pressing forward with the game's plot.
 
 <figure>
-<img src="https://i.imgur.com/OB1Ega7.png" alt="" loading="lazy" style="margin: 0 auto; width: 100%; background-color: black;"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-08-59e8f6363be1.png" alt="Map showing the route from the refugee camp to the start of Raguel Bridge." loading="lazy" style="margin: 0 auto; width: 100%; background-color: black;" width="378" height="405">
 
 <figcaption>4: refugee camp; 5: the start of Raguel bridge.</figcaption>
 </figure>
@@ -84,7 +84,7 @@ Once we reach the refugee camp, we get the chance to stock up on items and accep
 Once across the bridge, we go up to the upper segment of the map and fight the boss(es) of this area almost immediately! This upper segment is left almost completely unexplored and adds a little verticality to what is overall a fairly flat map. After beating the final boss and rescuing Juju, we're teleported back to the refugee camp and told to go back to the upper segment to progress to the next area. After reaching and rescuing Juju from the bosses, the tension in main plotline is also at a low, giving us the perfect chance to dawdle, finish some sidequests, and explore before progressing to the next area (In fact, the initial sidequests in Bionis' leg expire and cannot be completed once we complete the next chunk of the game).
 
 <figure>
-<img src="https://i.imgur.com/GjyBR6C.png" alt="" loading="lazy" style="margin: 0 auto; width: 100%; background-color: black;"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-09-bafc5bd7c2e0.png" alt="Map tracing the quest route onto the upper level and the teleport back to the refugee camp." loading="lazy" style="margin: 0 auto; width: 100%; background-color: black;" width="892" height="485">
 
 <figcaption>5: start of Raguel bridge; 6: other side of Raguel bridge; 7: spiral mountain; 8: end of the map. Dotted line joins lower (left) and upper (right) halves of the map.</figcaption>
 </figure>
@@ -100,7 +100,7 @@ So, having stepped through the story of this area, we can clearly see that the m
 3. Upper level and the caves below (where the holes in the upper level drop down into the caves)
 
 <figure>
-<img src="https://i.imgur.com/yZLRrDh.png" alt="" loading="lazy" style="margin: 0 auto; width: 100%; background-color: black;"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-10-94f7b873e1a7.png" alt="Maps of Bionis’ Leg divided by red lines into Gaur Plain, Viliera Hill and Raguel Lake, and the upper level." loading="lazy" style="margin: 0 auto; width: 100%; background-color: black;" width="1131" height="328">
 
 <figcaption>The three areas, separated by red lines. Areas are organised left to right, following the above list. Upper area is the disjointed section on the right.</figcaption>
 </figure>
@@ -108,7 +108,7 @@ So, having stepped through the story of this area, we can clearly see that the m
 This results in a fairly clear 'hub and spoke' design: each section has some central vast area and then branches out into smaller areas and routes. One example of this is Daksha shrine, which is at the end of a small path off the side of Viliera hill. This path consists of a short climb to a shrine area, with a unique monster (think optional boss) at the end.
 
 <figure>
-<img src="https://i.imgur.com/7SHnI0t.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-11-aee8c7b231e1.jpg" alt="Daksha Shrine, a stone platform with carved pillars at the end of a path above the plain." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>A photo of Daksha shrine (the boss here is lying in wait just beyond the edge of the shrine).</figcaption>
 </figure>
@@ -120,7 +120,7 @@ This 'hub and spoke' design is nothing new - *Mario 64* is perhaps one of the mo
 Of course, the main quest is not the only thread we have to follow. Over the course of the game (including in Bionis' leg), you'll likely pick up various sidequests. These can range from generically-named collection quests ('materials quest 1') to small story quests, with fleshed out plotlines and lasting world effects (primarily expressed via an impressive relationship chart system that displays the relationship between the various characters you meet on your journey).
 
 <figure>
-<img src="https://i.imgur.com/OlgJPDm.png" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-12-6ab715aed8b8.png" alt="A zoomed-out affinity chart showing a dense network of relationships among Xenoblade characters." loading="lazy" style="margin: 0 auto; width: 100%" width="1000" height="548">
 
 <figcaption>A full affinity chart from the game. Zoomed out to both show scale and hide the details of some of these relationships (which are spoiler-y). Center area normally reveals party members and areas, but here is hidden to avoid spoilers.</figcaption>
 </figure>
@@ -133,7 +133,7 @@ These sidequests have a variety of benefits (experience, items, money), but more
 The first type of sidequest is fairly common: *Xenoblade* is full of generic fetch quests that you can accept in bulk, and don't require returning to the quest giver to finish. This encourages a gameplay style where you accept these quests in bulk and simply detour to pick up certain items or kill certain enemies when you come across them. These quests can be dull, but also seem to be designed more as something to idly do on the side rather than explicitly set out to finish.
 
 <figure>
-<img src="https://i.imgur.com/MvZPnb9.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-13-1479ea509351.jpg" alt="Gorman explains that clothes hung out to dry at the refugee camp have been stolen." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>It's quite mean of those Tirkins to steal an old man's clothes!</figcaption>
 </figure>
@@ -141,7 +141,7 @@ The first type of sidequest is fairly common: *Xenoblade* is full of generic fet
 The second type of sidequest tends to be the more interesting one, often adding some backstory to the areas in the world, and filling out the relationships between various characters. For example, take the sidequest 'thieving monsters'. In this sidequest, you're asked to retrieve some refugees' clothes, which had been stolen by a race of creatures called Tirkins while they were hanging to dry. This takes you to an area called Tirkin headquarters, where several Tirkins stand guard (including a unique Tirkin boss). You have to sneak around or fight these Tirkins (some of them likely being far too high-level for you at this point in the game, forcing you to sneak) in order to retrieve the clothes. So in taking this quest, we discover a new area (Tirkin headquarters), have to do a tiny bit of stealth, and discover new things about the relationship between Tirkins and homs (Tirkins seem to be somewhat intelligent, but are antagonistic to homs).
 
 <figure>
-<img src="https://i.imgur.com/fkWIV3m.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-14-dc49e9399c2f.jpg" alt="A group of armed Tirkins stands together in a rocky area." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>The Tirkins tend to attack you on site, especially when you're in their headquarters without permission.</figcaption>
 </figure>
@@ -150,19 +150,19 @@ The second type of sidequest tends to be the more interesting one, often adding 
 In addition, sometimes these types of sidequests are chained together to tell a short story. For example, take the quest chain 'The lost Nopon', 'With much gratitude', and 'With even more gratitude' in Bionis' Leg. The first quest involves you finding a small Nopon (one of the friendly races in the game) called Batubatu after he has gotten lost looking for ingredients for dinner. In the second quest, Batubatu wants to make someone (spoiler: it's you!) a gift, so you have to find the ingredients for it. In the final quest, Batubatu gets lost looking for another present for you, and you have to find him and then the gift he was looking for. After all this, Batubatu promises to stop trying to get you gifts, and not to wander off again without telling his friend Gerugu (who gives two of these quests), finishing his little character arc. So, in following this chain, you learn about Batubatu and his relationship with Gerugu while exploring various parts of the map, including a secret area called Believer's paradise (more on secret areas below). This quest chain thus fleshes out the world in a variety of ways simultaneously!
 
 <figure>
-<img src="https://i.imgur.com/u0XAuO0.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-15-408511bad752.jpg" alt="Gerugu asks for help because Batubatu has gone missing again." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>Gerugu asking for help finding Batubatu (again).</figcaption>
 </figure>
 
 <figure>
-<img src="https://i.imgur.com/UflguaU.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-16-2a4c6816cee6.jpg" alt="Batubatu sits in the grass and says he is out on an adventure." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>Batubatu doesn't seem to realise he's lost.</figcaption>
 </figure>
 
 <figure>
-<img src="https://i.imgur.com/EoTRWvm.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-17-327d9b1e82a0.jpg" alt="Batubatu explains that he came to collect a flower called Ether Wisdom." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>Batubatu once again adventuring a bit further than is safe for him.</figcaption>
 </figure>
@@ -174,7 +174,7 @@ So as we can see, sidequests further encourage exploration by both encouraging d
 As a side note, let's briefly talk about how you actually move in *Xenoblade*. When exploring, you can run or walk on flat ground, and have a fairly floaty jump to allow for jumping over small obstacles, off cliff edges, or even (in some cases) off slides. While this is standard, the newly released definitive edition also includes an auto-run mechanic that allows you to simply set your character running in a single direction. This makes the large maps of *Xenoblade* slightly less tedious - you can set your character off running towards your goal and check your phone or something while he gets there. More importantly to me, it frees up the camera: you can move the camera around your character while they run, further giving you the chance to spot interesting landmarks or other areas you'd like to explore. So, this addition works to make exploration easier: it frees the camera to allow the players to take in the environment around them as they move through it.
 
 <figure>
-<img src="https://i.imgur.com/GV324Zm.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-18-91d20415a0e6.jpg" alt="The party crosses Gaur Plain at sunset with the enormous Mechonis visible in the distance." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>Shulk (the main character) struggling to run up a hill while I just admire the pretty sunset highlighting Mechonis.</figcaption>
 </figure>
@@ -182,7 +182,7 @@ As a side note, let's briefly talk about how you actually move in *Xenoblade*. W
 In addition to the newly added auto-run, the game also has a minimap with the quickest path to whatever quest goal you currently have set. While useful, this does little to aid exploration beyond showing you where to go if you get lost en route to a quest. One potential positive benefit is that it allows the game world to be designed without worrying about players getting lost or confusing locations, but as I played the game with the mini-map on, I can't talk about how it feels playing without it, although I'd be interested in finding out at some point!
 
 <figure>
-<img src="https://i.imgur.com/mTo4chb.jpg" alt="" loading="lazy" style="margin: 0 auto;"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-19-9dd409327fb0.jpg" alt="The minimap shows the player’s position, nearby landmarks, and a dotted route toward the current objective." loading="lazy" style="margin: 0 auto;" width="181" height="203">
 
 <figcaption>The minimap in the definitive edition.</figcaption>
 </figure>
@@ -194,7 +194,7 @@ In addition to the newly added auto-run, the game also has a minimap with the qu
 While following the checkpoints provided by quests and taking detours is a valid way to explore the world, *Xenoblade* goes one step further in providing an explicit exploration system: as you find particular landmarks or reach particular areas, the game provides a pop-up of the area name, along with a large chunk of experience points (in fact, levelling up just from a decent amount of exploration is not uncommon in my experience). 
 
 <figure>
-<img src="https://i.imgur.com/2WL0KVY.png" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-20-b856ef0932c1.png" alt="A landmark-discovery notification appears as the party reaches Ragrinar Canyon Path." loading="lazy" style="margin: 0 auto; width: 100%" width="2560" height="1440">
 
 <figcaption>Example of a landmark popup.</figcaption>
 </figure>
@@ -202,7 +202,7 @@ While following the checkpoints provided by quests and taking detours is a valid
 There are three types of areas that give experience: landmarks (buildings/objects in the world), locations (general areas in the world), and secret areas. Secret areas get a special extra-fancy pop-up, as seen below, and are generally small areas that are harder to find. There are two of these in Bionis' leg: Believer's Paradise and the Observation Platform, both of which provide excellent views to take in. While Believer's Paradise is part of a sidequest chain, as mentioned above, the Observation Platform is not, meaning that you will only discover it if you take the time to explore the map on your own volition.
 
 <figure>
-<img src="https://i.imgur.com/19qISgZ.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-21-f50d86bab79f.jpg" alt="An ornate discovery notification marks the secret area Believer’s Paradise." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>Example of a secret area popup.</figcaption>
 </figure>
@@ -210,7 +210,7 @@ There are three types of areas that give experience: landmarks (buildings/object
 As such, it's clear that these secret areas (especially those that are not part of a sidequest) further encourage exploration, and often these areas reward the curious player with great views or an especially unique design (or both!).
 
 <figure>
-<img src="https://i.imgur.com/uzxm3YH.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-22-f94d87262e2f.jpg" alt="The view from Believer’s Paradise across winding paths and tall natural stone arches." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>The view from Believer's paradise.</figcaption>
 </figure>
@@ -228,7 +228,7 @@ Having covered the systems that encourage us to explore, let's look at the non-s
 One of the big selling points of *Xenoblade* is the uniqueness of its world: a world built on two living creatures. Throughout the game, this is most obviously expressed through the skybox of various areas: for example, in Bionis' Leg, we can see the Mechonis looming over us when we look back out across the world.
 
 <figure>
-<img src="https://i.imgur.com/QtHlks5.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-23-37f8453e2961.jpg" alt="The Mechonis looms above Gaur Plain, partly obscured by clouds." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>The view of Mechonis from Gaur plain.</figcaption>
 </figure>
@@ -236,7 +236,7 @@ One of the big selling points of *Xenoblade* is the uniqueness of its world: a w
 This constant reminder of your place in the world, along with pop-ups denoting where you are on the Bionis when you reach a new map, encourages thinking about how your current area fits into the greater world of *Xenoblade*, and potentially even exourages exploring to find areas that further give you unique views over the Bionis or the Mechonis. It also remainds you how insignificantly small you are in comparison to these god-like creatures, which ties into the themes of the game as a whole (you can play the game yourself if you want to find out how!).
 
 <figure>
-<img src="https://i.imgur.com/qOjBGIt.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-24-8d7569992a04.jpg" alt="The Mechonis seen against an orange sunset from the entrance to Bionis’ Leg." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>The view of Mechonis from the entrance to Bionis' leg.</figcaption>
 </figure>
@@ -246,7 +246,7 @@ This constant reminder of your place in the world, along with pop-ups denoting w
 Another way to stoke curiosity is to create interesting and unique areas (easier said than done). There are a fair few interesting areas throughout Bionis' leg, although the most unique and interesting are (in my opinion) left to later in the game. As you progress through the Leg, you'll see Viliera hill, a skeletal-like set of platforms that jut out from the ground. As these are not far out of your way in the main quest, you might decide to wander up them to get a better look over the rest of the leg area. Alternatively, you might decide to explore the area visible beneath Raguel bridge - a lake with mushroom-like platforms jutting out from it - wondering what treasures or creatures could lie below. In fact, if you explore this area thoroughly, your curiosity will be rewarded with a path to a secret area,. Similarly, the presence of creature dens (such as Tirkin's headquarters) or mysterious landmarks (such as the various old temples and tombs found later in the game) encourage the player to think about and build up their understanding of the history and layout of the world, being a form of environmental storytelling.
 
 <figure>
-<img src="https://i.imgur.com/c3POQM3.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-25-e0de7f22e480.jpg" alt="Layered cliffs and stone platforms around Viliera Hill and Raguel Bridge invite exploration above and below the main path." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>A view over Raguel lake.</figcaption>
 </figure>
@@ -263,13 +263,13 @@ Of course, the world of *Xenoblade* is filled with creatures (some of whom will 
 This all adds to the immersion: enemies are not magically at levels that perfectly match yours, but rather a whole assortment of levels that match their place in the ecosystem (e.g. the tougher enemies are usually the more predatory ones, such as the arachnos), and they are generally placed in locations that intuitively make sense, and build up your mental picture of the ecosystem of Bionis. In addition, smart placement works to pique to the player's curiosity: why are Tirkins guarding that cave? What could be behind that Gogol? If you're especially curious, you might decide to investigate then and there, potentially revealing a hidden path or area!
 
 <figure>
-<img src="https://i.imgur.com/L3lTOcm.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-26-898942fb411a.jpg" alt="Tirkins guard the entrance to a small cave beneath a rocky cliff." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>What could these Tirkins be guarding? (hint, it's an area pictured above!)</figcaption>
 </figure>
 
 <figure>
-<img src="https://i.imgur.com/PVSg1BZ.jpg" alt="" loading="lazy" style="margin: 0 auto; width: 100%"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-27-72820d2df760.jpg" alt="A large Gogol stands on a rocky ledge with waterfalls behind it." loading="lazy" style="margin: 0 auto; width: 100%" width="1280" height="720">
 
 <figcaption>What's behind this Gogol?</figcaption>
 </figure>
@@ -279,7 +279,7 @@ This all adds to the immersion: enemies are not magically at levels that perfect
 So, we've seen that getting players to explore your world relies a lot of things, most of which you'd expect: you want interesting maps and views, you want quests that take you around the map, and you want to make lots of extra interesting small areas that reward curious players. Additionally, with systems like secret areas and exploration experience, you can actually teach players to enjoy exploration, even if they weren't necessarily inclined to do so before! This isn't to say *Xenoblade* is a perfect game, or even a perfect world: there are many boring quests and boring, tedious areas in the game. However, I think it's still worth sitting back and appreciating the amount of work and thought that's gone into the world, and into helping the player enjoy it as much as possible. The Bionis and the Mechonis have come a long way since they were just [a diorama dreamt up during an idle train ride](http://iwataasks.nintendo.com/interviews/#/wii/xenoblade/1/0)!
 
  <figure>
-<img src="https://i.imgur.com/nODMqHg.png" alt="" loading="lazy" style="margin: 0 auto;"/>
+<img src="https://images.ivison.id.au/2021-01-31-xenoblade-28-ca1b1848fd70.png" alt="A physical diorama of the Bionis and Mechonis, the two titans that form Xenoblade’s world." loading="lazy" style="margin: 0 auto;" width="250" height="150">
 
 <figcaption>The dioramas made by MonolithSoft when first coming up with <i>Xenoblade Chronicles</i>.</figcaption>
 </figure>

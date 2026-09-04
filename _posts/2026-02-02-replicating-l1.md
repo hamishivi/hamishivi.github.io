@@ -95,7 +95,7 @@ What does our reward look like? I experimented with four different setups:
 4. *"Up to" reward (8k)*: We reward the model just for being under the token budget. Uses the same calculation as *1*, but if `tokenized_prediction - desired_length < 0`, we just give full reward. The idea is that this is an easier task to learn, and a bit more realistic (a user probably doesn't mind if the model finishes early). Note that I edit the prompt to be `\nThink for up to n tokens.`
 
 To visualise the "up to" and "exact" rewards for a desired length of 3200 tokens:
-<img src="https://i.imgur.com/1Z5NGlO.png" alt="Reward visualisation" width="500" style="display: block; margin: 0 auto;">
+<img src="https://images.ivison.id.au/2026-02-02-replicating-l1-01-633245b34746.png" alt="Length-reward functions: exact-length reward peaks at the target then falls, while up-to-length reward stays at its maximum below the target." style="display: block; margin: 0 auto; width: 500px;" width="1697" height="1063" loading="lazy">
 
 How do we evaluate? Basically, I evaluated on [MATH-500](https://huggingface.co/datasets/HuggingFaceH4/MATH-500) with desired lengths of `{100, 1024, 2048, 4096, 6144, 8192, 9216, 10240}` (set via the prompt). I measure both performance at the various lengths and how far off the lengths are from the desired output length (shown via violin plot below). I also did one out-of-domain experiment running evaluation on [MMLU](https://arxiv.org/abs/2009.03300) with the same lengths.
 
@@ -107,19 +107,19 @@ Let's start by just looking at how well each approach actually adheres to the le
 
 1. **"Exact" reward (4k)**: This works well but we see the model doesn't generalise to lengths past ~4000, even though it was allowed to generate up to 8k during training. This suggests that this form of length control *doesn't generalise to new lengths*.
 
-<img src="https://i.imgur.com/GEWJ4Z7.png" alt="Exact reward (4k)" width="500" style="display: block; margin: 0 auto;">
+<img src="https://images.ivison.id.au/2026-02-02-replicating-l1-02-e42787fefb3b.png" alt="Generated-length distributions for the 4,000-token exact-reward run, compared with requested lengths marked by red stars." style="display: block; margin: 0 auto; width: 500px;" width="3840" height="1800" loading="lazy">
 
 2. **"Exact" reward (8k)**: This also works well! But again, past 8000 desired length it falls apart. I found that upping the learning rate and training for longer generally improved the model's adherence to the length budget.
 
-<img src="https://i.imgur.com/XMnRMUz.png" alt="Exact reward (8k)" width="500" style="display: block; margin: 0 auto;">
+<img src="https://images.ivison.id.au/2026-02-02-replicating-l1-03-c326954c1674.png" alt="Generated-length distributions for the 8,000-token exact-reward run, compared with requested lengths marked by red stars." style="display: block; margin: 0 auto; width: 500px;" width="3840" height="1800" loading="lazy">
 
 3. **"Exact" reward (bucketed)**: The model does very well at adhering to the bucketed values it was trained on, and again doesn't generalise further. I think the wonky violin for 8192 is just to that being right on the output limit used during RL training.
 
-<img src="https://i.imgur.com/w6IDJ2v.png" alt="Exact reward (bucketed)" width="500" style="display: block; margin: 0 auto;">
+<img src="https://images.ivison.id.au/2026-02-02-replicating-l1-04-e4481d2d436d.png" alt="Generated-length distributions for the bucketed exact-reward run, including a wide distribution at a requested length of 6,000 tokens." style="display: block; margin: 0 auto; width: 500px;" width="3840" height="1800" loading="lazy">
 
 4. **"Up to" reward (8k)**: This seems to just encourage the model to always be short (although it does still stay in , technically!).
 
-<img src="https://i.imgur.com/isTJDob.png" alt="Up to reward (8k)" width="500" style="display: block; margin: 0 auto;">
+<img src="https://images.ivison.id.au/2026-02-02-replicating-l1-05-503f3cca8b84.png" alt="Generated lengths under the up-to-length reward remain short even as the requested token budget increases." style="display: block; margin: 0 auto; width: 500px;" width="3840" height="1800" loading="lazy">
 
 **Takeaways**: Training on the budget works really well! We get pretty good length control, although it's not exact exact. However, we don't generalise to new lengths, and so we can't use this technique to scale inference-time compute beyond what we used during training. Interestingly, we also see an 'up to' reward doesn't work that well, as the model just learns to always be short: instead, we need the tight 'exact' reward.
 
@@ -127,7 +127,7 @@ Let's start by just looking at how well each approach actually adheres to the le
 
 You might be curious about performance. Below I've plotted performance at different output lengths for the 8k "exact" reward (and I found the other methods to be similar in performance, apart from the 'up to' reward which just learns to be short). Note I evaluated both using greedy and temperature (temperature of 0.7) sampling, hence the two lines.
 
-<img src="https://i.imgur.com/syY0Ro5.png" alt="Performance at different lengths" width="500" style="display: block; margin: 0 auto;">
+<img src="https://images.ivison.id.au/2026-02-02-replicating-l1-06-48a6409a0c3c.png" alt="MATH-500 accuracy versus requested output length for greedy decoding and sampling, with an uncontrolled-length baseline." style="display: block; margin: 0 auto; width: 500px;" width="1568" height="942" loading="lazy">
 
 As you can see, the model matches the performance of the 'no length control' baseline once we hit >= 2000 tokens in output. This suggests: **a:** we can get length control without sacrificing performance, and **b:** the model doesn't need to generate long chains to do well. **b** is especially interesting, since the model without length control is fairly yappy and does make use of the full 8k token budget quite often. This suggests that the model **learns to compress its reasoning as part of the length control task**. Perhaps this would drop performance in more complex tasks, but here it's very encouraging. Indeed, much work over the past year found that reasoning models could compress their reasoning chains quite a lot.
 
@@ -135,13 +135,13 @@ As you can see, the model matches the performance of the 'no length control' bas
 
 Finally, I also wanted to see how well the length control did at tasks that were OOD. Recall we are training on math data only, so I evaluated on [MMLU](https://arxiv.org/abs/2009.03300), which is a general QA task.
 
-<img src="https://i.imgur.com/AcqVjam.png" alt="Length control on MMLU" width="500" style="display: block; margin: 0 auto;">
+<img src="https://images.ivison.id.au/2026-02-02-replicating-l1-07-ad5fd0489d6b.png" alt="MMLU generated-length distributions versus requested lengths, showing greater variability for larger token budgets." style="display: block; margin: 0 auto; width: 500px;" width="3840" height="1800" loading="lazy">
 
 Here, we see that **length control still works, but less strongly** on these OOD tasks. I consider this pretty successful, since in reality we can just train on a diverse mixture and minimise how many OOD cases the model needs to deal with (and later for Olmo 3 we did indeed train on a moderately diverse mixture of data).
 
 Sadly, we do see performance drop (all curves using temperature 0.7 sampling):
 
-<img src="https://i.imgur.com/r2dhxk1.png" alt="MMLU performance comparison" width="500" style="display: block; margin: 0 auto;">
+<img src="https://images.ivison.id.au/2026-02-02-replicating-l1-08-41f9f487dccd.png" alt="MMLU accuracy versus desired output length for bucketed and higher-learning-rate variants, with starting-model baselines." style="display: block; margin: 0 auto; width: 500px;" width="1560" height="936" loading="lazy">
 
 Note that 'bucketed' is the bucketed reward mentioned above, and the other two are the 'exact' rewards trained for differing amounts of time with different LRs. All three perform worse than the base model. However, this might just be due to the model overfitting on the training data (math-only), for which I don't have an experiment.
 
