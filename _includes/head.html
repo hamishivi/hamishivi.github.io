@@ -12,7 +12,7 @@
       })();
     </script>
     {%- seo -%}
-    <link rel="stylesheet" href="{{ "/assets/css/site.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/site.css" | relative_url }}?v={{ site.time | date: '%s' }}">
     {%- feed_meta -%}
     {% include script.html %}
     
