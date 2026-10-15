@@ -17,6 +17,10 @@
     {% if entry.code %}
     <a href="{{entry.code}}" class="publication-button">Code</a>
     {% endif %}
+
+    {% if entry.huggingface %}
+    <a href="{{entry.huggingface}}" class="publication-button">Hugging Face</a>
+    {% endif %}
 </div>
 
     {% unless entry.dontshowbib %}
